@@ -1,0 +1,112 @@
+document.addToFavorites = function (id, name, sprite) {
+        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${name.charAt(0).toUpperCase() + name.slice(1)} ya está agregado a la lista`
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
+
+
+
+        // Comprobar si el Pokémon ya está en favoritos
+        if (!favorites.some(fav => fav.name === name)) {
+            favorites.push({ id, name, sprite });
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            loadFavorites();
+        }
+
+        else {
+            $('#alert-favoritos-pokedex').html(alert_added)
+        }
+
+        if (!favorites_historial.some(fav => fav.name === name)) {
+            favorites_historial.push({ id, name, sprite });
+            localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
+            loadFavorites();
+        }
+
+        else {
+            $('#alert-favoritos-pokedex').html(alert_added)
+        }
+
+
+
+    };
+
+
+
+    // Función para cargar la lista de favoritos desde localStorage
+    function loadFavorites() {
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        $('#favorites-list').empty();
+
+        if (favorites.length) {
+
+            favorites.forEach(function (fav) {
+                var favoriteItem = `
+                  <li>
+                      <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
+                      <button id="eliminar" onclick="eliminar(${fav.id})">&times;</button>
+                  </li>
+              `;
+                $('#favorites-list').append(favoriteItem);
+            });
+
+        }
+
+        else {
+            $('#favorites-list').html("No se encuentran favoritos")
+        }
+
+    }
+
+  
+
+
+    function loadHistorial() {
+        const favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
+        $('#historial-list').empty();
+
+        if (favorites_historial.length) {
+            favorites_historial.forEach(function (favh) {
+                const favoriteItem = `  
+                        <div class="pokemon-card">
+                            <img src=${favh.sprite}>
+                            <h3>${favh.name.charAt(0).toUpperCase() + favh.name.slice(1)}</h3>
+                            <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                            <button class="descripcion" onclick="descripcion(${favh.id}, '${favh.name}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                            <button id="eliminar" onclick="eliminar(${favh.id})"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
+                `;
+                $('#historial-list').append(favoriteItem);
+            });
+        }
+
+
+        else {
+            $('#historial-list').html("No se encuentran favoritos")
+        }
+
+
+    }
+
+
+
+
+    // Función para eliminar un Pokémon de los favoritos
+    window.eliminar = function (id) {
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        //   favorites = favorites.filter(fav => fav.id !== id);
+        favorites = favorites.filter(fav => fav.id !== id);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        loadFavorites();
+        loadHistorial();
+
+
+    };
+
+    $('#eliminar-todos').click(function () {
+        localStorage.clear();
+        loadFavorites();
+        loadHistorial();
+    });
+
+
+});

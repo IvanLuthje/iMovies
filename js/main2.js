@@ -104,6 +104,7 @@ $(document).ready(function () {
         $('#alert-favoritos').empty();
         var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado a la lista`
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
         // Comprobar si el Pokémon ya está en favoritos
         if (!favorites.some(fav => fav.Title === Title)) {
@@ -150,13 +151,13 @@ $(document).ready(function () {
     }
 
     function loadHistorial() {
-        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        var favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
         $('#historial-list').empty();
 
         
 
-        if (favorites.length) {
-            favorites.forEach(function (fav) {
+        if (favorites_historial.length) {
+            favorites_historial.forEach(function (fav) {
                 var favoriteItem = `  
                     <div class="movie-card">
                         <img src=${fav.Poster}>
