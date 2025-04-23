@@ -30,10 +30,8 @@ $(document).ready(function () {
     $('.boton_busqueda').click(function () {
         const title = $('#nombre').val().trim();
         var apiKey = "4526760c";
-        const searchTerm = 'batman';
-        let url = `http://www.omdbapi.com/?s=${searchTerm}&type=movie&apikey=${apiKey}&plot=full&page=12`;
+        let url = `http://www.omdbapi.com/?t=${title}&type=movie&apikey=${apiKey}&plot=full`;
         let url_series = `http://www.omdbapi.com/?t=${title}&type=series&apikey=${apiKey}`;
-        let url_games = `http://www.omdbapi.com/?t=${title}&type=game&apikey=${apiKey}`;
         var alert_film = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no disponible`
         var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no disponible`
         if (filtro.value == 'nombre') {
@@ -52,19 +50,6 @@ $(document).ready(function () {
         if (filtro.value == 'series') {
             $.ajax({
                 url: url_series,
-                method: 'GET',
-                success: function (data) {
-                    mostrarSeries(data);
-                },
-                error: function () {
-                    $('#films-info').html(alert_serie);
-                }
-            });
-        }
-
-        if (filtro.value == 'games') {
-            $.ajax({
-                url: url_games,
                 method: 'GET',
                 success: function (data) {
                     mostrarSeries(data);
@@ -173,9 +158,6 @@ $(document).ready(function () {
 
          $('#movies-info').append(movieCard);
     }
-
-
-    
 
     // Función para agregar Pokémon a favoritos
     document.addToFavorites = function (imdbID, Title, Poster, Type) {

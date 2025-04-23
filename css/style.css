@@ -65,12 +65,13 @@ nav ul li a:hover {
 main {
 	padding: 20px;
 	min-height: 768px;
-	margin-left: 5%;
+	/* margin-left: 5%; */
 }
 
 .main_comp {
 	background-color: #1f7042;
 	min-height: 1080px;
+	padding:20px;
 }
 
 h2 {
@@ -125,7 +126,7 @@ aside {
 /* Logo */
 
 .imagen img {
-	width: 7%;
+	width: 5%;
 }
 
 
@@ -243,6 +244,18 @@ h1 {
 }
 
 .descripcion:hover {
+	opacity: 70%;
+}
+
+.descripcion_card {
+    width: 100%;
+    height: 50px;
+    /* margin: -5%; */
+    border-radius: 50px;
+    border: none;
+}
+
+.descripcion_card:hover {
 	opacity: 70%;
 }
 

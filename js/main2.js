@@ -23,159 +23,81 @@ $(document).ready(function () {
     loadFavorites();
     loadHistorial();
 
-
-
-
-    // Función para buscar Pokémon
     $('.boton_busqueda').click(function () {
-        const title = $('#nombre').val().trim();
+        var title = $('#nombre').val().trim();
         var apiKey = "4526760c";
-        const searchTerm = 'batman';
-        let url = `http://www.omdbapi.com/?s=${searchTerm}&type=movie&apikey=${apiKey}&plot=full&page=12`;
-        let url_series = `http://www.omdbapi.com/?t=${title}&type=series&apikey=${apiKey}`;
-        let url_games = `http://www.omdbapi.com/?t=${title}&type=game&apikey=${apiKey}`;
-        var alert_film = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no disponible`
-        var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no disponible`
-        if (filtro.value == 'nombre') {
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function (data) {
-                    mostrarPeliculas(data);
-                },
-                error: function () {
-                    $('#films-info').html(alert_film);
-                }
-            });
+
+        if (title === "") {
+          alert("Por favor ingresa un título.");
+          return;
         }
+  
+        let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(title)}`;
+  
+    
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (info) {
+              $('#movies-info').empty();
+    
+              if (info.Response === "True") {
+                info.Search.forEach(function (data) {
+                  const poster = data.Poster !== "N/A" ? data.Poster : "https://via.placeholder.com/120x180";
+                  $('#movies-info').append(`
+                    <div class="movie-card">
+                      <img src="${poster}" alt="${data.Title}">
+                      <div>
+                        <h2>${data.Title} (${data.Year})</h2>
+                        <p><strong>Tipo:</strong> ${data.Actors}</p>
+                        <p><strong>Tipo:</strong> ${data.Type}</p>
+                        <button class="descripcion_card" onclick="descripcion()"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                      </div>
+                      <div style="clear: both;"></div>
+                    </div>
+                  `);
+                });
+              } else {
+                $('#movies-info').html(`<p>No se encontraron resultados para "${title}".</p>`);
+              }
+            },
+            error: function () {
+              $('#movies-info').html('<p>Ocurrió un error al consultar la API.</p>');
+            }
+          });
+      });
+  
+      document.descripcion = function () {
+        modal.style.display = "block";
+            var info2 = `
+            <h2>${data.Title}</h2>
+            <img src=${imagen}>
+            <p><h3>Director:</h3>${data.Director}</p>
+            <p><h3>Actores:</h3>${data.Actors}</p>
+            <p><h3>Trama:</h3>${data.Plot}</p>
+            <p><h3>Año:</h3>${data.Year}</p>
+            <p><h3>Genero:</h3>${data.Genre}</p>
+            <p><h3>Rating:</h3>${data.Rating}</p>
+            <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+            <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
-        if (filtro.value == 'series') {
-            $.ajax({
-                url: url_series,
-                method: 'GET',
-                success: function (data) {
-                    mostrarSeries(data);
-                },
-                error: function () {
-                    $('#films-info').html(alert_serie);
-                }
-            });
-        }
-
-        if (filtro.value == 'games') {
-            $.ajax({
-                url: url_games,
-                method: 'GET',
-                success: function (data) {
-                    mostrarSeries(data);
-                },
-                error: function () {
-                    $('#films-info').html(alert_serie);
-                }
-            });
-        }
-
-
-
-    });
-
-    // Mostrar info sobre Pokemons e Items
-
-    function mostrarPeliculas(data) {
-        $('#movies-info').empty();
-
-        var imagen = data.Poster;
-        
-        var movieCard = `
-          <div class="movie-card">
-             
-              <div>
-                  <h2>${data.Title}</h2>
-                  <img src="${imagen}">
-              
-                  <button class="descripcion_card" onclick="descripcion()"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-          </div>
-      `;
-
-      
-
-
-         document.descripcion = function () {
-                    modal.style.display = "block";
-                        var info = `
-                        <h2>${data.Title}</h2>
-                        <img src=${imagen}>
-                        <p><h3>Director:</h3>${data.Director}</p>
-                        <p><h3>Actores:</h3>${data.Actors}</p>
-                        <p><h3>Trama:</h3>${data.Plot}</p>
-                        <p><h3>Año:</h3>${data.Year}</p>
-                        <p><h3>Genero:</h3>${data.Genre}</p>
-                        <p><h3>Rating:</h3>${data.Rating}</p>
-                        <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                        <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
-
-                        `
-                    $('.info').html(info);
-            
+            `
+        $('.info').html(info);
 
 
 
 
-        }
 
-
-         $('#movies-info').append(movieCard);
-    }
-
-
-    function mostrarSeries(data) {
-        $('#movies-info').empty();
-
-        var imagen = data.Poster;
-        var movieCard = `
-          <div class="movie-card">
-             
-              <div>
-                  <h2>${data.Title}</h2>
-                  <img src="${imagen}">
-                  <h3>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h3>
-                  <button class="descripcion_card" onclick="descripcion()"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-              </div>
-          </div>
-      `;
-
-      
-
-
-         document.descripcion = function () {
-                    modal.style.display = "block";
-                        var info = `
-                        <h2>${data.Title}</h2>
-                        <img src=${imagen}>
-                        <p><h3>Director:</h3>${data.Director}</p>
-                        <p><h3>Actores:</h3>${data.Actors}</p>
-                        <p><h3>Trama:</h3>${data.Plot}</p>
-                        <p><h3>Año:</h3>${data.Year}</p>
-                        <p><h3>Genero:</h3>${data.Genre}</p>
-                       
-                        <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                        <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
-
-                        `
-                    $('.info').html(info);
-            
-
-
-
-
-        }
-
-
-         $('#movies-info').append(movieCard);
-    }
-
+}
+   
 
     
+
+
+
+
+
+   
 
     // Función para agregar Pokémon a favoritos
     document.addToFavorites = function (imdbID, Title, Poster, Type) {
@@ -193,7 +115,7 @@ $(document).ready(function () {
         else {
             $('#alert-favoritos').html(alert_added)
         }
-
+        
 
     };
 
