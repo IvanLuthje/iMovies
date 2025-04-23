@@ -1,7 +1,7 @@
 function cancelar() {
     var respuesta = confirm('Desea volver a la pagina principal?')
     if (respuesta == true) {
-        location.href = "index.html"
+        location.href = "busqueda.html"
     }
     else {
         return false;
