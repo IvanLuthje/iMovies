@@ -317,7 +317,7 @@ $(document).ready(function () {
     };
 
     document.eliminar_historial = function (id) {
-        let favorites_historial = JSON.parse(localStorage.getItem('favorites')) || [];
+        let favorites_historial = JSON.parse(localStorage.removeItem('favorites_historial')) || [];
         //   favorites = favorites.filter(fav => fav.id !== id);
         favorites_historial = favorites_historial.filter(favh => favh.imdbID !== id);
         localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
@@ -330,8 +330,13 @@ $(document).ready(function () {
     $('#eliminar-todos').click(function () {
         localStorage.clear();
         loadFavorites();
+    });
+
+    $('#historial-eliminar-todos').click(function () {
+        Storage.clear();
         loadHistorial();
     });
+
 
     $('#eliminar-todos-resp').click(function () {
         localStorage.clear();
