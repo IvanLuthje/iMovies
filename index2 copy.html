@@ -41,61 +41,7 @@
   <div id="movies-info"></div>
 
   <script>
-    const apiKey = "4526760c"; // Reemplaza esto con tu clave de API de OMDb
-
-    $('#searchBtn').click(function () {
-      const title = $('#title').val().trim();
-      const year = $('#year').val().trim();
-      const type = $('#type').val();
-      const plot = $('#plot').val();
-
-      if (title === "") {
-        alert("Por favor ingresa un título.");
-        return;
-      }
-
-      let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(title)}`;
-
-      if (year !== "") {
-        url += `&y=${year}`;
-      }
-
-      if (type !== "") {
-        url += `&type=${type}`;
-      }
-
-      $.ajax({
-        url: url,
-        method: 'GET',
-        success: function (info) {
-          $('#movies-info').empty();
-
-          if (info.Response === "True") {
-            info.Search.forEach(function (data) {
-              const poster = data.Poster !== "N/A" ? data.Poster : "https://via.placeholder.com/120x180";
-              $('#movies-info').append(`
-                <div class="movie-card">
-                  <img src="${poster}" alt="${data.Title}">
-                  <div>
-                    <h2>${data.Title} (${data.Year})</h2>
-                    <p><strong>Tipo:</strong> ${data.Actors}</p>
-                    <p><strong>Tipo:</strong> ${data.Type}</p>
-                    <p><strong>IMDb ID:</strong> ${data.imdbID}</p>
-                  </div>
-                  <div style="clear: both;"></div>
-                </div>
-              `);
-            });
-          } else {
-            $('#movies-info').html(`<p>No se encontraron resultados para "${title}".</p>`);
-          }
-        },
-        error: function () {
-          $('#movies-info').html('<p>Ocurrió un error al consultar la API.</p>');
-        }
-      });
-    });
-  </script>
+   
 
 </body>
 </html>

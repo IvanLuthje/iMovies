@@ -127,7 +127,6 @@ function mostrarPeliculas(data) {
 
       document.descripcion = function () {
 
-
         $.ajax({
             url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
             type: "GET",

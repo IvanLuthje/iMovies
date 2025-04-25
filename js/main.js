@@ -14,26 +14,42 @@ function Compartir() {
     document.location.href = 'compartir.html';
 };
 
+function descripcion_historial() {
+    modal.style.display = "block";
+        var info = `
+        <h2>${fav.Title}</h2>
+        <img src=${fav.Poster}>
+        <p><h3>Director:</h3>${fav.Director}</p>
+        <p><h3>Actores:</h3>${fav.Actors}</p>
+        <p><h3>Trama:</h3>${fav.Plot}</p>
+        <p><h3>Año:</h3>${fav.Year}</p>
+        <p><h3>Genero:</h3>${fav.Genre}</p>
+    
+        <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+        `
+    $('.info').html(info);
+
+}
+
 
 
 
 
 $(document).ready(function () {
-    // Cargar la lista de favoritos desde localStorage
+  
     loadFavorites();
     loadHistorial();
 
 
 
 
-    // Función para buscar Pokémon
     $('.boton_busqueda').click(function () {
         const title = $('#nombre').val().trim();
         var apiKey = "4526760c";
         const searchTerm = 'batman';
         let url = `http://www.omdbapi.com/?t=${title}&type=movie&apikey=${apiKey}&plot=full&page=12`;
         let url_series = `http://www.omdbapi.com/?t=${title}&type=series&apikey=${apiKey}`;
-        let url_games = `http://www.omdbapi.com/?t=${title}&type=game&apikey=${apiKey}`;
+        let url_games = `http://www.omdbapi.com/?t=${title}&type=games&apikey=${apiKey}`;
         var alert_film = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no disponible`
         var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no disponible`
         if (filtro.value == 'nombre') {
@@ -222,7 +238,7 @@ $(document).ready(function () {
                 var favoriteItem = `
                   <li>
                       <span>${fav.Title}</span>
-                      <button id="eliminar" onclick="eliminar(${fav.Title})">&times;</button>
+                      <button id="eliminar" onclick="eliminar('${fav.imdbID}')">&times;</button>
                   </li>
               `;
                 $('#favorites-list').append(favoriteItem);
@@ -238,40 +254,7 @@ $(document).ready(function () {
 
     }
 
-    // function loadHistorial() {
-    //     var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    //     $('#historial-list').empty();
 
-        
-
-    //     if (favorites.length) {
-    //         favorites.forEach(function (fav) {
-    //             var favoriteItem = `  
-    //                 <div class="movie-card">
-    //                     <img src=${fav.Poster}>
-    //                     <h3>${fav.Title}</h3>
-                     
-    //                     <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-    //                     <button class="descripcion" onclick="descripcion()"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-    //                     <button id="eliminar" onclick="eliminar(${fav.id})"><i class="fa fa-times" aria-hidden="true"></i></button>
-    //                </div>
-    //         `;
-
-
-    //             $('#historial-list').append(favoriteItem);
-                
-    //         });
-
-            
-    //     }
-
-
-    //     else {
-    //         $('#historial-list').html("No se encuentran favoritos")
-    //     }
-
-
-    // }
 
 
     function loadHistorial() {
@@ -279,17 +262,22 @@ $(document).ready(function () {
         $('#historial-list').empty();
 
         if (favorites_historial.length) {
-            favorites_historial.forEach(function (favh) {
+            favorites_historial.forEach(function (fav) {
                 const favoriteItem = `  
                         <div class="movie-card">
-                            <img src=${favh.Poster}>
-                            <h2>${favh.Title}</h2>
-                            <h3>${favh.Type.charAt(0).toUpperCase() + favh.Type.slice(1)}</h3>
+                            <img src=${fav.Poster}>
+                            <h2>${fav.Title}</h2>
+                            <h3>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h3>
                             <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                            <button class="descripcion" onclick="descripcion(${favh.id}, '${favh.id}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                            <button id="eliminar" onclick="eliminar_historial(${favh.Title})"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="descripcion" onclick="descripcion_historial('${fav.imdbID}','${fav.Poster}','${fav.Type}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                            <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                 `;
+
+           
+                
+
+
                 $('#historial-list').append(favoriteItem);
             });
         }
@@ -303,28 +291,47 @@ $(document).ready(function () {
     }
 
 
+    document.descripcion_historial = function (data) {
+        const favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || []; 
+        favorites_historial.forEach(function (fav) {      
+         modal.style.display = "block";
+            var info = `
+            <h2>${data.titulo}</h2>
+            <img src=${imagen}>
+            <p><h3>Director:</h3>${data.Director}</p>
+            <p><h3>Actores:</h3>${data.Actors}</p>
+            <p><h3>Trama:</h3>${data.Plot}</p>
+            <p><h3>Año:</h3>${data.Year}</p>
+            <p><h3>Genero:</h3>${data.Genre}</p>
+            <p><h3>Rating:</h3>${data.Rating}</p>
+            <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+            <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+
+            `
+        
+        $('.info').html(info);
+    });
+
+
+debugger;
+
+}
+
+
 
 
     // Función para eliminar un Pokémon de los favoritos
-    document.eliminar = function (id) {
+    document.eliminar = function (imdbID) {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         //   favorites = favorites.filter(fav => fav.id !== id);
-        favorites = favorites.filter(fav => fav.imdbID !== id);
+        favorites = favorites.filter(fav => fav.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
 
 
     };
 
-    document.eliminar_historial = function (id) {
-        let favorites_historial = JSON.parse(localStorage.removeItem('favorites_historial')) || [];
-        //   favorites = favorites.filter(fav => fav.id !== id);
-        favorites_historial = favorites_historial.filter(favh => favh.imdbID !== id);
-        localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
-        loadHistorial();
-
-
-    };
+    
 
 
     $('#eliminar-todos').click(function () {
@@ -333,7 +340,7 @@ $(document).ready(function () {
     });
 
     $('#historial-eliminar-todos').click(function () {
-        Storage.clear();
+
         loadHistorial();
     });
 
