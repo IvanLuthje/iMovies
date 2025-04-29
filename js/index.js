@@ -11,7 +11,7 @@ function Compartir() {
 
 function verMas() {
   // var url = "https://pokeapi.co/api/v2/pokemon/";
-  let i=13
+  let i = 13
   while (i <= 30) {
     $.ajax({
       url: "https://pokeapi.co/api/v2/pokemon/" + i,
@@ -32,14 +32,14 @@ function verMas() {
 
 function verMasCartas() {
   // var url = "https://pokeapi.co/api/v2/pokemon/";
-  let i=13
+  let i = 13
   while (i <= 30) {
     $.ajax({
       url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,
       method: 'GET',
       success: function (response) {
         $('#cards-info').empty();
-  
+
         // Iterar sobre las cartas recibidas y agregar al DOM
         response.data.forEach(function (card) {
           var cardElement = `
@@ -51,7 +51,7 @@ function verMasCartas() {
                     </div>
                 `;
           $('#cards-info').append(cardElement);
-        
+
         });
       },
       error: function () {
@@ -70,7 +70,7 @@ function verMasCartas() {
 
 function menuBar() {
   var nav = document.querySelector('nav');
-  nav.classList.toggle('active');     
+  nav.classList.toggle('active');
 }
 
 
@@ -104,14 +104,14 @@ $(document).ready(function () {
 
 
 function mostrarPeliculas(data) {
-  
+
 
   var image = data.sprites.front_default;
   var experiencia = data.base_experience
   var id = data.id
   var peso = data.weight / 10
   var altura = data.height / 10
-  
+
 
   var movieCard = `
           <div class="movie-card">
@@ -125,18 +125,18 @@ function mostrarPeliculas(data) {
           </div>
       `;
 
-      document.descripcion = function () {
+  document.descripcion = function () {
 
-        $.ajax({
-            url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
-            type: "GET",
-            dataType: "json",
+    $.ajax({
+      url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
+      type: "GET",
+      dataType: "json",
 
-            success: function (data) {
-                var desc = data.flavor_text_entries[1].flavor_text;
-                var imagen = image;
-                modal.style.display = "block";
-                var info = `
+      success: function (data) {
+        var desc = data.flavor_text_entries[1].flavor_text;
+        var imagen = image;
+        modal.style.display = "block";
+        var info = `
                 <p><strong>#</strong>${id}</p>
                 <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
                 <img src=${imagen}>
@@ -148,12 +148,12 @@ function mostrarPeliculas(data) {
                 <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
                 `
-       
 
-                $('.info').html(info);
-            },
-          });
-       
+
+        $('.info').html(info);
+      },
+    });
+
   }
 
 
@@ -202,7 +202,7 @@ function loadFavorites() {
 function loadHistorial() {
   var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('#historial-list').empty();
- 
+
   if (favorites.length) {
     favorites.forEach(function (fav) {
       var favoriteItem = `  
@@ -227,17 +227,17 @@ function loadHistorial() {
 }
 
 function loadCards() {
-    i=12
-    var boton_mas = "<button class='vermas' onclick='verMasCartas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>";
-    $.ajax({
-      url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,  // URL de la API de cartas Pokémon
-      method: 'GET',
-      success: function (response) {
-        $('#cards-info').empty();
-  
-        // Iterar sobre las cartas recibidas y agregar al DOM
-        response.data.forEach(function (card) {
-          var cardElement = `
+  i = 12
+  var boton_mas = "<button class='vermas' onclick='verMasCartas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>";
+  $.ajax({
+    url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,  // URL de la API de cartas Pokémon
+    method: 'GET',
+    success: function (response) {
+      $('#cards-info').empty();
+
+      // Iterar sobre las cartas recibidas y agregar al DOM
+      response.data.forEach(function (card) {
+        var cardElement = `
                     <div class="card">
                         <img src="${card.images.small}" alt="${card.name}">
                         <h3>${card.name}</h3>
@@ -245,16 +245,16 @@ function loadCards() {
                         <p>Rareza: ${card.rarity || 'Desconocida'}</p>
                     </div>
                 `;
-          $('#cards-info').append(cardElement);
-          $('#vermascartas').html(boton_mas);
+        $('#cards-info').append(cardElement);
+        $('#vermascartas').html(boton_mas);
 
-        });
-      },
-      error: function () {
-        $('#cards-info').html('Error al cargar las cartas. Intenta nuevamente.');
-      }
-    });
- 
+      });
+    },
+    error: function () {
+      $('#cards-info').html('Error al cargar las cartas. Intenta nuevamente.');
+    }
+  });
+
 }
 
 
