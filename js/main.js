@@ -92,9 +92,9 @@ $(document).ready(function () {
         try {
             const apiKey = "4526760c";
 
-            const detailResponse = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
-            if (detailResponse.ok) {
-                var detalles = await detailResponse.json();
+            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
+            if (resultados.ok) {
+                var detalles = await resultados.json();
                 if (detalles.Response === "True") {
                     data = detalles;
                 }
@@ -202,6 +202,7 @@ $(document).ready(function () {
     }
 
     function loadHistorial() {
+        var alert_error = `<i class='fas fa-exclamation-triangle'></i>`;
         const favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
         $('#historial-list').empty();
 
@@ -250,7 +251,7 @@ $(document).ready(function () {
                 }
 
                 catch (error) {
-                    $('#historial-list').html(error);
+                    $('#historial-list').html(alert_error + error);
                 }
             });
 
