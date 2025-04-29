@@ -71,7 +71,7 @@ main {
 .main_comp {
 	background-color: #1f7042;
 	min-height: 1080px;
-	padding:20px;
+	padding: 20px;
 }
 
 h2 {
@@ -81,9 +81,9 @@ h2 {
 	font-family: 'Sansita';
 }
 
-hr{
-    width: 20%;
-    margin-left:40%;
+hr {
+	width: 20%;
+	margin-left: 40%;
 }
 
 
@@ -248,11 +248,11 @@ h1 {
 }
 
 .descripcion_card {
-    width: 100%;
-    height: 50px;
-    /* margin: -5%; */
-    border-radius: 50px;
-    border: none;
+	width: 100%;
+	height: 50px;
+	/* margin: -5%; */
+	border-radius: 50px;
+	border: none;
 }
 
 .descripcion_card:hover {
@@ -336,13 +336,13 @@ h1 {
 	/*! color: #ffffff; */
 }
 
-#alert-favoritos{
+#alert-favoritos {
 	/* margin-left:30%; */
 }
 
-#alert-favoritos-pokedex{
-	margin-left:30%;
-	display:block;
+#alert-favoritos-pokedex {
+	margin-left: 30%;
+	display: block;
 }
 
 .favoritos:hover {
@@ -439,7 +439,8 @@ h1 {
 /* Formulario */
 
 
-#email_receptor, #email_emisor {
+#email_receptor,
+#email_emisor {
 	margin-top: 0;
 	height: 26px;
 	border-radius: 30px;
@@ -481,7 +482,7 @@ h1 {
 	padding: 40px;
 	/* width: 30%; */
 	box-shadow: 0 4px 8px #BBBBBB;
-	margin-left:25%;
+	margin-left: 25%;
 	background-color: #FFFFFF;
 }
 
@@ -553,123 +554,123 @@ h1 {
 /* Estilo Responsivo */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
-aside {
-	width: 15%;
-	font-size: 12px;
-}
+	aside {
+		width: 15%;
+		font-size: 12px;
+	}
 
-h2{
-	font-size:25px;
-}
+	h2 {
+		font-size: 25px;
+	}
 
-/* Botones */
+	/* Botones */
 
-.descripcion {
-	width: 40px;
-	height: 40px;
+	.descripcion {
+		width: 40px;
+		height: 40px;
 
-	/*! color: #ffffff; */
-}
+		/*! color: #ffffff; */
+	}
 
-.compartir {
-	width: 40px;
-	height: 40px;
-}
+	.compartir {
+		width: 40px;
+		height: 40px;
+	}
 
-.compartir:hover {
-	opacity: 70%;
-}
+	.compartir:hover {
+		opacity: 70%;
+	}
 
-.enviar {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #24ab2c;
-	border: none;
-	color: #1f7042;
-}
+	.enviar {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #24ab2c;
+		border: none;
+		color: #1f7042;
+	}
 
-.enviar:hover {
-	opacity: 70%;
-}
+	.enviar:hover {
+		opacity: 70%;
+	}
 
-.vermas {
-	width: 40px;
-	height: 40px;
-}
+	.vermas {
+		width: 40px;
+		height: 40px;
+	}
 
-.vermas:hover {
-	opacity: 70%;
-}
+	.vermas:hover {
+		opacity: 70%;
+	}
 
-.cancel {
-	width: 40px;
-	height: 40px;
-}
+	.cancel {
+		width: 40px;
+		height: 40px;
+	}
 
-.cancel:hover {
-	opacity: 70%;
-}
+	.cancel:hover {
+		opacity: 70%;
+	}
 
-.reset {
-	width: 40px;
-	height: 40px;
-}
+	.reset {
+		width: 40px;
+		height: 40px;
+	}
 
-.reset:hover {
-	opacity: 70%;
-}
+	.reset:hover {
+		opacity: 70%;
+	}
 
-.vermas{
-	margin-left: 44.4%;
-}
+	.vermas {
+		margin-left: 44.4%;
+	}
 
-.favoritos {
-	width: 40px;
-	height: 40px;
+	.favoritos {
+		width: 40px;
+		height: 40px;
 
-}
+	}
 
-#alert-favoritos{
-	margin-left:30%;
-}
+	#alert-favoritos {
+		margin-left: 30%;
+	}
 
-.favoritos:hover {
-	opacity: 70%;
-}
+	.favoritos:hover {
+		opacity: 70%;
+	}
 
-.boton_busqueda {
-	width: 50px;
-	height: 50px;
-	/* margin:-5%; */
-	border-radius: 50%;
-	background-color: #ffffff;
-	border: none;
-	/*! color: #ffffff; */
-}
+	.boton_busqueda {
+		width: 50px;
+		height: 50px;
+		/* margin:-5%; */
+		border-radius: 50%;
+		background-color: #ffffff;
+		border: none;
+		/*! color: #ffffff; */
+	}
 
-.boton_busqueda:hover {
-	opacity: 70%;
-}
+	.boton_busqueda:hover {
+		opacity: 70%;
+	}
 
-#eliminar {
-	width: 15px;
-	height: 15px;
-}
+	#eliminar {
+		width: 15px;
+		height: 15px;
+	}
 
-.movie-card #eliminar {
-	width: 40px;
-	height: 40px;
-}
+	.movie-card #eliminar {
+		width: 40px;
+		height: 40px;
+	}
 
-#eliminar:hover {
-	opacity: 70%;
-}
+	#eliminar:hover {
+		opacity: 70%;
+	}
 
-.movie-card{
-	padding:20px;
-}
-	
+	.movie-card {
+		padding: 20px;
+	}
+
 }
 
 @media screen and (max-width: 768px) {
@@ -684,7 +685,7 @@ h2{
 		text-align: center;
 		padding-top: 20px;
 	}
-	
+
 
 
 	nav ul li {
@@ -710,7 +711,7 @@ h2{
 
 	.vermas {
 		margin-left: 39%;
-    }
+	}
 
 
 
@@ -752,25 +753,25 @@ h2{
 	}
 
 	#films-info .movie-card {
-		margin-left:0;
-		padding:10px;
+		margin-left: 0;
+		padding: 10px;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;
 	}
 
-	#alert-favoritos-pokedex{
-		margin-left:0%;
-		display:block;
+	#alert-favoritos-pokedex {
+		margin-left: 0%;
+		display: block;
 	}
 
-	#favorites-list-resp{
-		display:block;
+	#favorites-list-resp {
+		display: block;
 	}
 
-	 #favorites-list{
-		 padding:10%;
-		 display:block;
-	 }
+	#favorites-list {
+		padding: 10%;
+		display: block;
+	}
 
 
 
@@ -794,15 +795,16 @@ h2{
 	}
 
 	#films-info .movie-card {
-		margin-left:0;
-		width:80%;
-	}
-    .vermas{
-		margin-left:41.7%;
+		margin-left: 0;
+		width: 80%;
 	}
 
-	#alert-favoritos-pokedex{
-		margin-left:10%;
+	.vermas {
+		margin-left: 41.7%;
+	}
+
+	#alert-favoritos-pokedex {
+		margin-left: 10%;
 
 	}
 
@@ -810,17 +812,17 @@ h2{
 
 @media screen and (max-width: 300px) {
 
-	.descripcion{
+	.descripcion {
 		width: 25px;
 		height: 25px;
 	}
 
-	.compartir{
+	.compartir {
 		width: 25px;
 		height: 25px;
 	}
 
-	.favoritos{
+	.favoritos {
 		width: 25px;
 		height: 25px;
 	}

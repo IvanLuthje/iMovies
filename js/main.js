@@ -35,22 +35,22 @@ $(document).ready(function () {
                 $('#movies-info').html(alert_empty);
                 return false;
             }
-            
+
             if (filtro.value == 'movie') {
                 const response = await fetch(url_movie);
                 if (!response.ok) {
                     throw new Error('Error de conexión');
                 }
                 const data = await response.json();
-                
+
                 if (data.Response === "True") {
                     $('#movies-info').empty();
-                    
+
                     // Mostrar cada serie encontrada
                     for (const item of data.Search) {
                         await mostrarResultados(item);
                     }
-                } 
+                }
                 else {
                     $('#movies-info').html(alert_movie);
                 }
@@ -62,19 +62,19 @@ $(document).ready(function () {
                     throw new Error('Error de conexión');
                 }
                 const data = await response.json();
-                
+
                 if (data.Response === "True" && data.Search && data.Search.length > 0) {
                     $('#movies-info').empty();
-                    
+
                     // Mostrar cada serie encontrada
                     for (const item of data.Search) {
                         await mostrarResultados(item);
                     }
-                } 
+                }
                 else {
                     $('#movies-info').html(alert_serie);
                 }
-          
+
             }
 
 
@@ -91,19 +91,19 @@ $(document).ready(function () {
     async function mostrarResultados(data) {
         try {
             const apiKey = "4526760c";
-          
+
             const detailResponse = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
             if (detailResponse.ok) {
                 var detalles = await detailResponse.json();
-                    if (detalles.Response === "True") {
-                        data = detalles;
-                    }
+                if (detalles.Response === "True") {
+                    data = detalles;
                 }
-            } catch (error) {
-                console.error('Error al obtener detalles adicionales:', error);
             }
-       
-        const imagen = data.Poster !== "N/A" ? data.Poster : "../img/Image-not-found.png";
+        } catch (error) {
+            console.error('Error al obtener detalles adicionales:', error);
+        }
+
+        const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
         var movieCard = `
             <div class="movie-card">
                <img src="${imagen}">
@@ -116,9 +116,9 @@ $(document).ready(function () {
         `;
 
         $('#movies-info').append(movieCard);
-        
 
-        $('#movies-info').off('click', '.descripcion_card').on('click', '.descripcion_card', async function() {
+
+        $('#movies-info').off('click', '.descripcion_card').on('click', '.descripcion_card', async function () {
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -128,10 +128,11 @@ $(document).ready(function () {
                 }
                 const data = await response.json();
                 if (data.Response === "True") {
+                    const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                     modal.style.display = "block";
                     var info = `
                         <h2>${data.Title}</h2>
-                        <img src="${data.Poster}">
+                        <img src="${imagen}">
                         <p><h3>Director:</h3>${data.Director}</p>
                         <p><h3>Actores:</h3>${data.Actors}</p>
                         <p><h3>Trama:</h3>${data.Plot}</p>
@@ -143,8 +144,8 @@ $(document).ready(function () {
                     `;
                     $('.info').html(info);
                 }
-            } 
-            
+            }
+
             catch (error) {
                 console.log('Error al mostrar detalles:', error);
             }
@@ -160,7 +161,7 @@ $(document).ready(function () {
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
         if (!favorites.some(fav => fav.Title === Title)) {
-            favorites.push({imdbID, Title, Poster, Type});
+            favorites.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();
         } else {
@@ -168,7 +169,7 @@ $(document).ready(function () {
         }
 
         if (!favorites_historial.some(fav => fav.Title === Title)) {
-            favorites_historial.push({imdbID, Title, Poster, Type});
+            favorites_historial.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
         } else {
@@ -204,9 +205,10 @@ $(document).ready(function () {
 
         if (favorites_historial.length) {
             favorites_historial.forEach(function (fav) {
+                const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
                 const favoriteItem = `  
                     <div class="movie-card">
-                        <img src=${fav.Poster}>
+                        <img src=${imagen}>
                         <h2>${fav.Title}</h2>
                         <h3>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h3>
                         <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
@@ -216,21 +218,23 @@ $(document).ready(function () {
                 `;
                 $('#historial-list').append(favoriteItem);
             });
-            
-            $('#historial-list').off('click', '.descripcion').on('click', '.descripcion', async function() {
+
+            $('#historial-list').off('click', '.descripcion').on('click', '.descripcion', async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
+
                     const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${apiKey}&plot=full`);
                     if (!response.ok) {
                         throw new Error('Error al obtener detalles');
                     }
                     const data = await response.json();
+                    const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                     if (data.Response === "True") {
                         modal.style.display = "block";
                         var info = `
                             <h2>${data.Title}</h2>
-                            <img src="${data.Poster}">
+                            <img src="${imagen}">
                             <p><h3>Director:</h3>${data.Director}</p>
                             <p><h3>Actores:</h3>${data.Actors}</p>
                             <p><h3>Trama:</h3>${data.Plot}</p>
@@ -242,11 +246,13 @@ $(document).ready(function () {
                         `;
                         $('.info').html(info);
                     }
-                } catch (error) {
-                    console.error('Error al mostrar detalles del historial:', error);
+                }
+
+                catch (error) {
+                    $('.info').html(error);;
                 }
             });
-            
+
         } else {
             $('#historial-list').html("No se encuentran favoritos");
         }
@@ -258,7 +264,7 @@ $(document).ready(function () {
         favorites = favorites.filter(fav => fav.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
-        
+
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
         if (favorites_historial.some(fav => fav.imdbID === imdbID)) {
             favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
