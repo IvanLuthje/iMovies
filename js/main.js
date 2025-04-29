@@ -119,7 +119,7 @@ $(document).ready(function () {
         $('#movies-info').append(movieCard);
 
 
-        $('#movies-info').off('click', '.descripcion_card').on('click', '.descripcion_card', async function () {
+        $('#movies-info').on('click', '.descripcion_card', async function () {
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -220,7 +220,7 @@ $(document).ready(function () {
                 $('#historial-list').append(favoriteItem);
             });
 
-            $('#historial-list').off('click', '.descripcion').on('click', '.descripcion', async function () {
+            $('#historial-list').on('click', '.descripcion', async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
