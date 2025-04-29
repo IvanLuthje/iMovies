@@ -19,7 +19,6 @@ $(document).ready(function () {
     loadHistorial();
 
     $('.boton_busqueda').click(async function () {
-        debugger;
         try {
             const title = $('#nombre').val().trim();
             var apiKey = "4526760c";
@@ -92,6 +91,7 @@ $(document).ready(function () {
     async function mostrarResultados(data) {
         try {
             const apiKey = "4526760c";
+          
             const detailResponse = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
             if (detailResponse.ok) {
                 var detalles = await detailResponse.json();
@@ -103,10 +103,10 @@ $(document).ready(function () {
                 console.error('Error al obtener detalles adicionales:', error);
             }
        
-
+        const imagen = data.Poster !== "N/A" ? data.Poster : "../img/Image-not-found.png";
         var movieCard = `
             <div class="movie-card">
-               <img src="${data.Poster}" alt="${data.Title}">
+               <img src="${imagen}">
                 <div>
                     <h2>${data.Title} (${data.Year})</h2>
                     <h3>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h3>
@@ -132,20 +132,21 @@ $(document).ready(function () {
                     var info = `
                         <h2>${data.Title}</h2>
                         <img src="${data.Poster}">
-                        <p><h3>Director:</h3>${data.Director || 'N/A'}</p>
-                        <p><h3>Actores:</h3>${data.Actors || 'N/A'}</p>
-                        <p><h3>Trama:</h3>${data.Plot || 'N/A'}</p>
-                        <p><h3>Año:</h3>${data.Year || 'N/A'}</p>
-                        <p><h3>Genero:</h3>${data.Genre || 'N/A'}</p>
+                        <p><h3>Director:</h3>${data.Director}</p>
+                        <p><h3>Actores:</h3>${data.Actors}</p>
+                        <p><h3>Trama:</h3>${data.Plot}</p>
+                        <p><h3>Año:</h3>${data.Year}</p>
+                        <p><h3>Genero:</h3>${data.Genre}</p>
                         ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
                         <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
                     `;
                     $('.info').html(info);
                 }
-            } catch (error) {
-                console.error('Error al mostrar detalles:', error);
-                alert('No se pudo cargar la información detallada');
+            } 
+            
+            catch (error) {
+                console.log('Error al mostrar detalles:', error);
             }
         });
     }
