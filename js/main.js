@@ -83,7 +83,7 @@ $(document).ready(function () {
 
         } catch (error) {
             console.error('Error en la búsqueda:', error);
-            $('#films-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
+            $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
         }
     });
 
@@ -93,9 +93,9 @@ $(document).ready(function () {
         try {
             const apiKey = "4526760c";
 
-            const detailResponse = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
-            if (detailResponse.ok) {
-                var detalles = await detailResponse.json();
+            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
+            if (resultados.ok) {
+                var detalles = await resultados.json();
                 if (detalles.Response === "True") {
                     data = detalles;
                 }
@@ -119,7 +119,7 @@ $(document).ready(function () {
         $('#movies-info').append(movieCard);
 
 
-        $('#movies-info').off('click', '.descripcion_card').on('click', '.descripcion_card', async function () {
+        $('#movies-info').on('click', '.descripcion_card', async function () {
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -150,6 +150,8 @@ $(document).ready(function () {
             catch (error) {
                 console.log('Error al mostrar detalles:', error);
             }
+            debugger;
+
         });
     }
 
@@ -201,6 +203,7 @@ $(document).ready(function () {
     }
 
     function loadHistorial() {
+        var alert_error = `<i class='fas fa-exclamation-triangle'></i>`;
         const favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
         $('#historial-list').empty();
 
@@ -220,7 +223,7 @@ $(document).ready(function () {
                 $('#historial-list').append(favoriteItem);
             });
 
-            $('#historial-list').off('click', '.descripcion').on('click', '.descripcion', async function () {
+            $('#historial-list').on('click', '.descripcion', async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
@@ -242,15 +245,14 @@ $(document).ready(function () {
                             <p><h3>Año:</h3>${data.Year}</p>
                             <p><h3>Genero:</h3>${data.Genre}</p>
                             ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                            <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                            <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                            <button class='compartir_historial' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         `;
                         $('.info').html(info);
                     }
                 }
 
                 catch (error) {
-                    $('.info').html(error);;
+                    $('#historial-list').html(alert_error + error);
                 }
             });
 
@@ -267,17 +269,16 @@ $(document).ready(function () {
         loadFavorites();
 
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
-        if (favorites_historial.some(fav => fav.imdbID === imdbID)) {
-            favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
-            localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
-            loadHistorial();
-        }
+        favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
+        localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
+        loadHistorial();
+      
     };
 
     $('#eliminar-todos').click(function () {
         localStorage.clear();
         loadFavorites();
-        loadHistorial();
+
     });
 
     $('#historial-eliminar-todos').click(function () {
