@@ -1,4 +1,3 @@
-// Función para activar/desactivar el menú hamburguesa
 function menuBar() {
     var nav = document.querySelector('nav');
     nav.classList.toggle('active');
@@ -193,7 +192,6 @@ $(document).ready(function () {
 
     
 
-    // Función para agregar Pokémon a favoritos
     document.addToFavorites = function (imdbID, Title, Poster, Type) {
         $('#alert-favoritos').empty();
         var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado a la lista`
