@@ -93,9 +93,9 @@ $(document).ready(function () {
         try {
             const apiKey = "4526760c";
 
-            const detailResponse = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
-            if (detailResponse.ok) {
-                var detalles = await detailResponse.json();
+            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
+            if (resultados.ok) {
+                var detalles = await resultados.json();
                 if (detalles.Response === "True") {
                     data = detalles;
                 }
