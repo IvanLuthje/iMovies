@@ -41,6 +41,7 @@ $(document).ready(function () {
                 if (!response.ok) {
                     throw new Error('Error de conexión');
                 }
+
                 const data = await response.json();
 
                 if (data.Response === "True") {
@@ -63,7 +64,7 @@ $(document).ready(function () {
                 }
                 const data = await response.json();
 
-                if (data.Response === "True" && data.Search && data.Search.length > 0) {
+                if (data.Response === "True") {
                     $('#movies-info').empty();
 
                     // Mostrar cada serie encontrada
