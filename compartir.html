@@ -38,7 +38,6 @@
     <div class="main_comp">
         <form id="formulario_compartir">
             <h2>COMPARTIR</h2>
-                <input id="email_emisor" placeholder="E-mail" type="text"><br>
                 <input id="email_receptor" placeholder="E-mail" type="text"><br>
                 <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>              
                 <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
@@ -52,8 +51,21 @@
 
     </div>
    
+<script>
+
+const datos = JSON.parse(sessionStorage.getItem('datos'));
+
+var title = `${datos.Title} (${datos.Type})`;
+if (datos!=''){
+    document.getElementById('subject').value = title;
+    document.getElementById('comentario').value = datos.Plot;
+}
 
 
+
+
+</script>
+   
 
 
  <footer>

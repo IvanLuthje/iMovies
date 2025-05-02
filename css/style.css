@@ -13,10 +13,7 @@ body {
 	color: #000000;
 }
 
-@font-face {
-	font-family: pokemon-font;
-	src: url(../fonts/pokemonsolid.ttf);
-}
+
 
 @font-face {
 	font-family: lato;
@@ -150,20 +147,6 @@ h1 {
 #historial-list {
 	display: flex;
 	flex-wrap: wrap;
-}
-
-.pokemon {
-	text-align: center;
-}
-
-.pokemon img {
-	width: 100px;
-	height: 100px;
-}
-
-.pokemon h3 {
-	margin-top: 10px;
-	font-size: 1.2rem;
 }
 
 
@@ -718,10 +701,6 @@ h1 {
 		display: block;
 	}
 
-	.pokemon-list {
-		flex-direction: column;
-		align-items: center;
-	}
 
 	#favorites-list-resp {
 		padding: 20px;

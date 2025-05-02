@@ -209,7 +209,6 @@ function loadHistorial() {
                   <div class="movie-card">
                       <img src=${fav.sprite}>
                       <h3>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</h3>
-                      <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                       <button class="descripcion" onclick="descripcion(${fav.id}, '${fav.name}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                       <button id="eliminar" onclick="eliminar(${fav.id})"><i class="fa fa-times" aria-hidden="true"></i></button>
                  </div>

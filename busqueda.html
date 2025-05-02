@@ -36,12 +36,6 @@
     
     <main>
 
-    <aside>
-        <h2>Favoritos</h2>
-        <div id="favorites-list"></div>
-        <button id="eliminar-todos">Eliminar todos</button>
-    </aside>
-
     <div id="search-container">
         <input class="id_nombre" id="nombre" type="text" placeholder="Ingresar el nombre">
         <button class="boton_busqueda" id="busqueda" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
@@ -51,7 +45,11 @@
         <!--option value="sel" id="opciones">---Seleccionar opción---</option-->
         <option value="movie" id="opciones">Peliculas</option>
         <option value="series" id="opciones">Series</option>
+        <option value="episodios" id="opciones">Episodios</option>
+
     </select>
+
+    
 
     <div id="movies-info"></div>
     <!-- <div id="alert-favoritos"></div>     -->
@@ -72,6 +70,24 @@
 
         </div>
     </div>
+
+
+    <section id="peliculas">
+        <h2>Películas Destacadas</h2>
+        
+    
+
+        <div id="vermas"></div>
+    </section>
+
+    <section id="favoritos">
+      
+        
+        <h2>Favoritos</h2>
+        <div id="favorites-list"></div>
+        <button id="eliminar-todos">Eliminar todos</button>
+        
+    </section>
 
 
     </main>

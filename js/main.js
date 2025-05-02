@@ -7,9 +7,6 @@ function cerrar() {
     modal.style.display = "none";
 }
 
-function Compartir() {
-    document.location.href = 'compartir.html';
-}
 
 
 
@@ -20,15 +17,30 @@ $(document).ready(function () {
     $('.boton_busqueda').click(async function () {
         try {
             const title = $('#nombre').val().trim();
+            // Definición de la apiKey
             var apiKey = "4526760c";
+
+            // Definir las url para los filtros de búsqueda
+           
+           
             let url_movie = `http://www.omdbapi.com/?s=${title}&type=movie&apikey=${apiKey}`;
             let url_series = `http://www.omdbapi.com/?s=${title}&type=series&apikey=${apiKey}`;
+            let url_episodes = `http://www.omdbapi.com/?s=${title}&type=episode&apikey=${apiKey}`;
+           
+            //Definición de alerts
+           
             var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
-            var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no disponible`;
+            var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
+            var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
+           
             var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
-
+           
+           
+            
             $('#movies-info').html(alert_results);
+
+            // Filtros de busqueda
 
             if (title == "") {
                 $('#movies-info').html(alert_empty);
@@ -77,14 +89,38 @@ $(document).ready(function () {
 
             }
 
+            else if (filtro.value == 'episodes') {
+                const response = await fetch(url_episodes);
+                if (!response.ok) {
+                    throw new Error('Error de conexión');
+                }
+                const data = await response.json();
+
+                if (data.Response === "True") {
+                    $('#movies-info').empty();
+
+                    // Mostrar cada serie encontrada
+                    for (const item of data.Search) {
+                        await mostrarResultados(item);
+                    }
+                }
+                else {
+                    $('#movies-info').html(alert_serie);
+                }
+
+            }
 
 
 
-        } catch (error) {
-            console.error('Error en la búsqueda:', error);
-            $('#films-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
+
+        } 
+    
+        catch (error) {
+            $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
         }
     });
+
+    
 
 
 
@@ -99,7 +135,9 @@ $(document).ready(function () {
                     data = detalles;
                 }
             }
-        } catch (error) {
+        } 
+        
+        catch (error) {
             console.error('Error al obtener detalles adicionales:', error);
         }
 
@@ -116,6 +154,8 @@ $(document).ready(function () {
         `;
 
         $('#movies-info').append(movieCard);
+
+        
 
 
         $('#movies-info').on('click', '.descripcion_card', async function () {
@@ -139,11 +179,19 @@ $(document).ready(function () {
                         <p><h3>Año:</h3>${data.Year}</p>
                         <p><h3>Genero:</h3>${data.Genre}</p>
                         ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                        <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                        <button class='compartir' onclick="Compartir('${data.imdbID}','${data.Title}','${data.Type}')"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
                     `;
                     $('.info').html(info);
                 }
+
+                $('.compartir').on('click', function () {
+                    sessionStorage.setItem('datos', JSON.stringify(data));
+                    window.location.href = 'compartir.html';
+                  });
+
+              debugger;
+               
             }
 
             catch (error) {
@@ -151,6 +199,11 @@ $(document).ready(function () {
             }
         });
     }
+
+    
+
+
+    
 
     document.addToFavorites = function (imdbID, Title, Poster, Type) {
         $('#alert-favoritos').empty();
@@ -163,7 +216,9 @@ $(document).ready(function () {
             favorites.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();
-        } else {
+        } 
+        
+        else {
             $('#alert-favoritos').html(alert_added);
         }
 
@@ -171,7 +226,9 @@ $(document).ready(function () {
             favorites_historial.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
-        } else {
+        } 
+        
+        else {
             $('#alert-favoritos').html(alert_added_hist);
         }
     };
@@ -192,7 +249,9 @@ $(document).ready(function () {
                 $('#favorites-list').append(favoriteItem);
                 $('#favorites-list-r').append(favoriteItem);
             });
-        } else {
+        } 
+        
+        else {
             $('#favorites-list').html("No se encuentran favoritos");
             $('#favorites-list-r').html("No se encuentran favoritos");
         }
@@ -210,9 +269,8 @@ $(document).ready(function () {
                         <img src=${imagen}>
                         <h2>${fav.Title}</h2>
                         <h3>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h3>
-                        <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                        <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button id="eliminar" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                     </div>
                 `;
                 $('#historial-list').append(favoriteItem);
@@ -225,7 +283,7 @@ $(document).ready(function () {
 
                     const response = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=${apiKey}&plot=full`);
                     if (!response.ok) {
-                        throw new Error('Error al obtener detalles');
+                        throw new Error('Error al obtener los resultados');
                     }
                     const data = await response.json();
                     const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
@@ -240,11 +298,15 @@ $(document).ready(function () {
                             <p><h3>Año:</h3>${data.Year}</p>
                             <p><h3>Genero:</h3>${data.Genre}</p>
                             ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                            <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                            <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                            <button class='compartir_historial' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         `;
                         $('.info').html(info);
                     }
+
+                     $('.compartir_historial').on('click', function () {
+                         sessionStorage.setItem('datos', JSON.stringify(data));
+                        window.location.href = 'compartir.html';
+                     });
                 }
 
                 catch (error) {
@@ -257,13 +319,20 @@ $(document).ready(function () {
         }
     }
 
+  
+
+
 
     document.eliminar = function (imdbID) {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         favorites = favorites.filter(fav => fav.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
+        
+    }
+        
 
+    document.eliminar_historial = function (imdbID) {
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
         if (favorites_historial.some(fav => fav.imdbID === imdbID)) {
             favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
