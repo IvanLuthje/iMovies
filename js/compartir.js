@@ -1,5 +1,5 @@
 function cancelar() {
-    window.location.href = "busqueda.html"
+    window.location.href = "index.html"
 }
 
 function reset() {

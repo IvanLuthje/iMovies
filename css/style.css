@@ -1,4 +1,4 @@
-/* Reset de mÃ¡rgenes y padding */
+/* Reset de mÃƒÂ¡rgenes y padding */
 
 
 * {
@@ -47,6 +47,8 @@ nav ul {
 nav ul li {
 	padding: 5px 10px;
 }
+
+
 
 nav ul li a {
 	text-decoration: none;
@@ -107,7 +109,7 @@ aside {
 }
 
 
-/* Estilo para el menÃº responsivo en pantallas pequeÃ±as */
+/* Estilo para el menÃƒÂº responsivo en pantallas pequeÃƒÂ±as */
 .responsive {
 	display: none;
 	font-size: 30px;
@@ -135,11 +137,7 @@ h1 {
 
 
 
-
-/* SecciÃ³n de PokÃ©mon */
-#movies-info,
-#cards-info,
-#historial-list {
+#movies-info, #year-movies-info, #cards-info, #historial-list {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -164,7 +162,6 @@ h1 {
 	display: none;
 	position: fixed;
 	z-index: 5;
-	padding-top: 100px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -337,10 +334,6 @@ h1 {
 	/* margin-left:30%; */
 }
 
-#alert-favoritos-pokedex {
-	margin-left: 30%;
-	display: block;
-}
 
 .favoritos:hover {
 	opacity: 70%;
@@ -378,36 +371,9 @@ h1 {
 	color: #ffffff;
 }
 
-#eliminar:hover {
-	opacity: 70%;
-}
 
-#eliminar-todos {
-	width: 100px;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #ffa500;
-	border: none;
-	color: #ffffff;
-	/* margin:-0.7%; */
-}
 
-#eliminar-todos-resp {
-	width: 100px;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #ffa500;
-	border: none;
-	color: #ffffff;
-	/* margin:-0.7%; */
-}
-
-#eliminar-todos:hover {
-	opacity: 70%;
-}
-
-#filtro,
-#tipo {
+#filtro {
 	height: 50px;
 	border-radius: 30px 30px 30px 30px;
 	border: none;
@@ -416,20 +382,15 @@ h1 {
 	width: 75%;
 }
 
-#tipo {
-	height: 50px;
-	border-radius: 30px 30px 30px 30px;
-	border: none;
-	font-family: 'lato';
-	margin-bottom: 0.1%;
-	width: 92%;
-}
-
 .icono_redes {
 	font-size: 20px;
 	color: #ffffff;
 	text-decoration: none;
 	transition: color 0.3s ease;
+}
+
+.descripcion_data{
+	margin-top:100
 }
 
 
@@ -496,7 +457,7 @@ h1 {
 
 .movie-card img {
 	width: 100%;
-	height: auto;
+	height: 450px;
 }
 
 /* .cards-container {
@@ -547,7 +508,7 @@ h1 {
 
 
 
-/* Estilo Responsivo */
+/* Media queries */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
 	aside {
@@ -746,11 +707,6 @@ h1 {
 		background-color: #FFFFFF;
 	}
 
-	#alert-favoritos-pokedex {
-		margin-left: 0%;
-		display: block;
-	}
-
 	#favorites-list-resp {
 		display: block;
 	}
@@ -772,6 +728,10 @@ h1 {
 		background-color: #FFFFFF;
 	}
 
+	.movie-card img{
+		width:50%;
+	}
+
 
 	#tipo {
 		width: 100%;
@@ -790,28 +750,13 @@ h1 {
 		margin-left: 41.7%;
 	}
 
-	#alert-favoritos-pokedex {
-		margin-left: 10%;
-
-	}
 
 }
 
 @media screen and (max-width: 300px) {
-
-	.descripcion {
-		width: 25px;
-		height: 25px;
-	}
-
-	.compartir {
-		width: 25px;
-		height: 25px;
-	}
-
-	.favoritos {
-		width: 25px;
-		height: 25px;
-	}
+    .descripcion, .compartir,.favoritos {
+      width: 25px;
+      height: 25px;
+    }
 
 }

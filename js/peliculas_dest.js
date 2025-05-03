@@ -1,137 +1,60 @@
-function menuBar() {
-    var nav = document.querySelector('nav');
-    nav.classList.toggle('active');
-}
-
-function cerrar() {
-    modal.style.display = "none";
-}
-
-
-
-
 $(document).ready(function () {
     loadFavorites();
     loadHistorial();
-    
 
-
-    $('.boton_busqueda').click(async function () {
+    async function year_movies(){ 
         try {
-            const title = $('#nombre').val().trim();
             // Definición de la apiKey
             var apiKey = "4526760c";
 
             // Definir las url para los filtros de búsqueda
-           
-           
-            let url_movie = `http://www.omdbapi.com/?s=${title}&type=movie&apikey=${apiKey}`;
-            let url_series = `http://www.omdbapi.com/?s=${title}&type=series&apikey=${apiKey}`;
-            let url_episodes = `http://www.omdbapi.com/?s=${title}&type=episode&apikey=${apiKey}`;
-           
+            let url_peliculas_dest = `http://www.omdbapi.com/?s=movie&y=2025&type=movie&apikey=${apiKey}`;
+
             //Definición de alerts
            
-            var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
-            var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
-            var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
-            var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
+
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
            
-           
+            $('#year-movies-info').html(alert_results);
+
+                const response = await fetch(url_peliculas_dest);
+                if (!response.ok) {
+                    throw new Error('Error de conexión');
+                }
+
+                const data = await response.json();
+
+                if (data.Response === "True") {
+                    $('#year-movies-info').empty();
+
+                    // Mostrar cada serie encontrada
+                    for (const item of data.Search) {
+                        await mostrarDestacados(item);
+                    }
+                }
+                else {
+                    $('#year-movies-info').html(alert_movie);
+                }
             
-            $('#movies-info').html(alert_results);
 
-            // Filtros de busqueda
-
-            if (title == "") {
-                $('#movies-info').html(alert_empty);
-                return false;
-            }
-
-            if (filtro.value == 'movie') {
-                const response = await fetch(url_movie);
-                if (!response.ok) {
-                    throw new Error('Error de conexión');
-                }
-
-                const data = await response.json();
-
-                if (data.Response === "True") {
-                    $('#movies-info').empty();
-
-                    // Mostrar cada serie encontrada
-                    for (const item of data.Search) {
-                        await mostrarResultados(item);
-                    }
-                }
-                else {
-                    $('#movies-info').html(alert_movie);
-                }
-            }
-
-            else if (filtro.value == 'series') {
-                const response = await fetch(url_series);
-                if (!response.ok) {
-                    throw new Error('Error de conexión');
-                }
-                const data = await response.json();
-
-                if (data.Response === "True") {
-                    $('#movies-info').empty();
-
-                    // Mostrar cada serie encontrada
-                    for (const item of data.Search) {
-                        await mostrarResultados(item);
-                    }
-                }
-                else {
-                    $('#movies-info').html(alert_serie);
-                }
-
-            }
-
-            else if (filtro.value == 'episodes') {
-                const response = await fetch(url_episodes);
-                if (!response.ok) {
-                    throw new Error('Error de conexión');
-                }
-                const data = await response.json();
-
-                if (data.Response === "True") {
-                    $('#movies-info').empty();
-
-                    // Mostrar cada serie encontrada
-                    for (const item of data.Search) {
-                        await mostrarResultados(item);
-                    }
-                }
-                else {
-                    $('#movies-info').html(alert_serie);
-                }
-
-            }
-
-
-
+   
 
         } 
-    
         catch (error) {
-            $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
+            $('#year-movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
         }
-    });
+    }
 
-    
-
-    
+    $('#year-movies-info').html(year_movies);
 
 
 
-    async function mostrarResultados(data) {
+
+    async function mostrarDestacados(data) {
         try {
             const apiKey = "4526760c";
 
-            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
+            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full&apikey=${apiKey}`);
             if (resultados.ok) {
                 var detalles = await resultados.json();
                 if (detalles.Response === "True") {
@@ -158,7 +81,7 @@ $(document).ready(function () {
             </div>
         `;
 
-        $('#movies-info').append(movieCard);
+        $('#year-movies-info').append(movieCard);
 
         
 
@@ -322,9 +245,6 @@ $(document).ready(function () {
             $('#historial-list').html("No se encuentran favoritos");
         }
     }
-
-  
-
 
 
     document.eliminar = function (imdbID) {
