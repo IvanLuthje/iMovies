@@ -32,7 +32,7 @@ $(document).ready(function () {
             var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
             var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
             var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
-           
+            var alert_error = `<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`
             var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
            
@@ -116,7 +116,7 @@ $(document).ready(function () {
         } 
     
         catch (error) {
-            $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
+            $('#movies-info').html(alert_error);
         }
     });
 
@@ -186,11 +186,10 @@ $(document).ready(function () {
                 }
 
                 $('.compartir').on('click', function () {
-                    sessionStorage.setItem('datos', JSON.stringify(data));
+                    sessionStorage.setItem('data', JSON.stringify(data));
                     window.location.href = 'compartir.html';
                   });
 
-              debugger;
                
             }
 
@@ -298,13 +297,13 @@ $(document).ready(function () {
                             <p><h3>Año:</h3>${data.Year}</p>
                             <p><h3>Genero:</h3>${data.Genre}</p>
                             ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                            <button class='compartir_historial' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                            <button class='compartir_historial'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         `;
                         $('.info').html(info);
                     }
 
-                     $('.compartir_historial').on('click', function () {
-                         sessionStorage.setItem('datos', JSON.stringify(data));
+                     $('.compartir_historial').on('click', async function () {
+                        sessionStorage.setItem('data', JSON.stringify(data));
                         window.location.href = 'compartir.html';
                      });
                 }

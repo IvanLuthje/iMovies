@@ -1,4 +1,4 @@
-/* Reset de márgenes y padding */
+/* Reset de mÃ¡rgenes y padding */
 
 
 * {
@@ -65,11 +65,6 @@ main {
 	/* margin-left: 5%; */
 }
 
-.main_comp {
-	background-color: #1f7042;
-	min-height: 1080px;
-	padding: 20px;
-}
 
 h2 {
 	color: #dd3e41;
@@ -112,7 +107,7 @@ aside {
 }
 
 
-/* Estilo para el menú responsivo en pantallas pequeñas */
+/* Estilo para el menÃº responsivo en pantallas pequeÃ±as */
 .responsive {
 	display: none;
 	font-size: 30px;
@@ -141,7 +136,7 @@ h1 {
 
 
 
-/* Sección de Pokémon */
+/* SecciÃ³n de PokÃ©mon */
 #movies-info,
 #cards-info,
 #historial-list {
@@ -604,18 +599,13 @@ h1 {
 		opacity: 70%;
 	}
 
-	.cancel {
+	.enviar, .cancel, .reset {
 		width: 40px;
 		height: 40px;
 	}
 
 	.cancel:hover {
 		opacity: 70%;
-	}
-
-	.reset {
-		width: 40px;
-		height: 40px;
 	}
 
 	.reset:hover {

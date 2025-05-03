@@ -35,7 +35,7 @@
         </div>
     </nav>
     
-    <div class="main_comp">
+    <main>
         <form id="formulario_compartir">
             <h2>COMPARTIR</h2>
                 <input id="email_receptor" placeholder="E-mail" type="text"><br>
@@ -46,20 +46,21 @@
             <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
             <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
             <div class="alert"></div>
+
         </form>
 
 
-    </div>
+    </main>
    
 <script>
 
-const datos = JSON.parse(sessionStorage.getItem('datos'));
+const data = JSON.parse(sessionStorage.getItem('data'));
 
-var title = `${datos.Title} (${datos.Type})`;
-if (datos!=''){
-    document.getElementById('subject').value = title;
-    document.getElementById('comentario').value = datos.Plot;
-}
+var title = `${data.Title} (${data.Type})`;
+
+document.getElementById('subject').value = title;
+document.getElementById('comentario').value = data.Plot;
+
 
 
 

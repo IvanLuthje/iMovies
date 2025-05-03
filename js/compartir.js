@@ -1,11 +1,5 @@
 function cancelar() {
-    var respuesta = confirm('Desea volver a la pagina principal?')
-    if (respuesta == true) {
-        location.href = "busqueda.html"
-    }
-    else {
-        return false;
-    }
+    window.location.href = "busqueda.html"
 }
 
 function reset() {
@@ -13,18 +7,17 @@ function reset() {
     document.getElementById('subject').value = '';
     document.getElementById('comentario').value = '';
 
-
-
 }
 
 
 function enviar() {
     const form = document.getElementById('formulario_compartir');
     const emailr = form.email_receptor.value;
-
+    var alert_correo = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico`;
+    var alert_redirect= `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
 
     if (emailr == "") {
-        $(".alert").html("Debe ingresar el correo electrónico");
+        $(".alert").html(alert_correo);
         return false;
     }
 
@@ -34,7 +27,7 @@ function enviar() {
     }
 
     else {
-        $(".alert").html("Redireccionando al gestor de correo")
+        $(".alert").html(alert_redirect)
         window.location = 'mailto: ' + $("#email_receptor").val() + '?subject=' + $("#subject").val() + '&body=' + $("#comentario").val();
         return true;
     }
