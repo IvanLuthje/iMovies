@@ -15,7 +15,7 @@
     --color-favorite: #faaaaa;
     --color-delete: #aaa319;
     
-    /* Sombras */
+    /* Sombra */
     --shadow-card: 0 4px 8px var(--color-gray);
     --shadow-modal: 0 5px 15px rgba(0, 0, 0, 0.3);
     
@@ -658,9 +658,7 @@
       margin-left: 41.7%;
     }
   
-    #alert-favoritos-pokedex {
-      margin-left: 10%;
-    }
+  
   }
   
   /* Mobile muy pequeños */

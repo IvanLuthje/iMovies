@@ -19,7 +19,7 @@ $(document).ready(function () {
             const title = $('#nombre').val().trim();
             // Definición de la apiKey
             var apiKey = "4526760c";
-
+            let url_peliculas_dest = `http://www.omdbapi.com/?s=${title}&y=2025&type=episode&apikey=${apiKey}`;
             // Definir las url para los filtros de búsqueda
            
            
@@ -341,20 +341,7 @@ $(document).ready(function () {
         }
     };
 
-    $('#eliminar-todos').click(function () {
-        localStorage.clear();
-        loadFavorites();
-        loadHistorial();
-    });
 
-    $('#historial-eliminar-todos').click(function () {
-        localStorage.removeItem('favorites_historial');
-        loadHistorial();
-    });
 
-    $('#eliminar-todos-resp').click(function () {
-        localStorage.clear();
-        loadFavorites();
-        loadHistorial();
-    });
+
 });

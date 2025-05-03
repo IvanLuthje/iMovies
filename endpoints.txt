@@ -11,3 +11,85 @@ Joseph Gordon-Levitt, Elliot Page",
 "Plot":"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
 "Language":"English, Japanese, French","Country":"United States, United Kingdom",
 "Awards":"Won 4 Oscars. 159 wins & 220 nominations total","Poster":"https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.8/10"},{"Source":"Rotten Tomatoes","Value":"87%"},{"Source":"Metacritic","Value":"74/100"}],"Metascore":"74","imdbRating":"8.8","imdbVotes":"2,671,882","imdbID":"tt1375666","Type":"movie","DVD":"N/A","BoxOffice":"$292,587,330","Production":"N/A","Website":"N/A","Response":"True"}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Películas Destacadas</title>
+</head>
+<body>
+  <h1>Películas Destacadas</h1>
+  <div id="lista-peliculas"></div> <!-- Aquí se mostrarán las películas -->
+  
+  <script src="app.js"></script> <!-- El archivo JavaScript -->
+</body>
+</html>
+
+
+// Tu clave API de OMDb
+const apiKey = '4526760c';
+
+// URL base de la API
+const urlBase = 'https://www.omdbapi.com/';
+
+// Función para traer las películas destacadas
+function obtenerPeliculasDestacadas() {
+  // Aquí puedes cambiar el término de búsqueda según lo que necesites
+  const parametros = {
+    s: 'movie', // término de búsqueda
+    type: 'movie', // solo películas
+    y: 2025, // año, opcional
+    page: 1, // página de resultados
+    apikey: apiKey // tu clave API
+  };
+
+  const url = new URL(urlBase);
+  Object.keys(parametros).forEach(key => url.searchParams.append(key, parametros[key]));
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error en la solicitud a OMDb API');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.Response === 'True') {
+        mostrarPeliculas(data.Search); // Muestra las películas
+      } else {
+        console.log('No se encontraron películas');
+      }
+    })
+    .catch(error => {
+      console.error('Hubo un problema con la solicitud:', error);
+    });
+}
+
+// Función para mostrar las películas en la consola o en el DOM
+function mostrarPeliculas(peliculas) {
+  // Por ejemplo, simplemente mostrar las películas en la consola
+  peliculas.forEach(pelicula => {
+    console.log(`${pelicula.Title} (${pelicula.Year})`);
+    console.log(`Poster: ${pelicula.Poster}`);
+    console.log('--------------------------------');
+  });
+
+  // O si quieres mostrar en el DOM:
+  const listaPeliculas = document.getElementById('lista-peliculas');
+  listaPeliculas.innerHTML = ''; // Limpiar la lista
+  peliculas.forEach(pelicula => {
+    const divPelicula = document.createElement('div');
+    divPelicula.classList.add('pelicula');
+    divPelicula.innerHTML = `
+      <h3>${pelicula.Title} (${pelicula.Year})</h3>
+      <img src="${pelicula.Poster}" alt="${pelicula.Title}" />
+    `;
+    listaPeliculas.appendChild(divPelicula);
+  });
+}
+
+// Llamar a la función para obtener las películas
+obtenerPeliculasDestacadas();
