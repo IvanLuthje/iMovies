@@ -30,13 +30,21 @@
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="compartir.html">Compartir</a></li>
         </ul>
+       
+
         <div class="responsive" onclick="menuBar()">
             &#9776;
         </div>
     </nav>
 
+
+
     
     <main>
+
+        <div id="favoritos_button" onclick="nav_fav()">
+            <i class='fa fa-heart' aria-hidden='true'></i>    
+        </div>
 
     <div id="search-container">
         <input class="id_nombre" id="nombre" type="text" placeholder="Ingresar el nombre">
@@ -79,14 +87,12 @@
         <div id="year-movies-info"></div>
     </section>
 
-    <section id="favoritos">
-      
-        
-    <h2>Favoritos</h2>
-    <div id="favorites-list"></div>
-        
-    </section>
 
+    <div id="nav_favoritos">
+        <a href="javascript:void(0)" id="cerrar_nav" onclick="cerrar_nav()">&times;</a>
+        <div class="favorites_title"><h3>Favoritos</h3></div>
+        <div id="favorites-list"></div>      
+    </div>
 
     </main>
 

@@ -54,7 +54,7 @@ $(document).ready(function () {
         try {
             const apiKey = "4526760c";
 
-            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full&apikey=${apiKey}`);
+            const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&plot=full&apikey=${apiKey}`);
             if (resultados.ok) {
                 var detalles = await resultados.json();
                 if (detalles.Response === "True") {

@@ -1,11 +1,20 @@
+function cerrar() {
+    modal.style.display = "none";
+}
+
+function nav_fav() {
+    document.getElementById("nav_favoritos").style.width = "30%";
+ }
+  
+  function cerrar_nav() {
+    document.getElementById("nav_favoritos").style.width = "0%";
+}
+
 function menuBar() {
     var nav = document.querySelector('nav');
     nav.classList.toggle('active');
 }
 
-function cerrar() {
-    modal.style.display = "none";
-}
 
 
 
@@ -106,7 +115,7 @@ $(document).ready(function () {
                     }
                 }
                 else {
-                    $('#movies-info').html(alert_serie);
+                    $('#movies-info').html(alert_episodes);
                 }
 
             }

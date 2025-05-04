@@ -7,6 +7,8 @@
 	box-sizing: border-box;
 }
 
+/* Layout */
+
 body {
 	font-family: "lato";
 	background-color: #f4f4f9;
@@ -19,6 +21,7 @@ body {
 	font-family: lato;
 	src: url(../fonts/Lato-Light.ttf);
 }
+
 
 /* Tags semanticos */
 
@@ -61,6 +64,8 @@ nav ul li a:hover {
 	opacity: 70%;
 }
 
+
+
 main {
 	padding: 20px;
 	min-height: 768px;
@@ -81,8 +86,6 @@ hr {
 }
 
 
-
-/* Footer */
 footer {
 	background-color: #080909;
 	color: #FFFFFF;
@@ -96,12 +99,13 @@ footer {
 	height: 500px;
 }
 
-/* aside */
+#favoritos_button{
+	margin-left: 100%;
+}
 
-aside {
-	width: 15%;
-	float: right;
-	color: #00435f;
+#favorites-list {
+	color:#FFFFFF;
+	margin-top: 10%;
 }
 
 #favorites-list-resp {
@@ -279,19 +283,7 @@ h1 {
 	opacity: 70%;
 }
 
-.vermas {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #24ab2c;
-	border: none;
-	color: #ffffff;
-	margin-left: 44%;
-}
 
-.vermas:hover {
-	opacity: 70%;
-}
 
 .cancel {
 	width: 50px;
@@ -393,6 +385,48 @@ h1 {
 	margin-top:100
 }
 
+.favorites_title{
+	margin-top: 20%;
+	color:#FFFFFF;
+}
+
+/* Navegador de favoritos */
+
+
+#nav_favoritos {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.8);
+	overflow-x: hidden;
+	transition: 0.5s;
+	}
+  
+  
+#nav_favoritos a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+  }
+  
+  #nav_favoritos a:hover, #nav_favoritos a:focus {
+	color: #f1f1f1;
+  }
+  
+  #nav_favoritos #cerrar_nav {
+	position: absolute;
+	right: 0%;
+	font-size: 30px;
+	}
+  
+
+
 
 /* Formulario */
 
@@ -428,7 +462,6 @@ h1 {
 	box-sizing: border-box;
 	font-family: 'lato';
 }
-
 
 
 #films-info .movie-card {
@@ -517,7 +550,7 @@ h1 {
 	}
 
 	h2 {
-		font-size: 25px;
+		font-size: 15px;
 	}
 
 	/* Botones */
@@ -551,14 +584,6 @@ h1 {
 		opacity: 70%;
 	}
 
-	.vermas {
-		width: 40px;
-		height: 40px;
-	}
-
-	.vermas:hover {
-		opacity: 70%;
-	}
 
 	.enviar, .cancel, .reset {
 		width: 40px;
@@ -573,9 +598,6 @@ h1 {
 		opacity: 70%;
 	}
 
-	.vermas {
-		margin-left: 44.4%;
-	}
 
 	.favoritos {
 		width: 40px;
@@ -657,9 +679,6 @@ h1 {
 		padding: 20px;
 	}
 
-	.vermas {
-		margin-left: 39%;
-	}
 
 
 
@@ -746,9 +765,6 @@ h1 {
 		width: 80%;
 	}
 
-	.vermas {
-		margin-left: 41.7%;
-	}
 
 
 }
