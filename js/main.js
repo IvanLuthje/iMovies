@@ -158,9 +158,8 @@ $(document).ready(function () {
             <div class="movie-card">
                <img src="${imagen}">
                 <div>
-                    <h4>${data.Title} (${data.Year})</h4>
-                     <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
-
+                    <h4>${data.Title}</h4>
+                    <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
                     <div class="descripcion_data">
                     <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>

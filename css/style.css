@@ -85,8 +85,6 @@ h4 {
 	color: #dd3e41;
 	font-size: 20px;
 	font-family: 'Sansita';
-	overflow-wrap: break-word;
-	word-break: break-word;
 }
 
 hr {
@@ -171,6 +169,7 @@ h1 {
 	background-color: #FFFFFF;
 
 }
+
 
 
 /* Modal */
