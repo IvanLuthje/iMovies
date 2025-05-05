@@ -75,9 +75,18 @@ main {
 
 h2 {
 	color: #dd3e41;
-	font-size: 2rem;
+	font-size: 32px;
 	margin-bottom: 10px;
 	font-family: 'Sansita';
+}
+
+
+h4 {
+	color: #dd3e41;
+	font-size: 20px;
+	font-family: 'Sansita';
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 hr {
@@ -99,12 +108,12 @@ footer {
 	height: 500px;
 }
 
-#favoritos_button{
+#favoritos_button {
 	margin-left: 100%;
 }
 
 #favorites-list {
-	color:#FFFFFF;
+	color: #FFFFFF;
 	margin-top: 10%;
 }
 
@@ -113,7 +122,8 @@ footer {
 }
 
 
-/* Estilo para el menÃƒÂº responsivo en pantallas pequeÃƒÂ±as */
+/* Estilo para el menu responsivo en media queries*/
+
 .responsive {
 	display: none;
 	font-size: 30px;
@@ -141,7 +151,10 @@ h1 {
 
 
 
-#movies-info, #year-movies-info, #cards-info, #historial-list {
+#movies-info,
+#year-movies-info,
+#cards-info,
+#historial-list {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -179,7 +192,7 @@ h1 {
 	background-color: white;
 	margin: 50px auto;
 	padding: 20px;
-	width: 80%;
+	width: 90%;
 	max-width: 800px;
 	border-radius: 10px;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -322,9 +335,7 @@ h1 {
 	/*! color: #ffffff; */
 }
 
-#alert-favoritos {
-	/* margin-left:30%; */
-}
+
 
 
 .favoritos:hover {
@@ -381,13 +392,13 @@ h1 {
 	transition: color 0.3s ease;
 }
 
-.descripcion_data{
-	margin-top:100
+.descripcion_data {
+	margin-top: 100
 }
 
-.favorites_title{
-	margin-top: 20%;
-	color:#FFFFFF;
+.favorites_title {
+	margin-top: 10%;
+	color: #FFFFFF;
 }
 
 /* Navegador de favoritos */
@@ -400,31 +411,31 @@ h1 {
 	z-index: 1;
 	top: 0;
 	right: 0;
-	background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0, 0, 0, 0.8);
 	overflow-x: hidden;
 	transition: 0.5s;
-	}
-  
-  
+}
+
+
 #nav_favoritos a {
 	padding: 8px;
 	text-decoration: none;
 	font-size: 36px;
 	color: #818181;
 	display: block;
-	transition: 0.3s;
-  }
-  
-  #nav_favoritos a:hover, #nav_favoritos a:focus {
+}
+
+#nav_favoritos a:hover,
+#nav_favoritos a:focus {
 	color: #f1f1f1;
-  }
-  
-  #nav_favoritos #cerrar_nav {
+}
+
+#nav_favoritos #cerrar_nav {
 	position: absolute;
 	right: 0%;
 	font-size: 30px;
-	}
-  
+}
+
 
 
 
@@ -549,9 +560,10 @@ h1 {
 		font-size: 12px;
 	}
 
-	h2 {
-		font-size: 15px;
+	.movie-card img {
+		width: 100%;
 	}
+
 
 	/* Botones */
 
@@ -585,7 +597,9 @@ h1 {
 	}
 
 
-	.enviar, .cancel, .reset {
+	.enviar,
+	.cancel,
+	.reset {
 		width: 40px;
 		height: 40px;
 	}
@@ -605,9 +619,6 @@ h1 {
 
 	}
 
-	#alert-favoritos {
-		margin-left: 30%;
-	}
 
 	.favoritos:hover {
 		opacity: 70%;
@@ -643,6 +654,11 @@ h1 {
 
 	.movie-card {
 		padding: 20px;
+		width: 32%;
+	}
+
+	.movie-card img {
+		width: 100%;
 	}
 
 }
@@ -714,7 +730,7 @@ h1 {
 		margin-top: 20px;
 		margin: 10px;
 		padding: 30px;
-		width: 40%;
+		width: 45%;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;
 	}
@@ -742,13 +758,13 @@ h1 {
 @media screen and (max-width: 640px) {
 
 	.movie-card {
-		width: 90%;
+		width: 100%;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;
 	}
 
-	.movie-card img{
-		width:50%;
+	.movie-card img {
+		width: 100%;
 	}
 
 
@@ -770,9 +786,12 @@ h1 {
 }
 
 @media screen and (max-width: 300px) {
-    .descripcion, .compartir,.favoritos {
-      width: 25px;
-      height: 25px;
-    }
+
+	.descripcion,
+	.compartir,
+	.favoritos {
+		width: 25px;
+		height: 25px;
+	}
 
 }

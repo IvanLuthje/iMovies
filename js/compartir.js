@@ -14,7 +14,7 @@ function enviar() {
     const form = document.getElementById('formulario_compartir');
     const emailr = form.email_receptor.value;
     var alert_correo = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico`;
-    var alert_redirect= `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
+    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
 
     if (emailr == "") {
         $(".alert").html(alert_correo);

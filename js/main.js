@@ -3,10 +3,10 @@ function cerrar() {
 }
 
 function nav_fav() {
-    document.getElementById("nav_favoritos").style.width = "30%";
- }
-  
-  function cerrar_nav() {
+    document.getElementById("nav_favoritos").style.width = "40%";
+}
+
+function cerrar_nav() {
     document.getElementById("nav_favoritos").style.width = "0%";
 }
 
@@ -22,7 +22,7 @@ function menuBar() {
 $(document).ready(function () {
     loadFavorites();
     loadHistorial();
-    
+
 
 
     $('.boton_busqueda').click(async function () {
@@ -32,22 +32,22 @@ $(document).ready(function () {
             var apiKey = "4526760c";
 
             // Definir las url para los filtros de búsqueda
-           
-           
+
+
             let url_movie = `http://www.omdbapi.com/?s=${title}&type=movie&apikey=${apiKey}`;
             let url_series = `http://www.omdbapi.com/?s=${title}&type=series&apikey=${apiKey}`;
             let url_episodes = `http://www.omdbapi.com/?s=${title}&type=episode&apikey=${apiKey}`;
-           
+
             //Definición de alerts
-           
+
             var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
             var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
             var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
             var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
-           
-           
-            
+
+
+
             $('#movies-info').html(alert_results);
 
             // Filtros de busqueda
@@ -123,16 +123,16 @@ $(document).ready(function () {
 
 
 
-        } 
-    
+        }
+
         catch (error) {
             $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
         }
     });
 
-    
 
-    
+
+
 
 
 
@@ -147,8 +147,8 @@ $(document).ready(function () {
                     data = detalles;
                 }
             }
-        } 
-        
+        }
+
         catch (error) {
             console.error('Error al obtener detalles adicionales:', error);
         }
@@ -158,8 +158,9 @@ $(document).ready(function () {
             <div class="movie-card">
                <img src="${imagen}">
                 <div>
-                    <h2>${data.Title} (${data.Year})</h2>
-                    <h3>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h3>
+                    <h4>${data.Title} (${data.Year})</h4>
+                     <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
+
                     <div class="descripcion_data">
                     <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
@@ -169,7 +170,7 @@ $(document).ready(function () {
 
         $('#movies-info').append(movieCard);
 
-        
+
 
 
         $('.descripcion_card').click(async function () {
@@ -202,9 +203,9 @@ $(document).ready(function () {
                 $('.compartir').on('click', function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
                     window.location.href = 'compartir.html';
-                  });
+                });
 
-               
+
             }
 
             catch (error) {
@@ -213,10 +214,10 @@ $(document).ready(function () {
         });
     }
 
-    
 
 
-    
+
+
 
     document.addToFavorites = function (imdbID, Title, Poster, Type) {
         $('#alert-favoritos').empty();
@@ -229,8 +230,8 @@ $(document).ready(function () {
             favorites.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();
-        } 
-        
+        }
+
         else {
             $('#alert-favoritos').html(alert_added);
         }
@@ -239,8 +240,8 @@ $(document).ready(function () {
             favorites_historial.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
-        } 
-        
+        }
+
         else {
             $('#alert-favoritos').html(alert_added_hist);
         }
@@ -254,16 +255,16 @@ $(document).ready(function () {
         if (favorites.length) {
             favorites.forEach(function (fav) {
                 var favoriteItem = `
-                    <li>
-                        <span>${fav.Title}</span>
+                    <ul>
+                        ${fav.Title}
                         <button id="eliminar" onclick="eliminar('${fav.imdbID}')">&times;</button>
-                    </li>
+                    </ul>
                 `;
                 $('#favorites-list').append(favoriteItem);
                 $('#favorites-list-r').append(favoriteItem);
             });
-        } 
-        
+        }
+
         else {
             $('#favorites-list').html("No se encuentran favoritos");
             $('#favorites-list-r').html("No se encuentran favoritos");
@@ -280,8 +281,8 @@ $(document).ready(function () {
                 const favoriteItem = `  
                     <div class="movie-card">
                         <img src=${imagen}>
-                        <h2>${fav.Title}</h2>
-                        <h3>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h3>
+                        <h4>${fav.Title}</h4>
+                        <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
                         <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                         <button id="eliminar" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                     </div>
@@ -316,10 +317,10 @@ $(document).ready(function () {
                         $('.info').html(info);
                     }
 
-                     $('.compartir_historial').on('click', async function () {
+                    $('.compartir_historial').on('click', async function () {
                         sessionStorage.setItem('data', JSON.stringify(data));
                         window.location.href = 'compartir.html';
-                     });
+                    });
                 }
 
                 catch (error) {
@@ -332,7 +333,7 @@ $(document).ready(function () {
         }
     }
 
-  
+
 
 
 
@@ -341,9 +342,9 @@ $(document).ready(function () {
         favorites = favorites.filter(fav => fav.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
-        
+
     }
-        
+
 
     document.eliminar_historial = function (imdbID) {
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
