@@ -111,7 +111,7 @@ $(document).ready(function () {
 
                 $('.compartir').on('click', function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
-                    window.location.href = 'compartir.html';
+                    window.location.href = 'compartir_resultados.html';
                 });
 
 
@@ -228,7 +228,7 @@ $(document).ready(function () {
 
                     $('.compartir_historial').on('click', async function () {
                         sessionStorage.setItem('data', JSON.stringify(data));
-                        window.location.href = 'compartir.html';
+                        window.location.href = 'compartir_resultados.html';
                     });
                 }
 

@@ -139,7 +139,6 @@ $(document).ready(function () {
     async function mostrarResultados(data) {
         try {
             const apiKey = "4526760c";
-
             const resultados = await fetch(`http://www.omdbapi.com/?i=${data.imdbID}&apikey=${apiKey}&plot=full`);
             if (resultados.ok) {
                 var detalles = await resultados.json();
@@ -173,6 +172,8 @@ $(document).ready(function () {
 
 
         $('.descripcion_card').click(async function () {
+            sessionStorage.setItem('data', JSON.stringify(data));
+            window.location.href='results.html';         
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -183,7 +184,6 @@ $(document).ready(function () {
                 const data = await response.json();
                 if (data.Response === "True") {
                     const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-                    modal.style.display = "block";
                     var info = `
                         <h2>${data.Title}</h2>
                         <img src="${imagen}">
@@ -201,7 +201,7 @@ $(document).ready(function () {
 
                 $('.compartir').on('click', function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
-                    window.location.href = 'compartir.html';
+                    window.location.href = 'compartir_resultados.html';
                 });
 
 
@@ -318,7 +318,7 @@ $(document).ready(function () {
 
                     $('.compartir_historial').on('click', async function () {
                         sessionStorage.setItem('data', JSON.stringify(data));
-                        window.location.href = 'compartir.html';
+                        window.location.href = 'compartir_resultados.html';
                     });
                 }
 

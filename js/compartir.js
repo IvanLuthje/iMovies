@@ -21,9 +21,9 @@ function enviar() {
         return false;
     }
 
-    if (emailr == "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$.") {
+    if (emailr == "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/") {
         $(".alert").html("Debe ingresar el correo electrónico válido");
-        return true;
+        return false;
     }
 
     else {

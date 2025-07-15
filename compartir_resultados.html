@@ -52,7 +52,12 @@
 
     </main>
    
-
+<script>
+const data = JSON.parse(sessionStorage.getItem('data'));
+var title = `${data.Title} (${data.Type})`;
+document.getElementById('subject').value = title;
+document.getElementById('comentario').value = data.Plot;
+</script>
    
 
 

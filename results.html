@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src='js/main.js'></script>
-    <script src='js/compartir.js'></script>
 </head>
 
 <body>
@@ -34,29 +33,15 @@
             &#9776;
         </div>
     </nav>
-    
+
     <main>
-        <form id="formulario_compartir">
-            <h2>COMPARTIR</h2>
-                <input id="email_receptor" placeholder="E-mail" type="text"><br>
-                <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>              
-                <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
-            </form>
-            <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
-            <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-            <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-            <div class="alert"></div>
-
-        </form>
-
-
+        <div class="info"></div>
+        <div id="alert-favoritos"></div>
     </main>
-   
-
-   
 
 
- <footer>
+
+<footer>
     <p>&copy; 2025 iMovies</p>
     <hr class="solid"></hr>
 
@@ -73,6 +58,8 @@
     </div>
 </footer>
 
+
 </body>
+
 
 </html>
