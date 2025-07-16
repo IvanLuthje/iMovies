@@ -282,6 +282,7 @@ $(document).ready(function () {
                 const favoriteItem = `  
                     <div class="movie-card">
                         <button id="eliminar_historial" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <br>
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
