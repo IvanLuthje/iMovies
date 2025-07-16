@@ -2,6 +2,10 @@ function cancelar() {
     window.location.href = "index.html"
 }
 
+function compartir() {
+    window.location.href = "compartir_resultados.html"
+}
+
 function reset() {
     document.getElementById('email_receptor').value = '';
     document.getElementById('subject').value = '';

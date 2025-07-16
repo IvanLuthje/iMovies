@@ -6,6 +6,14 @@ function nav_fav() {
     document.getElementById("nav_favoritos").style.width = "40%";
 }
 
+function cancelar() {
+    window.location.href = "index.html"
+}
+
+function compartir() {
+    window.location.href = "compartir_resultados.html"
+}
+
 function cerrar_nav() {
     document.getElementById("nav_favoritos").style.width = "0%";
 }
@@ -159,7 +167,9 @@ $(document).ready(function () {
                 <div>
                     <h4>${data.Title}</h4>
                     <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
+               
                     <div class="descripcion_data">
+                    <br>
                     <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
                 </div>
@@ -172,8 +182,8 @@ $(document).ready(function () {
 
 
         $('.descripcion_card').click(async function () {
-            sessionStorage.setItem('data', JSON.stringify(data));
-            window.location.href='results.html';         
+         
+         
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -183,20 +193,10 @@ $(document).ready(function () {
                 }
                 const data = await response.json();
                 if (data.Response === "True") {
-                    const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-                    var info = `
-                        <h2>${data.Title}</h2>
-                        <img src="${imagen}">
-                        <p><h3>Director:</h3>${data.Director}</p>
-                        <p><h3>Actores:</h3>${data.Actors}</p>
-                        <p><h3>Trama:</h3>${data.Plot}</p>
-                        <p><h3>Año:</h3>${data.Year}</p>
-                        <p><h3>Genero:</h3>${data.Genre}</p>
-                        ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                        <button class='compartir' onclick="Compartir('${data.imdbID}','${data.Title}','${data.Type}')"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                        <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
-                    `;
-                    $('.info').html(info);
+                    sessionStorage.setItem('data', JSON.stringify(data));
+                    window.location.href='results.html';  
+                    $('#info').html(info);
+                   
                 }
 
                 $('.compartir').on('click', function () {
@@ -242,7 +242,7 @@ $(document).ready(function () {
         }
 
         else {
-            $('#alert-favoritos').html(alert_added_hist);
+            $('#alert-favoritos').html(alert_added);
         }
     };
 

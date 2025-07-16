@@ -93,7 +93,7 @@ $(document).ready(function () {
                 const data = await response.json();
                 if (data.Response === "True") {
                     const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-                    modal.style.display = "block";
+                    sessionStorage.setItem('data', JSON.stringify(data));
                     var info = `
                         <h2>${data.Title}</h2>
                         <img src="${imagen}">
@@ -106,6 +106,7 @@ $(document).ready(function () {
                         <button class='compartir' onclick="Compartir('${data.imdbID}','${data.Title}','${data.Type}')"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                         <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
                     `;
+                    window.location.href='results.html';  
                     $('.info').html(info);
                 }
 
