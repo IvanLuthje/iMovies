@@ -129,9 +129,6 @@ footer {
 	border: none;
 }
 
-#info img{
-	width:350px;
-}
 
 
 /* Estilo para el menu responsivo en media queries*/
@@ -785,6 +782,11 @@ h1 {
 
 	.movie-card img {
 		width: 100%;
+	}
+
+	
+	#info img{
+		width:100%;
 	}
 
 
