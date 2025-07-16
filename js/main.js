@@ -262,17 +262,14 @@ $(document).ready(function () {
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
-                        <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
                 `;
                 $('#favorites-list').append(favoriteItem);
-                $('#favorites-list-r').append(favoriteItem);
             });
         }
 
         else {
             $('#favorites-list').html("No se encuentran favoritos");
-            $('#favorites-list-r').html("No se encuentran favoritos");
         }
     }
 

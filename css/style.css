@@ -18,6 +18,12 @@ body {
 .inf{
 	display:flex;
 	width:100%;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin: 5px;
+	padding: 20px;
+	box-shadow: 0 4px 8px #BBBBBB;
+	background-color: #FFFFFF;
 
 }
 .title img{
@@ -130,13 +136,10 @@ footer {
 }
 
 #favorites-list {
-	color: #FFFFFF;
+	color: #000000;
 	display:block;
 }
 
-#favorites-list-resp {
-	display: none;
-}
 
 #info{
 	width: 100%;
@@ -392,12 +395,12 @@ h1 {
 }
 
 #eliminar {
-	width: 20px;
-	height: 20px;
-	border-radius: 30px;
-	background-color: #aaa319;
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 	border: none;
-	color: #ffffff;
+	background-color: #FFFFFF;
 }
 
 .movie-card #eliminar_historial {
@@ -541,19 +544,21 @@ h1 {
 
 .favorite-container {
 	border-radius: 10px;
-	text-align: center;
 	margin-top: 20px;
 	margin: 5px;
-	padding: 40px;
+	padding: 20px;
 	width: 100%;
 	box-shadow: 0 4px 8px #BBBBBB;
-
 	background-color: #FFFFFF;
 }
 
 .favorite-container img {
-	width: 30%;
-	height: 450px;
+	width: 10%;
+	/* height: 450px; */
+}
+
+.favorite-container #eliminar {
+	float:right;
 }
 
 /* .cards-container {
@@ -762,10 +767,6 @@ h1 {
 	}
 
 
-	#favorites-list-resp {
-		padding: 20px;
-	}
-
 	#favoritos_button {
 		display: none;
 	}
@@ -815,10 +816,6 @@ h1 {
 		padding: 10px;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;
-	}
-
-	#favorites-list-resp {
-		display: block;
 	}
 
 	#favorites-list {
