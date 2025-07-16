@@ -582,10 +582,6 @@ h1 {
 		font-size: 12px;
 	}
 
-	.movie-card img {
-		width: 100%;
-	}
-
 
 	/* Botones */
 
@@ -677,11 +673,12 @@ h1 {
 
 	.movie-card {
 		padding: 20px;
-		width: 32%;
+		width: 30%;
 	}
 
 	.movie-card img {
-		width: 100%;
+		width: 150px;
+		height: 250px;
 	}
 
 }
