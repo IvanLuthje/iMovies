@@ -28,6 +28,7 @@ body {
 header {
 	background-color: #080909;
 	padding: 10px 20px;
+	
 }
 
 nav {
@@ -38,6 +39,8 @@ nav {
 	background-color: #dd3e41;
 	width: 100%;
 	text-transform: uppercase;
+	padding: 0 1em;
+	
 }
 
 
@@ -117,6 +120,17 @@ footer {
 
 #favorites-list-resp {
 	display: none;
+}
+
+#info{
+	width: 100%;
+	/* margin: -5%; */
+	border-radius: 50px;
+	border: none;
+}
+
+#info img{
+	width:350px;
 }
 
 
@@ -302,6 +316,15 @@ h1 {
 	height: 50px;
 	border-radius: 50%;
 	background-color: #dd3e41;
+	border: none;
+	color: #1f7042;
+}
+
+.cancel2 {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #fede55;
 	border: none;
 	color: #1f7042;
 }
@@ -598,6 +621,7 @@ h1 {
 
 	.enviar,
 	.cancel,
+	.cancel2,
 	.reset {
 		width: 40px;
 		height: 40px;
