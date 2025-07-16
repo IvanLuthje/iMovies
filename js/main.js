@@ -255,11 +255,15 @@ $(document).ready(function () {
 
         if (favorites.length) {
             favorites.forEach(function (fav) {
+                const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
                 var favoriteItem = `
-                    <ul>
-                        ${fav.Title}
-                        <button id="eliminar" onclick="eliminar('${fav.imdbID}')">&times;</button>
-                    </ul>
+                    <div class="favorite-container">
+                        <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <img src=${imagen}>
+                        <h4>${fav.Title}</h4>
+                        <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
+                        <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                    </div>
                 `;
                 $('#favorites-list').append(favoriteItem);
                 $('#favorites-list-r').append(favoriteItem);
@@ -282,7 +286,6 @@ $(document).ready(function () {
                 const favoriteItem = `  
                     <div class="movie-card">
                         <button id="eliminar_historial" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <br>
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>

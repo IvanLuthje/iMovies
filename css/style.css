@@ -131,7 +131,7 @@ footer {
 
 #favorites-list {
 	color: #FFFFFF;
-	margin-top: 10%;
+	display:block;
 }
 
 #favorites-list-resp {
@@ -536,6 +536,23 @@ h1 {
 
 .movie-card img {
 	width: 100%;
+	height: 450px;
+}
+
+.favorite-container {
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 20px;
+	margin: 5px;
+	padding: 40px;
+	width: 100%;
+	box-shadow: 0 4px 8px #BBBBBB;
+
+	background-color: #FFFFFF;
+}
+
+.favorite-container img {
+	width: 30%;
 	height: 450px;
 }
 
