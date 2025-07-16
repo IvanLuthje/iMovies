@@ -25,18 +25,27 @@
             <div class="imagen"> <a href="index.html"><img src='img/logo.png'></a></div>
         </div>
     </header>
-    <nav>
+     <nav>
         <ul class="menu">
             <!-- <li><a href="index.html">Inicio</a></li> -->
             <li><a href="index.html">Inicio</a></li>
             <li><a href="historial.html">Historial</a></li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="compartir.html">Compartir</a></li>
+            <ul class="menu">
+           
+            </ul>
         </ul>
+
         <div class="responsive" onclick="menuBar()">
             &#9776;
         </div>
+
+        <div id="favoritos_button" onclick="nav_fav()">
+            <i class='fa fa-heart' aria-hidden='true'></i>    
+        </div>
     </nav>
+
 
     <main>
         <div id="movies-info"></div>
@@ -67,8 +76,9 @@
 
 const data = JSON.parse(sessionStorage.getItem('data'));
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-var inf = `                 <div class="titulo">
-                            <h2>${data.Title}</h2>
+var inf = `                 <h2>${data.Title}</h2>
+                            <div class="inf">
+                            <div class="title">
                             <img src="${imagen}">
                             </div>
                             <div class="desc">
@@ -81,11 +91,11 @@ var inf = `                 <div class="titulo">
                             <p><h3>Pais:</h3>${data.Country}</p>
                             <p><h3>Idioma:</h3>${data.Language}</p>
                             </div>
-                
+                            </div>
                             <button class="cancel2" onclick="cancelar()"><i class='fa fa-chevron-left' aria-hidden='true'></i></button>
                             <button class='compartir' onclick="compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                             <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
-
+                            
                         `;
 const info = document.getElementById('info');
 info.innerHTML = inf
