@@ -381,19 +381,20 @@ h1 {
 #eliminar {
 	width: 20px;
 	height: 20px;
-	border-radius: 30px;
+	float:right
 	background-color: #aaa319;
 	border: none;
 	color: #ffffff;
+	
 }
 
-.movie-card #eliminar {
-	width: 50px;
-	height: 50px;
-	border-radius: 30px;
-	background-color: #ff0000;
+.movie-card #eliminar_historial {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 	border: none;
-	color: #ffffff;
+	background-color: #FFFFFF;
 }
 
 

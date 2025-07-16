@@ -281,11 +281,11 @@ $(document).ready(function () {
                 const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
                 const favoriteItem = `  
                     <div class="movie-card">
+                        <button id="eliminar_historial" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
                         <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                        <button id="eliminar" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                     </div>
                 `;
                 $('#historial-list').append(favoriteItem);
@@ -330,7 +330,7 @@ $(document).ready(function () {
             });
 
         } else {
-            $('#historial-list').html("No se encuentran favoritos");
+            $('#historial-list').html("El historial se encuentra vacío");;
         }
     }
 

@@ -241,7 +241,7 @@ $(document).ready(function () {
             });
 
         } else {
-            $('#historial-list').html("No se encuentran favoritos");
+            $('#historial-list').html("Historial vacío");
         }
     }
 
