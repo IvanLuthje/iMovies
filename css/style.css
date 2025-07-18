@@ -597,7 +597,7 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 10px 15px;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     border-top: 1px solid #e9ecef;
 }
 
@@ -606,8 +606,8 @@ h1 {
     height: 50px;
     border-radius: 50px;
     border: none;
-    background-color: #007bff;
-    color: white;
+	background-color: #007bff;
+    color: #FFFFFF; 
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -621,7 +621,7 @@ h1 {
 }
 
 .descripcion_card i {
-    font-size: 1.2em;
+    font-size: 0.9em;
 }
 
 .favorite-container {
@@ -644,12 +644,7 @@ h1 {
 	float:right;
 }
 
-/* .cards-container {
-	display: grid;
-	grid-template-columns: repeat(3, 30%);
-	gap: 20px;
-	padding: 20px;
-} */
+
 
 .card {
 	background-color: #fff;
