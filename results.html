@@ -78,6 +78,11 @@ var inf = `                 <h2>${data.Title}</h2>
                             <div class="inf">
                             <div class="title">
                             <img src="${imagen}">
+                            <div class="botones">
+                                <button class="cancel2" onclick="cancelar()"><i class='fa fa-chevron-left' aria-hidden='true'></i></button>
+                                <button class='compartir' onclick="compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                                <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-plus' aria-hidden='true'></i></button>
+                            </div>
                             </div>
                             <div class="desc">
                             <p><h3>Director:</h3>${data.Director}</p>
@@ -89,11 +94,7 @@ var inf = `                 <h2>${data.Title}</h2>
                             <p><h3>Pais:</h3>${data.Country}</p>
                             <p><h3>Idioma:</h3>${data.Language}</p>
                             </div>
-                            </div>
-                            <button class="cancel2" onclick="cancelar()"><i class='fa fa-chevron-left' aria-hidden='true'></i></button>
-                            <button class='compartir' onclick="compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                            <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
-                            
+                            </div>                                           
                         `;
 const info = document.getElementById('info');
 info.innerHTML = inf

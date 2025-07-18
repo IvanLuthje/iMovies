@@ -1,4 +1,4 @@
-/* Reset de mÃƒÂ¡rgenes y padding */
+/* Reset de margenes y padding */
 
 
 * {
@@ -125,28 +125,7 @@ footer {
 	font-family: lato;
 }
 
-#inicio img {
-	width: 90%;
-	height: 500px;
-}
 
-#favoritos_button {
-	color:#FFFFFF;
-	float: right;
-}
-
-#favorites-list {
-	color: #000000;
-	display:block;
-}
-
-
-#info{
-	width: 100%;
-	/* margin: -5%; */
-	border-radius: 50px;
-	border: none;
-}
 
 
 
@@ -185,6 +164,29 @@ h1 {
 #historial-list {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+#inicio img {
+	width: 90%;
+	height: 500px;
+}
+
+#favoritos_button {
+	color:#FFFFFF;
+	float: right;
+}
+
+#favorites-list {
+	color: #000000;
+	display:block;
+}
+
+
+#info{
+	width: 100%;
+	/* margin: -5%; */
+	border-radius: 50px;
+	border: none;
 }
 
 
@@ -368,7 +370,7 @@ h1 {
 	height: 50px;
 	/* margin:-5%; */
 	border-radius: 50%;
-	background-color: #faaaaa;
+	background-color: #1d9143;
 	border: none;
 	/*! color: #ffffff; */
 }
@@ -378,6 +380,11 @@ h1 {
 
 .favoritos:hover {
 	opacity: 70%;
+}
+
+.botones{
+	text-align: center;
+	display: block;
 }
 
 .boton_busqueda {
@@ -533,13 +540,88 @@ h1 {
 	padding: 40px;
 	width: 30%;
 	box-shadow: 0 4px 8px #BBBBBB;
-
 	background-color: #FFFFFF;
 }
 
 .movie-card img {
 	width: 100%;
 	height: 450px;
+}
+
+/* Contenedor principal de la tarjeta */
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    /* Agrega aquí otros estilos del contenedor si los tienes */
+}
+
+/* Estilos para la sección del título y descripción */
+.desc_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    flex: 1;
+}
+
+.desc_title img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.desc_title h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: #333;
+}
+
+.desc_title h5 {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #666;
+}
+
+.desc_title h5 i {
+    margin-right: 5px;
+    color: #f39c12;
+}
+
+/* Estilos para la sección del botón */
+.descripcion_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+.descripcion_card {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.descripcion_card:hover {
+    background-color: #0056b3;
+}
+
+.descripcion_card i {
+    font-size: 1.2em;
 }
 
 .favorite-container {
@@ -554,6 +636,7 @@ h1 {
 
 .favorite-container img {
 	width: 10%;
+	height: 200px;
 	/* height: 450px; */
 }
 
@@ -721,8 +804,10 @@ h1 {
 
 @media screen and (max-width: 768px) {
 
-	aside {
-		display: none;
+	.favorite-container img {
+		width: 25%;
+		height: 200px;
+		/* height: 450px; */
 	}
 
 	.inf{
@@ -819,7 +904,6 @@ h1 {
 	}
 
 	#favorites-list {
-		padding: 10%;
 		display: block;
 	}
 
@@ -828,6 +912,12 @@ h1 {
 }
 
 @media screen and (max-width: 640px) {
+
+	.favorite-container img {
+		width: 30%;
+		height: 200px;
+		/* height: 450px; */
+	}
 
 	.movie-card {
 		width: 100%;

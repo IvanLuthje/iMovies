@@ -66,17 +66,17 @@ $(document).ready(function () {
         const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
         var movieCard = `
             <div class="movie-card">
-               <img src="${imagen}">
-                <div>
-                    <h4>${data.Title}</h4>
-                    <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
-                    <h5><i class='fa fa-star' aria-hidden='true'></i>${data.imdbRating}</h5>
-
-                    <div class="descripcion_data">
-                    <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                    <img src="${imagen}">
+                    <div class="desc_title">
+                        <h4>${data.Title}</h4>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
+                        <h5><i class='fa fa-star' aria-hidden='true'></i>${data.imdbRating}</h5>
                     </div>
-                </div>
-            </div>
+                 
+                    <div class="descripcion_button">
+                        <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                    </div>
+            </div>        
         `;
 
         $('#year-movies-info').append(movieCard);
