@@ -74,7 +74,7 @@ $(document).ready(function () {
                     </div>
                  
                     <div class="descripcion_button">
-                        <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        <button class="descripcion_card" data-id="${data.imdbID}" onclick="addToHistorial('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
             </div>        
         `;
@@ -148,6 +148,13 @@ $(document).ready(function () {
             $('#alert-favoritos').html(alert_added);
         }
 
+    };
+
+    document.addToHistorial = function (imdbID, Title, Poster, Type) {
+        $('#alert-favoritos').empty();
+        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
+
+
         if (!favorites_historial.some(fav => fav.Title === Title)) {
             favorites_historial.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
@@ -155,7 +162,7 @@ $(document).ready(function () {
         }
 
         else {
-            $('#alert-favoritos').html(alert_added_hist);
+            $('#alert-favoritos').html(alert_added);
         }
     };
 

@@ -171,10 +171,12 @@ $(document).ready(function () {
                     </div>
                  
                     <div class="descripcion_button">
-                        <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        <button class="descripcion_card" data-id="${data.imdbID}" onclick="addToHistorial('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
             </div>        
         `;
+   
+
 
         $('#mtitle').html("<h2>Resultados de búsqueda</h2>");
 
@@ -184,6 +186,7 @@ $(document).ready(function () {
 
 
         $('.descripcion_card').click(async function () {
+            
          
          
             const id = $(this).data('id');
@@ -198,13 +201,15 @@ $(document).ready(function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
                     window.location.href='results.html';  
                     $('#info').html(info);
-                   
+   
                 }
 
                 $('.compartir').on('click', function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
                     window.location.href = 'compartir_resultados.html';
                 });
+
+
 
 
             }
@@ -250,11 +255,27 @@ $(document).ready(function () {
         }
     };
 
+
+     document.addToHistorial = function (imdbID, Title, Poster, Type) {
+        $('#alert-favoritos').empty();
+        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
+
+
+        if (!favorites_historial.some(fav => fav.Title === Title)) {
+            favorites_historial.push({ imdbID, Title, Poster, Type });
+            localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
+            loadHistorial();
+        }
+
+        else {
+            $('#alert-favoritos').html(alert_added);
+        }
+    };
+
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
-        $('#favorites-list-r').empty();
-
+  
         if (favorites.length) {
             favorites.forEach(function (fav) {
                 const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
@@ -290,13 +311,15 @@ $(document).ready(function () {
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
-                        <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        <div class="descripcion_button">
+                            <button class="descripcion_card" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        </div>                    
                     </div>
                 `;
                 $('#historial-list').append(favoriteItem);
             });
 
-            $('.descripcion').click(async function () {
+            $('.descripcion_card').click(async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
