@@ -301,18 +301,18 @@ $(document).ready(function () {
         $('#historial-list').empty();
 
         if (favorites_historial.length) {
-            favorites_historial.forEach(function (fav) {
-                const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
+            favorites_historial.forEach(function (data) {
+                const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                 const favoriteItem = `  
                     <div class="movie-card">
                         <div class="boton_eliminar">
-                        <button id="eliminar_historial" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button id="eliminar_historial" onclick="eliminar_historial('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <img src=${imagen}>
-                        <h4>${fav.Title}</h4>
-                        <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
+                        <h4>${data.Title}</h4>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h5>
                         <div class="descripcion_button">
-                            <button class="descripcion_card" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                            <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                         </div>                    
                     </div>
                 `;
@@ -331,19 +331,10 @@ $(document).ready(function () {
                     const data = await response.json();
                     const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                     if (data.Response === "True") {
-                        modal.style.display = "block";
-                        var info = `
-                            <h2>${data.Title}</h2>
-                            <img src="${imagen}">
-                            <p><h3>Director:</h3>${data.Director}</p>
-                            <p><h3>Actores:</h3>${data.Actors}</p>
-                            <p><h3>Trama:</h3>${data.Plot}</p>
-                            <p><h3>Año:</h3>${data.Year}</p>
-                            <p><h3>Genero:</h3>${data.Genre}</p>
-                            ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                            <button class='compartir_historial'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                        `;
-                        $('.info').html(info);
+                        sessionStorage.setItem('data', JSON.stringify(data));
+                        window.location.href='results.html';  
+                        $('#info').html(info);
+    
                     }
 
                     $('.compartir_historial').on('click', async function () {
