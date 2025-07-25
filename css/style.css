@@ -350,12 +350,7 @@ h1 {
 }
 
 .cancel2 {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #fede55;
 	border: none;
-	color: #1f7042;
 }
 
 .cancel:hover {
