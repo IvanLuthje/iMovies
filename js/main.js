@@ -285,6 +285,8 @@ $(document).ready(function () {
                         <img src=${imagen}>
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
+                        <button class="descripcion_card" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+
                     </div>
                 `;
                 $('#favorites-list').append(favoriteItem);
