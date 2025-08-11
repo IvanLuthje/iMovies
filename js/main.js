@@ -244,15 +244,7 @@ $(document).ready(function () {
             $('#alert-favoritos').html(alert_added);
         }
 
-        if (!favorites_historial.some(fav => fav.Title === Title)) {
-            favorites_historial.push({ imdbID, Title, Poster, Type });
-            localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
-            loadHistorial();
-        }
-
-        else {
-            $('#alert-favoritos').html(alert_added);
-        }
+  
     };
 
 
@@ -315,9 +307,10 @@ $(document).ready(function () {
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h5>
                         <div class="descripcion_button">
                             <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                        </div>                    
+                        </div>
                     </div>
                 `;
+
                 $('#historial-list').append(favoriteItem);
             });
 

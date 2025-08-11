@@ -571,10 +571,10 @@ h1 {
 .movie-card {
     display: flex;
     flex-direction: column;
-    /* Agrega aquí otros estilos del contenedor si los tienes */
+    /* Agrega aquÃ­ otros estilos del contenedor si los tienes */
 }
 
-/* Estilos para la sección del título y descripción */
+/* Estilos para la secciÃ³n del tÃ­tulo y descripciÃ³n */
 .desc_title {
     display: flex;
     flex-direction: column;
@@ -610,7 +610,7 @@ h1 {
     color: #f39c12;
 }
 
-/* Estilos para la sección del botón */
+/* Estilos para la secciÃ³n del botÃ³n */
 .descripcion_button {
     display: flex;
     justify-content: center;
@@ -625,8 +625,8 @@ h1 {
     height: 50px;
     border-radius: 50px;
     border: none;
-	background-color: #007bff;
-    color: #FFFFFF; 
+    background-color: #0866ff;
+    color: #FFFFFF;
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -824,7 +824,6 @@ h1 {
 	}
 
 	.movie-card img {
-		width: 150px;
 		height: 250px;
 	}
 
