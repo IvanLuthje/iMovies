@@ -275,6 +275,7 @@ $(document).ready(function () {
                     <div class="favorite-container">
                         <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <img src=${imagen}>
+                        
                         <h4>${fav.Title}</h4>
                         <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
                         <button class="descripcion_card" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
@@ -303,8 +304,10 @@ $(document).ready(function () {
                         <button id="eliminar_historial" onclick="eliminar_historial('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <img src=${imagen}>
+                        <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h5>
+                        </div>
                         <div class="descripcion_button">
                             <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                         </div>

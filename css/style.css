@@ -571,7 +571,6 @@ h1 {
 .movie-card {
     display: flex;
     flex-direction: column;
-    /* Agrega aquÃ­ otros estilos del contenedor si los tienes */
 }
 
 /* Estilos para la secciÃ³n del tÃ­tulo y descripciÃ³n */
@@ -908,9 +907,6 @@ h1 {
 		width: 80%;
 	}
 
-	.cards-container {
-		grid-template-columns: repeat(2, 50%);
-	}
 
 	.movie-card {
 		border-radius: 10px;
