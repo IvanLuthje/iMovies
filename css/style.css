@@ -38,12 +38,10 @@ body {
 
 .title img{
 	width: 300px;
-    height: 450px;
-    border-radius: 15px;
-    object-fit: cover;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease;
-    }
+	height: 450px;
+	border-radius: 15px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
 
 
 .desc{
@@ -538,8 +536,7 @@ h1 {
 	height: 450px;
 	border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease;
-	
+    	
 }
 
 /* Contenedor principal de la tarjeta */
@@ -630,8 +627,9 @@ h5 i {
 .favorite-container img {
 	width: 10%;
 	height: 200px;
-	/* height: 450px; */
-}
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
 
 .favorite-container .descripcion_card{
 	width: 50px;
@@ -684,11 +682,11 @@ h5 i {
 
 .detail-item {
 	margin-top:0%;
-    background: #b9b4b3;
-    padding: 12px 18px;
-	height:80px;
-    border-radius: 10px;
-    border-left: 3px solid;
+	background: #b9b4b3;
+	padding: 12px 18px;
+	height: 100px;
+	border-radius: 10px;
+	border-left: 3px solid;
 	border-color: #dd3e41;
 }
 
@@ -834,7 +832,7 @@ h5 i {
 	}
 
 	.detail-item{
-		height:90px;
+		height: 100px;
 	}
 
 	.movie-details{

@@ -2,9 +2,6 @@ function cerrar() {
     modal.style.display = "none";
 }
 
-function cancelar() {
-    window.location.href = "index.html"
-}
 
 function compartir() {
     window.location.href = "compartir_resultados.html"

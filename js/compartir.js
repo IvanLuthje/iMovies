@@ -1,10 +1,17 @@
+const data = JSON.parse(sessionStorage.getItem('data'));
+var title = `${data.Title} (${data.Type})`;
+var comment = `${data.Year} 
+Director: ${data.Director} 
+Actores: ${data.Actors} 
+${data.Plot}`;
+document.getElementById('subject').value = title;
+document.getElementById('comentario').value = comment;
+
+
 function cancelar() {
     window.location.href = "index.html"
 }
 
-function compartir() {
-    window.location.href = "compartir_resultados.html"
-}
 
 function reset() {
     document.getElementById('email_receptor').value = '';
@@ -12,6 +19,7 @@ function reset() {
     document.getElementById('comentario').value = '';
 
 }
+
 
 
 function enviar() {
