@@ -544,7 +544,7 @@ h1 {
     flex-direction: column;
 }
 
-/* Estilos para la secciÃƒÂ³n del tÃƒÂ­tulo y descripciÃƒÂ³n */
+/* Estilos para la seccion del tiÃ‚Â­tulo y descripcion */
 .desc_title {
     display: flex;
     flex-direction: column;
@@ -569,18 +569,18 @@ h1 {
     color: #333;
 }
 
-.desc_title h5 {
+h5 {
     font-size: 0.9em;
     margin: 5px 0;
     color: #666;
 }
 
-.desc_title h5 i {
+h5 i {
     margin-right: 5px;
     color: #f39c12;
 }
 
-/* Estilos para la secciÃƒÂ³n del botÃƒÂ³n */
+/* Estilos para la seccion del boton */
 .descripcion_button {
     display: flex;
     justify-content: center;
@@ -682,14 +682,10 @@ h1 {
 	margin-top:0%;
     background: #b9b4b3;
     padding: 12px 18px;
+	height:80px;
     border-radius: 10px;
     border-left: 3px solid;
-	border-color: #F44336;
-}
-
-.detail-item h5 i {
-    margin-right: 5px;
-    color: #f39c12;
+	border-color: #dd3e41;
 }
 
 .detail-label {
@@ -706,10 +702,10 @@ h1 {
 
 .movie-details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(200px, 2fr));
     gap: 5px;
-    margin-top: 10%;
-	width:75%;
+    margin-top: 5%;
+    width:70%;
 }
 
 #map {
@@ -833,6 +829,14 @@ h1 {
 		height: 250px;
 	}
 
+	.detail-item{
+		height:90px;
+	}
+
+	.movie-details{
+		grid-template-columns: repeat(2, minmax(170px, 1fr));
+	}
+
 }
 
 @media screen and (max-width: 768px) {
@@ -896,8 +900,13 @@ h1 {
 
 	.imagen img {
 		width: 50%;
-		margin-left: 25%;
 	}
+
+	.title img{
+		width: 100%;
+	}
+
+
 
 	/* Botones */
 
@@ -937,6 +946,10 @@ h1 {
 		display: block;
 	}
 
+	.movie-details{
+		grid-template-columns: repeat(2, minmax(170px, 1fr));
+		width:100%;
+	}
 
 
 }
@@ -963,10 +976,18 @@ h1 {
 		width:100%;
 	}
 
+
+
 	.desc{
 		width:100%;
 		margin-left:0%;
 
+	}
+
+	.movie-details{
+		grid-template-columns: repeat(1, minmax(170px, 1fr));
+
+		width:100%;
 	}
 
 
