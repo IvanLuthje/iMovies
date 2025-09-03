@@ -19,8 +19,6 @@ body {
 	display:flex;
 	width:100%;
 	border-radius: 10px;
-	margin-top: 20px;
-	margin: 5px;
 	padding: 20px;
 	box-shadow: 0 4px 8px #BBBBBB;
 	background-color: #FFFFFF;
@@ -39,13 +37,17 @@ body {
 }
 
 .title img{
-	width:250px;
-	height:300px;
+	width: 300px;
+    height: 450px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    }
 
-}
 
 .desc{
-	width:50%;
+	width: 100%;
 	margin-left:5%;
 }
 
@@ -334,10 +336,6 @@ h1 {
 }
 
 
-
-
-
-
 .enviar {
 	width: 50px;
 	height: 50px;
@@ -371,7 +369,8 @@ h1 {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: none;		
+	border: none;
+	background-color: #bbbbbb;
 }
 
 .cancel2:hover {
@@ -473,42 +472,6 @@ h1 {
 	color: #FFFFFF;
 }
 
-/* Navegador de favoritos */
-
-
-#nav_favoritos {
-	height: 100%;
-	width: 0;
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	right: 0;
-	background-color: rgba(0, 0, 0, 0.8);
-	overflow-x: hidden;
-	transition: 0.5s;
-}
-
-
-#nav_favoritos a {
-	padding: 8px;
-	text-decoration: none;
-	font-size: 36px;
-	color: #818181;
-	display: block;
-}
-
-#nav_favoritos a:hover,
-#nav_favoritos a:focus {
-	color: #f1f1f1;
-}
-
-#nav_favoritos #cerrar_nav {
-	position: absolute;
-	right: 0%;
-	font-size: 30px;
-}
-
-
 
 
 /* Formulario */
@@ -581,7 +544,7 @@ h1 {
     flex-direction: column;
 }
 
-/* Estilos para la secciÃ³n del tÃ­tulo y descripciÃ³n */
+/* Estilos para la secciÃƒÂ³n del tÃƒÂ­tulo y descripciÃƒÂ³n */
 .desc_title {
     display: flex;
     flex-direction: column;
@@ -617,7 +580,7 @@ h1 {
     color: #f39c12;
 }
 
-/* Estilos para la secciÃ³n del botÃ³n */
+/* Estilos para la secciÃƒÂ³n del botÃƒÂ³n */
 .descripcion_button {
     display: flex;
     justify-content: center;
@@ -710,8 +673,44 @@ h1 {
 	opacity: 70%;
 }
 
+.plot {
+  margin-top: 2.5%;
+  line-height: 1.7;
+}
 
+.detail-item {
+	margin-top:0%;
+    background: #b9b4b3;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border-left: 3px solid;
+	border-color: #F44336;
+}
 
+.detail-item h5 i {
+    margin-right: 5px;
+    color: #f39c12;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #000000;
+    font-size: 0.9rem;
+    display: block;
+}
+
+.detail-value {
+    color: white;
+    font-size: 1rem;
+}
+
+.movie-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 5px;
+    margin-top: 10%;
+	width:75%;
+}
 
 #map {
 	height: 768px;

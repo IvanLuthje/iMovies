@@ -2,10 +2,6 @@ function cerrar() {
     modal.style.display = "none";
 }
 
-function nav_fav() {
-    document.getElementById("nav_favoritos").style.width = "40%";
-}
-
 function cancelar() {
     window.location.href = "index.html"
 }
@@ -14,9 +10,6 @@ function compartir() {
     window.location.href = "compartir_resultados.html"
 }
 
-function cerrar_nav() {
-    document.getElementById("nav_favoritos").style.width = "0%";
-}
 
 function menuBar() {
     var nav = document.querySelector('nav');
