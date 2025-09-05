@@ -1,6 +1,7 @@
 $(document).ready(function () {
     loadFavorites();
     loadHistorial();
+    
 
     async function year_movies() {
         try {
@@ -41,7 +42,7 @@ $(document).ready(function () {
         }
     }
 
-
+    $('#mtitle').html("<h2>Peliculas del año</h2>");
 
     $('#year-movies-info').html(year_movies);
 

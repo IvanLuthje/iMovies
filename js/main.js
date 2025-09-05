@@ -2,6 +2,9 @@ function cerrar() {
     modal.style.display = "none";
 }
 
+function cancelar() {
+    window.location.href = "index.html"
+}
 
 function compartir() {
     window.location.href = "compartir_resultados.html"
@@ -217,21 +220,24 @@ $(document).ready(function () {
 
     document.addToFavorites = function (imdbID, Title, Poster, Type) {
         $('#alert-favoritos').empty();
-        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado a la lista`;
-        var alert_add = `<i class='fa fa-check' aria-hidden='true'></i>`;
+        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
         if (!favorites.some(fav => fav.Title === Title)) {
             favorites.push({ imdbID, Title, Poster, Type });
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            $('.favoritos').html(alert_add);
+            $('.favoritos').html(alert_check);
             loadFavorites();
             
         }
 
         else {
-            $('#alert-favoritos').html(alert_added);
+            $('.favoritos').html(alert_add);
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites = favorites.filter(fav => fav.imdbID !== imdbID);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            loadFavorites();  
         }
 
   

@@ -6,6 +6,9 @@ function compartir() {
     window.location.href = "compartir_resultados.html"
 }
 
+
+
+
 const data = JSON.parse(sessionStorage.getItem('data'));
 
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
