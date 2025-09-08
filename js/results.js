@@ -22,7 +22,7 @@ var inf = `<button class="cancel2" onclick="cancelar()">
       <button class="compartir" onclick="compartir()">
         <i class="fa fa-share-alt" aria-hidden="true"></i>
       </button>
-      <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')">
+      <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
         <i class="fa fa-plus" aria-hidden="true"></i>
       </button>
     </div>

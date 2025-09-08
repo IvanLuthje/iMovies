@@ -251,7 +251,7 @@ h1 {
   opacity: 70%;
 }
 
-.descripcion_card {
+.descripcion_button {
   width: 100%;
   height: 50px;
   /* margin: -5%; */
@@ -259,7 +259,7 @@ h1 {
   border: none;
 }
 
-.descripcion_card:hover {
+.descripcion_button:hover {
   opacity: 70%;
 }
 
@@ -498,7 +498,7 @@ h1 {
   flex-direction: column;
 }
 
-/* Estilos para la seccion del tiÃ‚Â­tulo y descripcion */
+/* Estilos para la seccion del tiÃƒâ€šÃ‚Â­tulo y descripcion */
 .desc_title {
   display: flex;
   flex-direction: column;
@@ -535,7 +535,7 @@ h5 i {
 }
 
 /* Estilos para la seccion del boton */
-.descripcion_button {
+.descripcion_buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -544,7 +544,7 @@ h5 i {
   border-top: 1px solid #e9ecef;
 }
 
-.descripcion_card {
+.descripcion_button {
   width: 100%;
   height: 50px;
   border-radius: 50px;
@@ -559,11 +559,13 @@ h5 i {
   justify-content: center;
 }
 
-.descripcion_card:hover {
+
+
+.descripcion_button:hover {
   background-color: #0056b3;
 }
 
-.descripcion_card i {
+.descripcion_button i {
   font-size: 0.9em;
 }
 
@@ -579,16 +581,23 @@ h5 i {
 
 .favorite-container img {
   width: 10%;
-  height: 200px;
+  height: 250px;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-.favorite-container .descripcion_card {
+.favorite-container .descripcion_button {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: none;
+  margin-top: 1%;
+}
+
+.favorite-container .descripcion_buttons {
+  justify-content: left;
+  padding:0;
+
 }
 
 .favorite-container #eliminar {
@@ -677,12 +686,6 @@ h5 i {
   left: 45%;
   bottom: 30px;
   font-size: 17px;
-}
-
-
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
 }
 
 
@@ -957,6 +960,23 @@ h5 i {
     margin-left: 0;
     width: 80%;
   }
+
+  .favorite-container img {
+    width: 100%;
+    height: 450px;
+  }
+
+  .favorite-container .descripcion_buttons {
+    justify-content: center;
+ 
+  }
+
+  .favorite-container .descripcion_button {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+  }
+  
 }
 
 @media screen and (max-width: 300px) {

@@ -131,33 +131,39 @@ $(document).ready(function () {
 
 
 
-
-    document.addToFavorites = function (imdbID, Title, Poster, Type) {
+    document.addToFavorites = function (imdbID, Title, Poster, Type, Year, Plot) {
         $('#alert-favoritos').empty();
-        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado a la lista`;
-        var alert_added_hist = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado en el historial`;
+        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
-        if (!favorites.some(fav => fav.Title === Title)) {
-            favorites.push({ imdbID, Title, Poster, Type });
+        if (!favorites.some(data => data.Title === Title)) {
+            favorites.push({imdbID, Title, Poster, Type, Year, Plot});
             localStorage.setItem('favorites', JSON.stringify(favorites));
+            $('.favoritos').html(alert_check);
             loadFavorites();
+            
         }
 
         else {
-            $('#alert-favoritos').html(alert_added);
+            $('.favoritos').html(alert_add);
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites = favorites.filter(data => data.imdbID !== imdbID);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            loadFavorites();  
         }
 
+  
     };
 
-    document.addToHistorial = function (imdbID, Title, Poster, Type) {
+
+     document.addToHistorial = function (imdbID, Title, Poster, Type, Year) {
         $('#alert-favoritos').empty();
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
 
-        if (!favorites_historial.some(fav => fav.Title === Title)) {
-            favorites_historial.push({ imdbID, Title, Poster, Type });
+        if (!favorites_historial.some(data => data.Title === Title)) {
+            favorites_historial.push({ imdbID, Title, Poster, Type, Year });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
         }
@@ -170,24 +176,30 @@ $(document).ready(function () {
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
-        $('#favorites-list-r').empty();
-
+  
         if (favorites.length) {
-            favorites.forEach(function (fav) {
+            favorites.forEach(function (data) {
+                const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                 var favoriteItem = `
-                    <li>
-                       ${fav.Title}
-                        <button id="eliminar" onclick="eliminar('${fav.imdbID}')">&times;</button>
-                    </li>
+                    <div class="favorite-container">
+                        <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <img src=${imagen}>
+                        
+                        <h4>${data.Title}</h4>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
+                        <h5>${data.Plot}</h5>
+                        <div class="descripcion_button">
+                            <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        </div>
+
+                    </div>
                 `;
                 $('#favorites-list').append(favoriteItem);
-                $('#favorites-list-r').append(favoriteItem);
             });
         }
 
         else {
             $('#favorites-list').html("No se encuentran favoritos");
-            $('#favorites-list-r').html("No se encuentran favoritos");
         }
     }
 
@@ -196,21 +208,28 @@ $(document).ready(function () {
         $('#historial-list').empty();
 
         if (favorites_historial.length) {
-            favorites_historial.forEach(function (fav) {
-                const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
+            favorites_historial.forEach(function (data) {
+                const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                 const favoriteItem = `  
                     <div class="movie-card">
+                        <div class="boton_eliminar">
+                        <button id="eliminar_historial" onclick="eliminar_historial('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
                         <img src=${imagen}>
-                        <h4>${fav.Title}</h4>
-                        <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
-                        <button class="descripcion" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                        <button id="eliminar" onclick="eliminar_historial('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <div class="desc_title">
+                        <h4>${data.Title}</h4>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
+                        </div>
+                        <div class="descripcion_button">
+                            <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        </div>
                     </div>
                 `;
+
                 $('#historial-list').append(favoriteItem);
             });
 
-            $('.descripcion').click(async function () {
+            $('.descripcion_card').click(async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
@@ -222,19 +241,10 @@ $(document).ready(function () {
                     const data = await response.json();
                     const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                     if (data.Response === "True") {
-                        modal.style.display = "block";
-                        var info = `
-                            <h2>${data.Title}</h2>
-                            <img src="${imagen}">
-                            <p><h3>Director:</h3>${data.Director}</p>
-                            <p><h3>Actores:</h3>${data.Actors}</p>
-                            <p><h3>Trama:</h3>${data.Plot}</p>
-                            <p><h3>Año:</h3>${data.Year}</p>
-                            <p><h3>Genero:</h3>${data.Genre}</p>
-                            ${data.Rating ? `<p><h3>Rating:</h3>${data.Rating}</p>` : ''}
-                            <button class='compartir_historial'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                        `;
-                        $('.info').html(info);
+                        sessionStorage.setItem('data', JSON.stringify(data));
+                        window.location.href='results.html';  
+                        $('#info').html(info);
+    
                     }
 
                     $('.compartir_historial').on('click', async function () {
@@ -249,14 +259,17 @@ $(document).ready(function () {
             });
 
         } else {
-            $('#historial-list').html("Historial vacío");
+            $('#historial-list').html("El historial se encuentra vacío");;
         }
     }
 
 
+
+
+
     document.eliminar = function (imdbID) {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        favorites = favorites.filter(fav => fav.imdbID !== imdbID);
+        favorites = favorites.filter(data => data.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
 
@@ -265,11 +278,12 @@ $(document).ready(function () {
 
     document.eliminar_historial = function (imdbID) {
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
-        if (favorites_historial.some(fav => fav.imdbID === imdbID)) {
-            favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
+        if (favorites_historial.some(data => data.imdbID === imdbID)) {
+            favorites_historial = favorites_historial.filter(data => data.imdbID !== imdbID);
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
         }
     };
+
 
 });

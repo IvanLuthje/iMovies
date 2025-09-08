@@ -24,9 +24,53 @@ $(document).ready(function () {
     loadFavorites();
     loadHistorial();
 
+    async function year_movies() {
+        $('#mtitle').html("<h2>Peliculas del año</h2>");
+        try {
+            // Definición de la apiKey
+            var apiKey = "4526760c";
+            let url_peliculas_dest = `http://www.omdbapi.com/?s=movie&y=2025&type=movie&apikey=${apiKey}`;
+
+            //Definición de alerts
+            var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
+
+            $('#year-movies-info').html(alert_results);
+
+            const response = await fetch(url_peliculas_dest);
+            if (!response.ok) {
+                throw new Error('Error de conexión');
+            }
+
+            const data = await response.json();
+
+            if (data.Response === "True") {
+                $('#year-movies-info').empty();
+
+                // Mostrar cada serie encontrada
+                for (const item of data.Search) {
+                    await mostrarResultados(item);
+                }
+            }
+            else {
+                $('#year-movies-info').html(alert_movie);
+            }
+
+
+
+
+        }
+        catch (error) {
+            $('#year-movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
+        }
+
+       
+    }
+
+    $('#year-movies-info').html(year_movies);
 
 
     $('.boton_busqueda').click(async function () {
+        $('#mtitle').html("<h2>Resultados de búsqueda</h2>");
         try {
             const title = $('#nombre').val().trim();
             // Definición de la apiKey
@@ -37,12 +81,12 @@ $(document).ready(function () {
 
             let url_movie = `http://www.omdbapi.com/?s=${title}&type=movie&apikey=${apiKey}`;
             let url_series = `http://www.omdbapi.com/?s=${title}&type=series&apikey=${apiKey}`;
-            let url_episodes = `http://www.omdbapi.com/?s=${title}&type=episode&apikey=${apiKey}`;
+            let url_episodes = `https://www.omdbapi.com/?s=${encodeURIComponent(title)}&type=episode&apikey=${apiKey}`;;
 
             //Definición de alerts
 
             var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
-            var alert_serie = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
+            var alert_series = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
             var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
             var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
@@ -69,7 +113,7 @@ $(document).ready(function () {
                 if (data.Response === "True") {
                     $('#movies-info').empty();
 
-                    // Mostrar cada serie encontrada
+                    // Mostrar cada pelicula encontrada
                     for (const item of data.Search) {
                         await mostrarResultados(item);
                     }
@@ -95,7 +139,7 @@ $(document).ready(function () {
                     }
                 }
                 else {
-                    $('#movies-info').html(alert_serie);
+                    $('#movies-info').html(alert_series);
                 }
 
             }
@@ -110,7 +154,7 @@ $(document).ready(function () {
                 if (data.Response === "True") {
                     $('#movies-info').empty();
 
-                    // Mostrar cada serie encontrada
+                    // Mostrar cada episodio encontrado
                     for (const item of data.Search) {
                         await mostrarResultados(item);
                     }
@@ -118,19 +162,13 @@ $(document).ready(function () {
                 else {
                     $('#movies-info').html(alert_episodes);
                 }
-
             }
-
-
-
-
         }
 
         catch (error) {
             $('#movies-info').html(`<i class='fas fa-exclamation-triangle'></i> Error en la búsqueda: ${error.message}`);
         }
     });
-
 
 
 
@@ -163,25 +201,16 @@ $(document).ready(function () {
                         <h5><i class='fa fa-star' aria-hidden='true'></i>${data.imdbRating}</h5>
                     </div>
                  
-                    <div class="descripcion_button">
-                        <button class="descripcion_card" data-id="${data.imdbID}" onclick="addToHistorial('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                    <div class="descripcion_buttons">
+                        <button class="descripcion_button" data-id="${data.imdbID}" onclick="addToHistorial('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                     </div>
             </div>        
         `;
-   
-
-
-        $('#mtitle').html("<h2>Resultados de búsqueda</h2>");
 
         $('#movies-info').append(movieCard);
-
-
-
-
-        $('.descripcion_card').click(async function () {
+        
+        $('.descripcion_button').click(async function () {
             
-         
-         
             const id = $(this).data('id');
             try {
                 const apiKey = "4526760c";
@@ -197,7 +226,7 @@ $(document).ready(function () {
    
                 }
 
-                $('.compartir').on('click', function () {
+                $('.compartir').click(function () {
                     sessionStorage.setItem('data', JSON.stringify(data));
                     window.location.href = 'compartir_resultados.html';
                 });
@@ -218,14 +247,14 @@ $(document).ready(function () {
 
 
 
-    document.addToFavorites = function (imdbID, Title, Poster, Type) {
+    document.addToFavorites = function (imdbID, Title, Poster, Type, Year, Plot) {
         $('#alert-favoritos').empty();
         var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
         var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-        if (!favorites.some(fav => fav.Title === Title)) {
-            favorites.push({ imdbID, Title, Poster, Type });
+        if (!favorites.some(data => data.Title === Title)) {
+            favorites.push({imdbID, Title, Poster, Type, Year, Plot});
             localStorage.setItem('favorites', JSON.stringify(favorites));
             $('.favoritos').html(alert_check);
             loadFavorites();
@@ -235,7 +264,7 @@ $(document).ready(function () {
         else {
             $('.favoritos').html(alert_add);
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            favorites = favorites.filter(fav => fav.imdbID !== imdbID);
+            favorites = favorites.filter(data => data.imdbID !== imdbID);
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();  
         }
@@ -244,20 +273,17 @@ $(document).ready(function () {
     };
 
 
-     document.addToHistorial = function (imdbID, Title, Poster, Type) {
+     document.addToHistorial = function (imdbID, Title, Poster, Type, Year) {
         $('#alert-favoritos').empty();
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
 
 
-        if (!favorites_historial.some(fav => fav.Title === Title)) {
-            favorites_historial.push({ imdbID, Title, Poster, Type });
+        if (!favorites_historial.some(data => data.Title === Title)) {
+            favorites_historial.push({ imdbID, Title, Poster, Type, Year });
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
         }
 
-        else {
-            $('#alert-favoritos').html(alert_added);
-        }
     };
 
     function loadFavorites() {
@@ -265,16 +291,19 @@ $(document).ready(function () {
         $('#favorites-list').empty();
   
         if (favorites.length) {
-            favorites.forEach(function (fav) {
-                const imagen = fav.Poster !== "N/A" ? fav.Poster : "img/Image-not-found.png";
+            favorites.forEach(function (data) {
+                const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                 var favoriteItem = `
                     <div class="favorite-container">
-                        <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <img src=${imagen}>
                         
-                        <h4>${fav.Title}</h4>
-                        <h5>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h5>
-                        <button class="descripcion_card" data-id="${fav.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        <h4>${data.Title}</h4>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
+                        <h5>${data.Plot}</h5>
+                        <div class="descripcion_buttons">
+                            <button class="descripcion_button" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        </div>
 
                     </div>
                 `;
@@ -302,10 +331,10 @@ $(document).ready(function () {
                         <img src=${imagen}>
                         <div class="desc_title">
                         <h4>${data.Title}</h4>
-                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)}</h5>
+                        <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
                         </div>
-                        <div class="descripcion_button">
-                            <button class="descripcion_card" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                        <div class="descripcion_buttons">
+                            <button class="descripcion_button" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                         </div>
                     </div>
                 `;
@@ -313,7 +342,7 @@ $(document).ready(function () {
                 $('#historial-list').append(favoriteItem);
             });
 
-            $('.descripcion_card').click(async function () {
+            $('.descripcion_button').click(async function () {
                 const id = $(this).data('id');
                 try {
                     const apiKey = "4526760c";
@@ -331,7 +360,7 @@ $(document).ready(function () {
     
                     }
 
-                    $('.compartir_historial').on('click', async function () {
+                    $('.compartir_historial').click(async function () {
                         sessionStorage.setItem('data', JSON.stringify(data));
                         window.location.href = 'compartir_resultados.html';
                     });
@@ -353,7 +382,7 @@ $(document).ready(function () {
 
     document.eliminar = function (imdbID) {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        favorites = favorites.filter(fav => fav.imdbID !== imdbID);
+        favorites = favorites.filter(data => data.imdbID !== imdbID);
         localStorage.setItem('favorites', JSON.stringify(favorites));
         loadFavorites();
 
@@ -362,8 +391,8 @@ $(document).ready(function () {
 
     document.eliminar_historial = function (imdbID) {
         let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
-        if (favorites_historial.some(fav => fav.imdbID === imdbID)) {
-            favorites_historial = favorites_historial.filter(fav => fav.imdbID !== imdbID);
+        if (favorites_historial.some(data => data.imdbID === imdbID)) {
+            favorites_historial = favorites_historial.filter(data => data.imdbID !== imdbID);
             localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
             loadHistorial();
         }
