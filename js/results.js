@@ -58,6 +58,10 @@ var inf = `<button class="cancel2" onclick="cancelar()">
         <span class="detail-label">Idioma</span>
         <span class="detail-value">${data.Language}</span>
       </div>
+       <div class="detail-item">
+        <span class="detail-label">Duración</span>
+        <span class="detail-value">${data.Runtime}</span>
+      </div>
     </div>
   </div>
 </div>
