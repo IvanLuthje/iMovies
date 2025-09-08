@@ -153,6 +153,8 @@ h1 {
 #historial-list {
   display: flex;
   flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-around;
 }
 
 #inicio img {
