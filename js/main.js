@@ -289,6 +289,8 @@ $(document).ready(function () {
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
+        
+        
   
         if (favorites.length) {
             favorites.forEach(function (data) {

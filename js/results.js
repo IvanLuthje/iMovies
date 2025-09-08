@@ -1,7 +1,3 @@
-function cancelar() {
-    window.location.href = "index.html"
-}
-
 function compartir() {
     window.location.href = "compartir_resultados.html"
 }
@@ -12,7 +8,7 @@ function compartir() {
 const data = JSON.parse(sessionStorage.getItem('data'));
 
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-var inf = `<button class="cancel2" onclick="cancelar()">
+var inf = `<button class="cancel2" onclick="history.back();">
 <i class="fa fa-chevron-left" aria-hidden="true"></i>
 </button>
 <div class="inf">
