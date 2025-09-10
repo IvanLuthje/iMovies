@@ -8,13 +8,13 @@ function compartir() {
 const data = JSON.parse(sessionStorage.getItem('data'));
 
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
-var inf = `<button class="cancel2" onclick="history.back();">
-<i class="fa fa-chevron-left" aria-hidden="true"></i>
-</button>
+var inf = `
 <div class="inf">
-  <div class="title">
+    <div class="title"><button class="cancel2" onclick="history.back();">
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
     <img src="${imagen}" />
-    <div class="botones">
+    <div class="descripcion_buttons">
       <button class="compartir" onclick="compartir()">
         <i class="fa fa-share-alt" aria-hidden="true"></i>
       </button>

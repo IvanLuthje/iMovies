@@ -44,25 +44,21 @@
     
     <main>
         <h2>COMPARTIR</h2>
-        <form id="formulario_compartir">
+        <div id="email-info">
        
-            <input id="email_receptor" placeholder="E-mail" type="text"><br>
-            <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>              
+            <input id="email_receptor" placeholder="E-mail" type="text">
+            <textarea id="subject" placeholder="Asunto" type="text"></textarea>           
             <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
-            </form>
-            <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
-            <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-            <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+            <div class="descripcion_buttons">
+                <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
+                <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+                <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
             <div class="alert"></div>
+            </div>
+            
 
-        </form>
-
-
+        </div>
     </main>
-   
-
-   
-
 
  <footer>
     <p>&copy; 2025 iMovies</p>

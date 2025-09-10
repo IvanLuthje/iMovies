@@ -29,14 +29,14 @@ $(document).ready(function () {
         try {
             // Definición de la apiKey
             var apiKey = "4526760c";
-            let url_peliculas_dest = `http://www.omdbapi.com/?s=movie&y=2025&type=movie&apikey=${apiKey}`;
+            let url_peliculas_year = `http://www.omdbapi.com/?s=movie&y=2025&type=movie&apikey=${apiKey}`;
 
             //Definición de alerts
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
 
             $('#year-movies-info').html(alert_results);
 
-            const response = await fetch(url_peliculas_dest);
+            const response = await fetch(url_peliculas_year);
             if (!response.ok) {
                 throw new Error('Error de conexión');
             }

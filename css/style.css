@@ -14,6 +14,27 @@ body {
   color: #000000;
 }
 
+    .banner {
+      background: linear-gradient(to right, #000000cc, #1c1c1cdd), center/cover no-repeat;
+      color: white;
+      padding: 80px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .banner h1 {
+      font-size: 4em;
+      margin: 0 0 20px;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .banner p {
+      font-size: 1.4em;
+      max-width: 700px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 6px #000;
+    }
+
 .inf {
   display: flex;
   width: 100%;
@@ -36,6 +57,7 @@ body {
 }
 
 .title img {
+  margin-top: 20%;
   width: 300px;
   height: 450px;
   border-radius: 15px;
@@ -44,7 +66,7 @@ body {
 
 .desc {
   width: 100%;
-  margin-left: 1.2%;
+  margin-left: 1.5%;
 }
 
 @font-face {
@@ -153,8 +175,14 @@ h1 {
 #historial-list {
   display: flex;
   flex-wrap: wrap;
-  align-content: stretch;
-  justify-content: space-around;
+  /* align-content: stretch; */
+  /* justify-content: space-around; */
+}
+
+#email-info{
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  min-height: 768px;
 }
 
 #inicio img {
@@ -369,10 +397,6 @@ h1 {
   opacity: 70%;
 }
 
-.botones {
-  text-align: center;
-  display: block;
-}
 
 .boton_busqueda {
   width: 50px;
@@ -500,7 +524,7 @@ h1 {
   flex-direction: column;
 }
 
-/* Estilos para la seccion del tiÃƒâ€šÃ‚Â­tulo y descripcion */
+/* Estilos para la seccion del tiÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­tulo y descripcion */
 .desc_title {
   display: flex;
   flex-direction: column;
@@ -541,6 +565,7 @@ h5 i {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 10px 15px;
   /* background-color: #f8f9fa; */
   border-top: 1px solid #e9ecef;
@@ -638,15 +663,15 @@ h5 i {
 }
 
 .plot {
-  margin-top: 2.5%;
+  margin-top: 1%;
   line-height: 1.7;
 }
 
 .detail-item {
-  margin-top: 0%;
-  background: #b9b4b3;
+  margin-top: 1%;
+  background: #f0f0f0;
   padding: 12px 18px;
-  height: 150px;
+  /* height: 150px; */
   border-radius: 10px;
   border-left: 3px solid;
   border-color: #dd3e41;
@@ -660,16 +685,16 @@ h5 i {
 }
 
 .detail-value {
-  color: white;
+  color: #000000;
   font-size: 1rem;
 }
 
 .movie-details {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: repeat(3, minmax(200px, 2fr));
   gap: 5px;
-  margin-top: 5%;
-  width: 70%;
+  /* margin-top: 5%; */
+  /* width: 70%; */
 }
 
 #map {
@@ -800,7 +825,7 @@ h5 i {
   }
 
   .detail-item {
-    height: 150px;
+    /* height: 150px; */
   }
 
   .movie-details {
@@ -865,6 +890,8 @@ h5 i {
 
   .title img {
     width: 100%;
+    height: 600px;
+    margin-top:0%;
   }
 
   /* Botones */
@@ -908,6 +935,11 @@ h5 i {
     grid-template-columns: repeat(2, minmax(170px, 1fr));
     width: 100%;
   }
+
+  .title img{
+    margin-top:0%;
+  }
+  
 }
 
 @media screen and (max-width: 640px) {
@@ -977,6 +1009,10 @@ h5 i {
     width: 100%;
     height: 50px;
     border-radius: 50px;
+  }
+
+  .title img{
+    margin-top:0%;
   }
   
 }

@@ -41,7 +41,7 @@
     </nav>
 
     
-    <main>
+    <!-- <main>
         <button class="cancel2" onclick="history.back();">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
@@ -59,7 +59,27 @@
         </form>
 
 
+    </main> -->
+
+    <main>
+        <button class="cancel2" onclick="history.back();">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <h2>COMPARTIR</h2>
+        <div id="email-info">
+            <input id="email_receptor" placeholder="E-mail" type="text"><br>
+            <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>         
+            <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
+            <div class="descripcion_buttons">
+                <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
+                <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+               
+            </div>
+             <div class="alert"></div>
+
+        </div>
     </main>
+   
    
 
    
