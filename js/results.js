@@ -10,9 +10,10 @@ const data = JSON.parse(sessionStorage.getItem('data'));
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
 var inf = `
 <div class="inf">
-    <div class="title"><button class="cancel2" onclick="history.back();">
-      <i class="fa fa-chevron-left" aria-hidden="true"></i>
-    </button>
+    <div class="title">
+      <button class="cancel2" onclick="history.back();">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
     <img src="${imagen}" />
     <div class="descripcion_buttons">
       <button class="compartir" onclick="compartir()">
