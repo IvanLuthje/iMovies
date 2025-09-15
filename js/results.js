@@ -1,6 +1,19 @@
+
+$(document).ready(function () {
+    buttonFavorites();
+});
+
 function compartir() {
     window.location.href = "compartir_resultados.html"
 }
+
+function FavoritesCounter() {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    $("#favorites-counter").text(favorites.length);
+}
+
+
+
 
 function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
         $('#alert-favoritos').empty();
@@ -12,21 +25,36 @@ function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
             favorites.push({imdbID, Title, Poster, Type, Year, Plot});
             localStorage.setItem('favorites', JSON.stringify(favorites));
             $('.favoritos').html(alert_check);
-            loadFavorites();
+
             
         }
 
         else {
-            $('.favoritos').html(alert_add);
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             favorites = favorites.filter(data => data.imdbID !== imdbID);
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            loadFavorites();  
+             $('.favoritos').html(alert_add);
+
         }
 
-  
+       FavoritesCounter(); 
     };
 
+function buttonFavorites() {
+        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        $('.favoritos').each(function () {
+        const imdbID = $(this).data("id");
+        if (favorites.some(data => data.imdbID === imdbID)) {
+            $(this).html(alert_check);
+        } else {
+            $(this).html(alert_add);
+        }
+    });
+
+ FavoritesCounter(); 
+}
 
 const data = JSON.parse(sessionStorage.getItem('data'));
 
@@ -37,7 +65,6 @@ var inf = `
   </button>
 
  <div class="title">
-   
     <h2>${data.Title}</h2>
     <h3>${data.Year}</h3>
     <div class="plot">${data.Plot}</div>
@@ -51,7 +78,7 @@ var inf = `
         <button class="compartir" onclick="compartir()">
           <i class="fa fa-share-alt" aria-hidden="true"></i>
         </button>
-        <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
+        <button class="favoritos" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
         </button>
       </div>
   </div>
@@ -97,3 +124,5 @@ var inf = `
 const info = document.getElementById('info');
 
 info.innerHTML = inf;
+
+

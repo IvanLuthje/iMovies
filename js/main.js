@@ -274,7 +274,6 @@ $(document).ready(function () {
                     <div class="favorite-container">
                         <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <img src=${imagen}>
-                        
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
                         <h5>${data.Plot}</h5>
