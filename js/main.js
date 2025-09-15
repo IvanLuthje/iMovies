@@ -247,31 +247,6 @@ $(document).ready(function () {
 
 
 
-    document.addToFavorites = function (imdbID, Title, Poster, Type, Year, Plot) {
-        $('#alert-favoritos').empty();
-        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
-        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-        if (!favorites.some(data => data.Title === Title)) {
-            favorites.push({imdbID, Title, Poster, Type, Year, Plot});
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            $('.favoritos').html(alert_check);
-            loadFavorites();
-            
-        }
-
-        else {
-            $('.favoritos').html(alert_add);
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            favorites = favorites.filter(data => data.imdbID !== imdbID);
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            loadFavorites();  
-        }
-
-  
-    };
-
 
      document.addToHistorial = function (imdbID, Title, Poster, Type, Year) {
         $('#alert-favoritos').empty();

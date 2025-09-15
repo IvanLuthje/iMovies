@@ -2,32 +2,62 @@ function compartir() {
     window.location.href = "compartir_resultados.html"
 }
 
+function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
+        $('#alert-favoritos').empty();
+        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
+        if (!favorites.some(data => data.Title === Title)) {
+            favorites.push({imdbID, Title, Poster, Type, Year, Plot});
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            $('.favoritos').html(alert_check);
+            loadFavorites();
+            
+        }
+
+        else {
+            $('.favoritos').html(alert_add);
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites = favorites.filter(data => data.imdbID !== imdbID);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            loadFavorites();  
+        }
+
+  
+    };
 
 
 const data = JSON.parse(sessionStorage.getItem('data'));
 
 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
 var inf = `
-<div class="inf">
-    <div class="title">
-      <button class="cancel2" onclick="history.back();">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </button>
-    <img src="${imagen}" />
-    <div class="descripcion_buttons">
-      <button class="compartir" onclick="compartir()">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </button>
-      <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="desc">
+ <button class="cancel2" onclick="history.back();">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  </button>
+
+ <div class="title">
+   
     <h2>${data.Title}</h2>
     <h3>${data.Year}</h3>
     <div class="plot">${data.Plot}</div>
+</div>
+
+<div class="inf">
+
+  <div class="col_inf">
+      <img src="${imagen}" />
+      <div class="descripcion_buttons">
+        <button class="compartir" onclick="compartir()">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </button>
+        <button class="favoritos" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
+        </button>
+      </div>
+  </div>
+   
+  <div class="desc">
+
     <div class="movie-details">
       <div class="detail-item">
         <span class="detail-label">Director</span>
