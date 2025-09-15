@@ -126,10 +126,13 @@ nav ul li a:hover {
 }
 
 #favorites-counter {
-  background: #ffffff;
-  border-radius: 7px;
-  padding: 3px 8px;
-  color: #000000;
+    background: #f5c518;
+    color: #000000;
+    letter-spacing: 1.5px;
+    margin-left: 5px;
+    padding: 0px 6px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 
@@ -888,15 +891,7 @@ h5 i {
     display: block;
   }
 
- 
 
-  #favorites-counter {
-    background: #ffffff;
-    border-radius: 50%;
-    padding: 3px 8px;
-    font-size: 14px;
-    color: #000000;
-  }
 
   /* logo */
 

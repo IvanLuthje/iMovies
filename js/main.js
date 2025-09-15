@@ -261,6 +261,11 @@ $(document).ready(function () {
 
     };
 
+    function FavoritesCounter() {
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        $("#favorites-counter").text(favorites.length);
+    }
+
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
@@ -290,6 +295,8 @@ $(document).ready(function () {
         else {
             $('#favorites-list').html("No se encuentran favoritos");
         }
+
+        FavoritesCounter()
     }
 
     function loadHistorial() {
