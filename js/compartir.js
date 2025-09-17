@@ -25,7 +25,7 @@ function reset() {
 
 function enviar() {
     const form = document.getElementById('formulario_compartir');
-    var emailr = form.email_receptor.value;
+    var emailr = email_receptor.value;
     var alert_correo = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico`;
     var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
     var alert_valido = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico válido`;
@@ -51,14 +51,14 @@ function enviar() {
 
 }
 
+
 function enviarPorWhatsapp(){ 
-    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
+    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando a WhatsApp`;
 
     $(".alert").html(alert_redirect)
         window.open("https://wa.me/?text=" + title + comment);
         return true;
 }
-
 
 
 
