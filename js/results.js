@@ -17,8 +17,8 @@ function FavoritesCounter() {
 
 function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
         $('#alert-favoritos').empty();
-        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
-        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+        var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-heart-o" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         if (!favorites.some(data => data.Title === Title)) {
@@ -41,8 +41,8 @@ function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
     };
 
 function buttonFavorites() {
-        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
-        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+        var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa fa-heart-o" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || []
         $('.favoritos').each(function () {
         const imdbID = $(this).data("id");
