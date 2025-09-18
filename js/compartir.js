@@ -1,6 +1,9 @@
+
 const data = JSON.parse(sessionStorage.getItem('data'));
 var title = `${data.Title} (${data.Type})`;
-var comment = `Año: ${data.Year}, Director: ${data.Director}, Actores: ${data.Actors}.
+var comment = `${data.Year} 
+Director: ${data.Director} 
+Actores: ${data.Actors} 
 ${data.Plot}`;
 document.getElementById('subject').value = title;
 document.getElementById('comentario').value = comment;
@@ -21,7 +24,7 @@ function reset() {
 
 
 function enviar() {
-    const form = document.getElementById('email-info');
+    const form = document.getElementById('formulario_compartir');
     var emailr = email_receptor.value;
     var alert_correo = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico`;
     var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
@@ -49,3 +52,10 @@ function enviar() {
 }
 
 
+function enviarPorWhatsapp(){ 
+    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando a WhatsApp`;
+
+    $(".alert").html(alert_redirect)
+        window.open("https://wa.me/?text=" + title + comment);
+        return true;
+}

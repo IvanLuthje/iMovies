@@ -58,14 +58,7 @@ body {
   background-color: #ffffff;
 }
 
-.title .plot  {
-  margin-bottom: 1%;
-  padding: 0 20px;
-  background: rgb(96 68 68 / 10%);
-  border-radius: 10px;
-  padding: 15px 20px;
-  backdrop-filter: blur(5px);
-}
+
 
 .col_inf img {
   margin-top: 5%;
@@ -193,11 +186,13 @@ h1 {
   margin-bottom: 20px;
 }
 
+#favorites-list,
 #movies-info,
 #year-movies-info,
 #historial-list {
-  display: flex;
-  flex-wrap: wrap;
+  display:grid;
+  grid-template-columns: repeat(5, minmax(200px, 2fr));
+
   /* align-content: stretch; */
   /* justify-content: space-around; */
 }
@@ -218,10 +213,6 @@ h1 {
   float: right;
 }
 
-#favorites-list {
-  color: #000000;
-  display: block;
-}
 
 #info {
   width: 100%;
@@ -241,31 +232,6 @@ h1 {
   background-color: #ffffff;
 }
 
-/* Modal */
-
-#modal {
-  display: none;
-  position: fixed;
-  z-index: 5;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  font-family: "Lato", system-ui;
-  background-color: #00000055;
-}
-
-#modal-info {
-  background-color: white;
-  margin: 50px auto;
-  padding: 20px;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
 
 .info img {
   width: 30%;
@@ -286,6 +252,7 @@ h1 {
   border: none;
   font-family: "lato";
   width: 75%;
+  text-indent:10px;
 }
 
 /* Botones */
@@ -386,7 +353,7 @@ h1 {
   border-radius: 50%;
   border: none;
   background-color: #bbbbbb;
-  margin-bottom: 2%;
+  /* margin-bottom: 2%; */
 }
 
 .cancel2:hover {
@@ -459,6 +426,7 @@ h1 {
   font-family: "lato";
   margin-bottom: 0.1%;
   width: 75%;
+  text-indent:10px;
 }
 
 .icono_redes {
@@ -479,8 +447,7 @@ h1 {
 
 /* Formulario */
 
-#email_receptor,
-#email_emisor {
+#email_receptor {
   margin-top: 0;
   height: 26px;
   border-radius: 30px;
@@ -488,26 +455,29 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
+  text-indent:5px;
 }
 
 #subject {
-  margin-top: 0;
+  margin-top: 0.5%;
   height: 26px;
   border-radius: 30px;
   border-style: solid;
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
+  text-indent:5px;
 }
 
 #comentario {
-  margin-top: 0;
+  margin-top: 0.5%;
   height: 100px;
   border-radius: 10px;
   border-style: solid;
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
+  text-indent:5px;
 }
 
 #films-info .movie-card {
@@ -528,7 +498,7 @@ h1 {
   margin-top: 20px;
   margin: 5px;
   padding: 40px;
-  width: 30%;
+
   box-shadow: 0 4px 8px #bbbbbb;
   background-color: #ffffff;
 }
@@ -584,12 +554,15 @@ h5 i {
 
 /* Estilos para la seccion del boton */
 .descripcion_buttons {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 10px 15px;
-  /* background-color: #f8f9fa; */
+  border-top: 1px solid #e9ecef;
+}
+
+.descripcion_buttons_compartir {
   border-top: 1px solid #e9ecef;
 }
 
@@ -721,19 +694,6 @@ h5 i {
   width: 100%;
 }
 
-.alert {
-  min-width: 250px;
-  margin-left: -125px;
-  color: #000000;
-  text-align: center;
-  border-radius: 2px;
-  position: fixed;
-  z-index: 1;
-  left: 45%;
-  bottom: 30px;
-  font-size: 17px;
-}
-
 /* Media queries */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   aside {
@@ -742,6 +702,16 @@ h5 i {
   }
 
   /* Botones */
+  #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+  display:grid;
+  grid-template-columns: repeat(3, minmax(200px, 2fr));
+
+  /* align-content: stretch; */
+  /* justify-content: space-around; */
+  }
 
   .descripcion {
     width: 40px;
@@ -833,7 +803,7 @@ h5 i {
 
   .movie-card {
     padding: 20px;
-    width: 30%;
+
   }
 
   .movie-card img {
@@ -850,6 +820,16 @@ h5 i {
 }
 
 @media screen and (max-width: 768px) {
+    #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+    display:grid;
+    grid-template-columns: repeat(2, minmax(200px, 2fr));
+  
+    /* align-content: stretch; */
+    /* justify-content: space-around; */
+  }
   .favorite-container img {
     width: 25%;
     height: 200px;
@@ -927,7 +907,7 @@ h5 i {
     margin-top: 20px;
     margin: 10px;
     padding: 30px;
-    width: 45%;
+
     box-shadow: 0 4px 8px #bbbbbb;
     background-color: #ffffff;
   }
@@ -954,6 +934,15 @@ h5 i {
 }
 
 @media screen and (max-width: 640px) {
+
+    #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+  display:grid;
+  grid-template-columns: repeat(1, minmax(200px, 2fr));
+
+  
   .favorite-container img {
     width: 30%;
     height: 200px;

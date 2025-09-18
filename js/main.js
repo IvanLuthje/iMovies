@@ -81,13 +81,11 @@ $(document).ready(function () {
 
             let url_movie = `http://www.omdbapi.com/?s=${title}&type=movie&apikey=${apiKey}`;
             let url_series = `http://www.omdbapi.com/?s=${title}&type=series&apikey=${apiKey}`;
-            let url_episodes = `https://www.omdbapi.com/?s=${encodeURIComponent(title)}&type=episode&apikey=${apiKey}`;;
 
             //Definición de alerts
 
             var alert_movie = `<i class='fas fa-exclamation-triangle'></i> La pelicula ${title} no está disponible`;
             var alert_series = `<i class='fas fa-exclamation-triangle'></i> La serie ${title} no está disponible`;
-            var alert_episodes = `<i class='fas fa-exclamation-triangle'></i> El episodio ${title} no está disponible`;
             var alert_empty = `<i class='fas fa-exclamation-triangle'></i>  Debe ingresar un título para continuar`;
             var alert_results = `<i class="fa-solid fa-spinner"></i> Cargando los resultados`;
 
@@ -144,25 +142,6 @@ $(document).ready(function () {
 
             }
 
-            else if (filtro.value == 'episodes') {
-                const response = await fetch(url_episodes);
-                if (!response.ok) {
-                    throw new Error('Error de conexión');
-                }
-                const data = await response.json();
-
-                if (data.Response === "True") {
-                    $('#movies-info').empty();
-
-                    // Mostrar cada episodio encontrado
-                    for (const item of data.Search) {
-                        await mostrarResultados(item);
-                    }
-                }
-                else {
-                    $('#movies-info').html(alert_episodes);
-                }
-            }
         }
 
         catch (error) {
@@ -276,16 +255,18 @@ $(document).ready(function () {
             favorites.forEach(function (data) {
                 const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
                 var favoriteItem = `
-                    <div class="favorite-container">
+                     <div class="movie-card">
+                        <div class="boton_eliminar">
                         <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
                         <img src=${imagen}>
+                        <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
-                        <h5>${data.Plot}</h5>
+                        </div>
                         <div class="descripcion_buttons">
                             <button class="descripcion_button" data-id="${data.imdbID}"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                         </div>
-
                     </div>
                 `;
                 $('#favorites-list').append(favoriteItem);
@@ -358,8 +339,6 @@ $(document).ready(function () {
             $('#historial-list').html("El historial se encuentra vacío");;
         }
     }
-
-
 
 
 

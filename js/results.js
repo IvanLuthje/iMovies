@@ -8,17 +8,16 @@ function compartir() {
 }
 
 function FavoritesCounter() {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    $("#favorites-counter").text(favorites.length);
+      let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      $("#favorites-counter").text(favorites.length);
 }
-
 
 
 
 function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
         $('#alert-favoritos').empty();
-        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
-        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+         var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         if (!favorites.some(data => data.Title === Title)) {
@@ -40,9 +39,11 @@ function addToFavorites (imdbID, Title, Poster, Type, Year, Plot) {
        FavoritesCounter(); 
     };
 
+
+
 function buttonFavorites() {
-        var alert_check = `<i class='fa fa-check' aria-hidden='true'></i>`;
-        var alert_add= `<i class="fa fa-plus" aria-hidden="true"></i>`;
+         var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
+        var alert_add= `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem('favorites')) || []
         $('.favoritos').each(function () {
         const imdbID = $(this).data("id");
@@ -90,6 +91,10 @@ var inf = `
         <span class="detail-label">Director</span>
         <span class="detail-value">${data.Director}</span>
       </div>
+       <div class="detail-item">
+        <span class="detail-label">Escrito por</span>
+        <span class="detail-value">${data.Writer}</span>
+      </div>
       <div class="detail-item">
         <span class="detail-label">Género</span>
         <span class="detail-value">${data.Genre}</span>
@@ -112,10 +117,7 @@ var inf = `
         <span class="detail-label">Idioma</span>
         <span class="detail-value">${data.Language}</span>
       </div>
-       <div class="detail-item">
-        <span class="detail-label">Duración</span>
-        <span class="detail-value">${data.Runtime}</span>
-      </div>
+      
     </div>
   </div>
 </div>
