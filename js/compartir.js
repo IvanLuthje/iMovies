@@ -20,14 +20,6 @@ function cancelar() {
 }
 
 
-function reset() {
-    document.getElementById('email_receptor').value = '';
-    document.getElementById('subject').value = '';
-    document.getElementById('comentario').value = '';
-
-}
-
-
 
 function enviar() {
     var emailr = email_receptor.value;
@@ -64,7 +56,7 @@ function enviarPorWhatsapp(){
     var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando a WhatsApp`;
     alerts();
     $("#alert").html(alert_redirect)
-        window.open("https://wa.me/?text=" + title + comment);
+        window.open("https://wa.me/?text=" + $("#subject").val() + $("#comentario").val());
         return true;
     
 
