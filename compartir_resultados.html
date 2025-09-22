@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src='js/main.js'></script>
-    <script src='js/compartir.js'></script>
-   
 </head>
 
 <body>
@@ -30,8 +28,8 @@
             <li><a href="historial.html">Historial</a></li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="compartir.html">Compartir</a></li>
-            <li><a href="favoritos.html">Favoritos</a> <span id="favorites-counter">0</span> </li>  
-       
+            <li><a href="favoritos.html">Favoritos</a>  <span id="favorites-counter">0</span> </li>  
+           
             <ul class="menu">
             </ul>
         </ul>
@@ -44,24 +42,50 @@
     </nav>
 
     
+    <!-- <main>
+        <button class="cancel2" onclick="history.back();">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        
+        <h2>COMPARTIR</h2>
+        <form id="formulario_compartir">
+                <input id="email_receptor" placeholder="E-mail" type="text"><br>
+                <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>              
+                <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
+            </form>
+            <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
+            <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+            <div class="alert"></div>
+
+        </form>
+
+
+    </main> -->
+
     <main>
+        <button class="cancel2" onclick="history.back();">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
         <h2>COMPARTIR</h2>
         <div id="email-info">
-       
-            <input id="email_receptor" placeholder="E-mail" type="text">
-            <textarea id="subject" placeholder="Asunto" type="text"></textarea>           
+            <input id="email_receptor" placeholder="E-mail" type="text"><br>
+            <textarea id="subject" placeholder="Asunto" type="text"></textarea><br>         
             <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
             <div class="descripcion_buttons_compartir">
                 <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
                 <button class="enviar" onClick="enviarPorWhatsapp()"><i class='fa-brands fa-whatsapp' aria-hidden='true'></i></button>
                 <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-                <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-            <div id="alert"></div>
+               
             </div>
-            
+             <div id="alert"></div>
 
         </div>
     </main>
+   
+   
+
+   
+
 
  <footer>
     <p>&copy; 2025 iMovies</p>
@@ -79,6 +103,9 @@
         </a>
     </div>
 </footer>
+
+<script src='js/compartir.js'></script>
+
 
 </body>
 

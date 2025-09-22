@@ -2,98 +2,116 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Buscador OMDb con Filtros</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel Películas</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; }
-    .search-box { margin-bottom: 20px; }
-    label { display: inline-block; width: 80px; margin-bottom: 10px; }
-    input, select { padding: 6px; margin-bottom: 10px; }
-    button { padding: 6px 12px; }
-    .movie { background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .movie img { width: 120px; float: left; margin-right: 15px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .carousel {
+      position: relative;
+      width: 80%;
+      max-width: 1000px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
   </style>
 </head>
 <body>
-
-  <h1>Buscador de Películas OMDb</h1>
-
-  <div class="search-box">
-    <label for="title">Título:</label>
-    <input type="text" id="title" placeholder="Ej: Inception"><br>
-
-    <label for="year">Año:</label>
-    <input type="text" id="year" placeholder="Ej: 2010"><br>
-
-    <label for="type">Tipo:</label>
-    <select id="type">
-      <option value="">Todos</option>
-      <option value="movie">Película</option>
-      <option value="series">Serie</option>
-      <option value="episode">Episodio</option>
-    </select><br>
-
-    <button id="searchBtn">Buscar</button>
+  <div class="carousel">
+    <div class="carousel-track" id="carousel-track"></div>
+    <button class="prev" id="prev">&#10094;</button>
+    <button class="next" id="next">&#10095;</button>
   </div>
 
-  <div id="results"></div>
-
   <script>
-    const apiKey = "4526760c"; // Reemplaza esto con tu clave de API de OMDb
+    const API_KEY = "4526760c"; // 🔑 Consigue la API key gratis en http://www.omdbapi.com/
+    const YEAR = new Date().getFullYear(); // películas del año actual
+    const track = document.getElementById("carousel-track");
 
-    $('#searchBtn').click(function () {
-      const title = $('#title').val().trim();
-      const year = $('#year').val().trim();
-      const type = $('#type').val();
-      const plot = $('#plot').val();
+    let currentIndex = 0;
 
-      if (title === "") {
-        alert("Por favor ingresa un título.");
-        return;
+    // Buscar películas populares del año actual
+    async function getMovies() {
+      const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=movie&y=${YEAR}&type=movie`);
+      const data = await res.json();
+      if (data.Search) {
+        data.Search.forEach(movie => {
+          const div = document.createElement("div");
+          div.classList.add("carousel-item");
+          div.innerHTML = `
+            <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/800x400?text=No+Image"}" 
+                 alt="${movie.Title}">
+          `;
+          track.appendChild(div);
+        });
+      } else {
+        track.innerHTML = `<p>No se encontraron películas para ${YEAR}</p>`;
       }
+    }
 
-      let url = `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(title)}`;
-
-      if (year !== "") {
-        url += `&y=${year}`;
+    // Navegación del carousel
+    document.getElementById("next").addEventListener("click", () => {
+      const items = document.querySelectorAll(".carousel-item");
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
       }
-
-      if (type !== "") {
-        url += `&type=${type}`;
-      }
-
-      $.ajax({
-        url: url,
-        method: 'GET',
-        success: function (data) {
-          $('#results').empty();
-
-          if (data.Response === "True") {
-            data.Search.forEach(function (item) {
-              const poster = item.Poster !== "N/A" ? item.Poster : "https://via.placeholder.com/120x180";
-              $('#results').append(`
-                <div class="movie">
-                  <img src="${poster}" alt="${item.Title}">
-                  <div>
-                    <h2>${item.Title} (${item.Year})</h2>
-                    <p><strong>Tipo:</strong> ${item.Actors}</p>
-                    <p><strong>Tipo:</strong> ${item.Type}</p>
-                    <p><strong>IMDb ID:</strong> ${item.imdbID}</p>
-                  </div>
-                  <div style="clear: both;"></div>
-                </div>
-              `);
-            });
-          } else {
-            $('#results').html(`<p>No se encontraron resultados para "${title}".</p>`);
-          }
-        },
-        error: function () {
-          $('#results').html('<p>Ocurrió un error al consultar la API.</p>');
-        }
-      });
     });
-  </script>
 
+    document.getElementById("prev").addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    });
+
+    getMovies();
+  </script>
 </body>
 </html>

@@ -1,828 +1,1048 @@
-/* Reset de márgenes y padding */
-
+/* Reset de margenes y padding */
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* Layout */
 
 body {
-	font-family: "lato";
-	background-color: #f4f4f9;
-	color: #000000;
+  font-family: "lato";
+  background-color: #f4f4f9;
+  color: #000000;
+}
+
+.banner {
+  background:
+    linear-gradient(to right, #000000cc, #1c1c1cdd),
+    center/cover no-repeat;
+  color: white;
+  padding: 80px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.banner h1 {
+  font-size: 4em;
+  margin: 0 0 20px;
+  text-shadow: 2px 2px 8px #000;
+}
+
+.banner p {
+  font-size: 1.4em;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 6px #000;
+}
+
+.inf {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px #bbbbbb;
+  background-color: #ffffff;
+  flex-direction: row;
+}
+
+#formulario_compartir {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px #bbbbbb;
+  background-color: #ffffff;
+}
+
+#alert {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  bottom: 30px;
+  font-size: 20px;
+}
+
+#alert.show {
+  visibility: visible;
+}
+
+
+
+
+.col_inf img {
+  margin-top: 5%;
+  width: 300px;
+  height: 450px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.desc {
+  width: 100%;
+  margin-left: 1.5%;
 }
 
 @font-face {
-	font-family: pokemon-font;
-	src: url(../fonts/pokemonsolid.ttf);
-}
-
-@font-face {
-	font-family: lato;
-	src: url(../fonts/Lato-Light.ttf);
+  font-family: lato;
+  src: url(../fonts/Lato-Light.ttf);
 }
 
 /* Tags semanticos */
 
 header {
-	background-color: #080909;
-	padding: 10px 20px;
+  background-color: #080909;
+  padding: 10px 20px;
 }
+
 
 nav {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	background-color: #dd3e41;
-	width: 100%;
-	text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #dd3e41;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 0 1em;
 }
 
-
 nav ul {
-	list-style: none;
-	display: flex;
-	gap: 20px;
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
 nav ul li {
-	padding: 5px 10px;
+  padding: 5px 10px;
 }
 
 nav ul li a {
-	text-decoration: none;
-	color: #FFFFFF;
-	font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 nav ul li a:hover {
-	color: #000000;
-	opacity: 70%;
+  color: #000000;
+  opacity: 70%;
 }
+
+#favorites-counter {
+    background: #f5c518;
+    color: #000000;
+    letter-spacing: 1.5px;
+    margin-left: 5px;
+    padding: 0px 6px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 
 main {
-	padding: 20px;
-	min-height: 768px;
-	/* margin-left: 5%; */
-}
-
-.main_comp {
-	background-color: #1f7042;
-	min-height: 1080px;
-	padding:20px;
+  padding: 20px;
+  min-height: 768px;
+  /* margin-left: 5%; */
 }
 
 h2 {
-	color: #dd3e41;
-	font-size: 2rem;
-	margin-bottom: 10px;
-	font-family: 'Sansita';
+  color: #dd3e41;
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-family: "Sansita";
 }
 
-hr{
-    width: 20%;
-    margin-left:40%;
+h4 {
+  color: #dd3e41;
+  font-size: 20px;
+  font-family: "Sansita";
 }
 
+hr {
+  width: 20%;
+  margin-left: 40%;
+}
 
-
-/* Footer */
 footer {
-	background-color: #080909;
-	color: #FFFFFF;
-	text-align: center;
-	padding: 10px 0;
-	font-family: lato;
+  background-color: #080909;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  font-family: lato;
 }
 
-#inicio img {
-	width: 90%;
-	height: 500px;
-}
+/* Estilo para el menu responsivo en media queries*/
 
-/* aside */
-
-aside {
-	width: 15%;
-	float: right;
-	color: #00435f;
-}
-
-#favorites-list-resp {
-	display: none;
-}
-
-
-/* Estilo para el menú responsivo en pantallas pequeñas */
 .responsive {
-	display: none;
-	font-size: 30px;
-	cursor: pointer;
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
 }
-
 
 /* Logo */
 
 .imagen img {
-	width: 5%;
+  width: 5%;
 }
 
-
 .container {
-	text-align: center;
-	width: 80%;
-	margin: auto;
+  text-align: center;
+  width: 80%;
+  margin: auto;
 }
 
 h1 {
-	font-size: 2.5em;
-	margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 20px;
 }
 
-
-
-
-/* Sección de Pokémon */
+#favorites-list,
 #movies-info,
-#cards-info,
+#year-movies-info,
 #historial-list {
-	display: flex;
-	flex-wrap: wrap;
+  display:grid;
+  grid-template-columns: repeat(5, minmax(200px, 2fr));
+
+  /* align-content: stretch; */
+  /* justify-content: space-around; */
 }
 
-.pokemon {
-	text-align: center;
+#email-info {
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  min-height: 768px;
 }
 
-.pokemon img {
-	width: 100px;
-	height: 100px;
+#inicio img {
+  width: 90%;
+  height: 500px;
 }
 
-.pokemon h3 {
-	margin-top: 10px;
-	font-size: 1.2rem;
+#favoritos_button {
+  color: #ffffff;
+  float: right;
 }
 
+
+#info {
+  width: 100%;
+  /* margin: -5%; */
+  border-radius: 50px;
+  border: none;
+}
 
 .imagen2 img {
-	border-radius: 10px;
-	text-align: center;
-	margin-top: 20px;
-	margin: 10px;
-	padding: 40px;
-	width: 40%;
-	box-shadow: 0 4px 8px #BBBBBB;
-	background-color: #FFFFFF;
-
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 10px;
+  padding: 40px;
+  width: 40%;
+  box-shadow: 0 4px 8px #bbbbbb;
+  background-color: #ffffff;
 }
 
-
-/* Modal */
-
-#modal {
-	display: none;
-	position: fixed;
-	z-index: 5;
-	padding-top: 100px;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	font-family: "Lato", system-ui;
-	background-color: #00000055;
-}
-
-.modal-pokemon {
-	background-color: white;
-	margin: 50px auto;
-	padding: 20px;
-	width: 80%;
-	max-width: 800px;
-	border-radius: 10px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	position: relative;
-}
 
 .info img {
-	width: 30%;
+  width: 30%;
 }
 
 .cerrar {
-	color: #aaaaaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 /* Id nombre */
 
-
 .id_nombre {
-	height: 50px;
-	border-radius: 30px;
-	border: none;
-	font-family: 'lato';
-	width: 75%;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  font-family: "lato";
+  width: 75%;
+  text-indent:10px;
 }
-
-
 
 /* Botones */
 
 .descripcion {
-	width: 50px;
-	height: 50px;
-	/* margin:-5%; */
-	border-radius: 50%;
-	background-color: #4aaaaa;
-	border: none;
-	/*! color: #ffffff; */
+  width: 50px;
+  height: 50px;
+  /* margin:-5%; */
+  border-radius: 50%;
+  background-color: #4aaaaa;
+  border: none;
+  /*! color: #ffffff; */
 }
 
 .descripcion:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
-.descripcion_card {
-    width: 100%;
-    height: 50px;
-    /* margin: -5%; */
-    border-radius: 50px;
-    border: none;
+.descripcion_button {
+  width: 100%;
+  height: 50px;
+  /* margin: -5%; */
+  border-radius: 50px;
+  border: none;
 }
 
-.descripcion_card:hover {
-	opacity: 70%;
+.descripcion_button:hover {
+  opacity: 70%;
+}
+
+.descripcion_fav {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+}
+
+.descripcion_fav:hover {
+  opacity: 70%;
 }
 
 .compartir {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #1f7042;
-	border: none;
-	color: #FFFFFF;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1f7042;
+  border: none;
+  color: #ffffff;
 }
 
 .compartir:hover {
-	opacity: 70%;
+  opacity: 70%;
+}
+
+.compartir_historial {
+  width: 100%;
+  height: 50px;
+  background-color: #1f7042;
+  /* margin: -5%; */
+  border-radius: 50px;
+  border: none;
+  color: #ffffff;
+}
+
+.compartir_historial:hover {
+  opacity: 70%;
 }
 
 .enviar {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #24ab2c;
-	border: none;
-	color: #1f7042;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #24ab2c;
+  border: none;
+  color: #1f7042;
 }
 
 .enviar:hover {
-	opacity: 70%;
-}
-
-.vermas {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #24ab2c;
-	border: none;
-	color: #ffffff|;
-	margin-left: 44%;
-}
-
-.vermas:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
 .cancel {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #dd3e41;
-	border: none;
-	color: #1f7042;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dd3e41;
+  border: none;
+  color: #1f7042;
 }
 
 .cancel:hover {
-	opacity: 70%;
+  opacity: 70%;
+}
+
+.cancel2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #bbbbbb;
+  /* margin-bottom: 2%; */
+}
+
+.cancel2:hover {
+  opacity: 70%;
 }
 
 .reset {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #ffa500;
-	border: none;
-	color: #1f7042;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffa500;
+  border: none;
+  color: #1f7042;
 }
 
 .reset:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
-
 
 .favoritos {
-	width: 50px;
-	height: 50px;
-	/* margin:-5%; */
-	border-radius: 50%;
-	background-color: #faaaaa;
-	border: none;
-	/*! color: #ffffff; */
-}
-
-#alert-favoritos{
-	/* margin-left:30%; */
-}
-
-#alert-favoritos-pokedex{
-	margin-left:30%;
-	display:block;
+  width: 50px;
+  height: 50px;
+  /* margin:-5%; */
+  border-radius: 50%;
+  background-color: #1d9143;
+  border: none;
+  /*! color: #ffffff; */
 }
 
 .favoritos:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
 .boton_busqueda {
-	width: 50px;
-	height: 50px;
-	/* margin:-5%; */
-	border-radius: 50%;
-	background-color: #ffffff;
-	border: none;
-	/*! color: #ffffff; */
+  width: 50px;
+  height: 50px;
+  /* margin:-5%; */
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  /*! color: #ffffff; */
 }
 
 .boton_busqueda:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
 #eliminar {
-	width: 20px;
-	height: 20px;
-	border-radius: 30px;
-	background-color: #aaa319;
-	border: none;
-	color: #ffffff;
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background-color: #ffffff;
 }
 
-.movie-card #eliminar {
-	width: 50px;
-	height: 50px;
-	border-radius: 30px;
-	background-color: #ff0000;
-	border: none;
-	color: #ffffff;
+.movie-card #eliminar_historial {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background-color: #ffffff;
 }
 
-#eliminar:hover {
-	opacity: 70%;
-}
-
-#eliminar-todos {
-	width: 100px;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #ffa500;
-	border: none;
-	color: #ffffff;
-	/* margin:-0.7%; */
-}
-
-#eliminar-todos-resp {
-	width: 100px;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #ffa500;
-	border: none;
-	color: #ffffff;
-	/* margin:-0.7%; */
-}
-
-#eliminar-todos:hover {
-	opacity: 70%;
-}
-
-#filtro,
-#tipo {
-	height: 50px;
-	border-radius: 30px 30px 30px 30px;
-	border: none;
-	font-family: 'lato';
-	margin-bottom: 0.1%;
-	width: 75%;
-}
-
-#tipo {
-	height: 50px;
-	border-radius: 30px 30px 30px 30px;
-	border: none;
-	font-family: 'lato';
-	margin-bottom: 0.1%;
-	width: 92%;
+#filtro {
+  height: 50px;
+  border-radius: 30px 30px 30px 30px;
+  border: none;
+  font-family: "lato";
+  margin-bottom: 0.1%;
+  width: 75%;
+  text-indent:10px;
 }
 
 .icono_redes {
-	font-size: 20px;
-	color: #ffffff;
-	text-decoration: none;
-	transition: color 0.3s ease;
+  font-size: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
+.descripcion_data {
+  margin-top: 100;
+}
+
+.favorites_title {
+  margin-top: 10%;
+  color: #ffffff;
+}
 
 /* Formulario */
 
-
-#email_receptor, #email_emisor {
-	margin-top: 0;
-	height: 26px;
-	border-radius: 30px;
-	border-style: solid;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: 'lato';
+#email_receptor {
+  margin-top: 0;
+  height: 26px;
+  border-radius: 30px;
+  border-style: solid;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "lato";
+  text-indent:5px;
 }
 
-
 #subject {
-	margin-top: 0;
-	height: 26px;
-	border-radius: 30px;
-	border-style: solid;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: 'lato';
+  margin-top: 0.5%;
+  height: 26px;
+  border-radius: 30px;
+  border-style: solid;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "lato";
+  text-indent: 6px;
 }
 
 #comentario {
-	margin-top: 0;
-	height: 100px;
-	border-radius: 10px;
-	border-style: solid;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: 'lato';
+  margin-top: 0.5%;
+  height: 100px;
+  border-radius: 10px;
+  border-style: solid;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "lato";
+  text-indent: 6px;
 }
 
-
-/* pokemon cards */
-
 #films-info .movie-card {
-	border-radius: 10px;
-	text-align: center;
-	margin-top: 20px;
-	margin: 5px;
-	padding: 40px;
-	/* width: 30%; */
-	box-shadow: 0 4px 8px #BBBBBB;
-	margin-left:25%;
-	background-color: #FFFFFF;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 5px;
+  padding: 40px;
+  /* width: 30%; */
+  box-shadow: 0 4px 8px #bbbbbb;
+  margin-left: 25%;
+  background-color: #ffffff;
 }
 
 .movie-card {
-	border-radius: 10px;
-	text-align: center;
-	margin-top: 20px;
-	margin: 5px;
-	padding: 40px;
-	width: 30%;
-	box-shadow: 0 4px 8px #BBBBBB;
-
-	background-color: #FFFFFF;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px #bbbbbb;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-card img {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-/* .cards-container {
-	display: grid;
-	grid-template-columns: repeat(3, 30%);
-	gap: 20px;
-	padding: 20px;
-} */
+
+.desc_title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  flex: 1;
+}
+
+.desc_title img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.desc_title h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+  color: #333;
+}
+
+h5 {
+  font-size: 0.9em;
+  margin: 5px 0;
+  color: #666;
+}
+
+h5 i {
+  margin-right: 5px;
+  color: #f39c12;
+}
+
+/* Estilos para la seccion del boton */
+.descripcion_buttons {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.descripcion_buttons_compartir {
+  border-top: 1px solid #e9ecef;
+}
+
+.descripcion_button {
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  border: none;
+  background-color: #0866ff;
+  color: #ffffff;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.descripcion_button:hover {
+  background-color: #0056b3;
+}
+
+.descripcion_button i {
+  font-size: 0.9em;
+}
+
+.favorite-container {
+  border-radius: 10px;
+  margin-top: 20px;
+  margin: 5px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px #bbbbbb;
+  background-color: #ffffff;
+}
+
+.favorite-container img {
+  width: 10%;
+  height: 250px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.favorite-container .descripcion_button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  margin-top: 1%;
+}
+
+.favorite-container .descripcion_buttons {
+  justify-content: left;
+  padding: 0;
+}
+
+.favorite-container #eliminar {
+  float: right;
+}
 
 .card {
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px #BBBBBB;
-	overflow: hidden;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px #bbbbbb;
+  overflow: hidden;
 }
 
 .card img {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .card h3 {
-	font-size: 1.2em;
-	margin: 10px;
+  font-size: 1.2em;
+  margin: 10px;
 }
 
 .card p {
-	font-size: 1em;
-	margin: 10px;
+  font-size: 1em;
+  margin: 10px;
 }
 
 .card:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
 .movie-card:hover {
-	opacity: 70%;
+  opacity: 70%;
 }
 
+.plot {
+  margin-top: 1%;
+  line-height: 1.7;
+}
 
+.detail-item {
+  margin-top: 1%;
+  background: #f0f0f0;
+  padding: 12px 18px;
+  /* height: 150px; */
+  border-radius: 10px;
+  border-left: 3px solid;
+  border-color: #dd3e41;
+}
 
+.detail-label {
+  font-weight: bold;
+  color: #000000;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.detail-value {
+  color: #000000;
+  font-size: 1rem;
+}
+
+.movie-details {
+  /* display: grid; */
+  grid-template-columns: repeat(3, minmax(200px, 2fr));
+  gap: 5px;
+  /* margin-top: 5%; */
+  /* width: 70%; */
+}
 
 #map {
-	height: 768px;
-	width: 100%;
+  height: 768px;
+  width: 100%;
 }
 
-
-
-/* Estilo Responsivo */
+/* Media queries */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  aside {
+    width: 15%;
+    font-size: 12px;
+  }
 
-aside {
-	width: 15%;
-	font-size: 12px;
-}
+  /* Botones */
+  #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+  display:grid;
+  grid-template-columns: repeat(3, minmax(200px, 2fr));
 
-h2{
-	font-size:25px;
-}
+  /* align-content: stretch; */
+  /* justify-content: space-around; */
+  }
 
-/* Botones */
+  .descripcion {
+    width: 40px;
+    height: 40px;
 
-.descripcion {
-	width: 40px;
-	height: 40px;
+    /*! color: #ffffff; */
+  }
 
-	/*! color: #ffffff; */
-}
+  .favorite-container img {
+    width: 20%;
+    height: 200px;
+    /* height: 450px; */
+  }
 
-.compartir {
-	width: 40px;
-	height: 40px;
-}
+  .compartir {
+    width: 40px;
+    height: 40px;
+  }
 
-.compartir:hover {
-	opacity: 70%;
-}
+  .compartir:hover {
+    opacity: 70%;
+  }
 
-.enviar {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #24ab2c;
-	border: none;
-	color: #1f7042;
-}
+  .enviar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #24ab2c;
+    border: none;
+    color: #1f7042;
+  }
 
-.enviar:hover {
-	opacity: 70%;
-}
+  .enviar:hover {
+    opacity: 70%;
+  }
 
-.vermas {
-	width: 40px;
-	height: 40px;
-}
+  .enviar,
+  .cancel,
+  .cancel2,
+  .reset {
+    width: 40px;
+    height: 40px;
+  }
 
-.vermas:hover {
-	opacity: 70%;
-}
+  .cancel:hover {
+    opacity: 70%;
+  }
 
-.cancel {
-	width: 40px;
-	height: 40px;
-}
+  .reset:hover {
+    opacity: 70%;
+  }
 
-.cancel:hover {
-	opacity: 70%;
-}
+  .favoritos {
+    width: 40px;
+    height: 40px;
+  }
 
-.reset {
-	width: 40px;
-	height: 40px;
-}
+  .favoritos:hover {
+    opacity: 70%;
+  }
 
-.reset:hover {
-	opacity: 70%;
-}
+  .boton_busqueda {
+    width: 50px;
+    height: 50px;
+    /* margin:-5%; */
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    /*! color: #ffffff; */
+  }
 
-.vermas{
-	margin-left: 44.4%;
-}
+  .boton_busqueda:hover {
+    opacity: 70%;
+  }
 
-.favoritos {
-	width: 40px;
-	height: 40px;
+  #eliminar {
+    width: 15px;
+    height: 15px;
+  }
 
-}
+  .movie-card #eliminar {
+    width: 40px;
+    height: 40px;
+  }
 
-#alert-favoritos{
-	margin-left:30%;
-}
+  #eliminar:hover {
+    opacity: 70%;
+  }
 
-.favoritos:hover {
-	opacity: 70%;
-}
+  .movie-card {
+    padding: 20px;
 
-.boton_busqueda {
-	width: 50px;
-	height: 50px;
-	/* margin:-5%; */
-	border-radius: 50%;
-	background-color: #ffffff;
-	border: none;
-	/*! color: #ffffff; */
-}
+  }
 
-.boton_busqueda:hover {
-	opacity: 70%;
-}
+  .movie-card img {
+    /* height: 250px; */
+  }
 
-#eliminar {
-	width: 15px;
-	height: 15px;
-}
+  .detail-item {
+    /* height: 150px; */
+  }
 
-.movie-card #eliminar {
-	width: 40px;
-	height: 40px;
-}
-
-#eliminar:hover {
-	opacity: 70%;
-}
-
-.movie-card{
-	padding:20px;
-}
-	
+  .movie-details {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
 }
 
 @media screen and (max-width: 768px) {
+    #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+    display:grid;
+    grid-template-columns: repeat(2, minmax(200px, 2fr));
+  
+    /* align-content: stretch; */
+    /* justify-content: space-around; */
+  }
+  .favorite-container img {
+    width: 25%;
+    height: 200px;
+    /* height: 450px; */
+  }
 
-	aside {
-		display: none;
-	}
+  .inf {
+    display: block;
+  }
 
-	nav ul {
-		display: none;
-		width: 100%;
-		text-align: center;
-		padding-top: 20px;
-	}
-	
+  .desc {
+    width: 100%;
+    margin-left: 0%;
+  }
 
+  .col_inf {
+    width: 100%;
+  }
+  .movie-card img {
+    width: 100%;
+  }
 
-	nav ul li {
-		margin: 10px 0;
-	}
+  nav ul {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+  }
 
-	.responsive {
-		display: block;
-	}
+  nav ul li {
+    margin: 10px 0;
+  }
 
-	nav.active ul {
-		display: block;
-	}
+  .responsive {
+    display: block;
+  }
 
-	.pokemon-list {
-		flex-direction: column;
-		align-items: center;
-	}
-
-	#favorites-list-resp {
-		padding: 20px;
-	}
-
-	.vermas {
-		margin-left: 39%;
-    }
-
-
-
-	/* logo */
-
-	.imagen img {
-		width: 50%;
-		margin-left: 25%;
-	}
-
-	/* Botones */
-
-	.id_nombre {
-		width: 80%;
-	}
-
-	#inicio img {
-		width: 90%;
-		height: 300px;
-	}
-
-	#filtro {
-		width: 80%;
-	}
-
-	.cards-container {
-		grid-template-columns: repeat(2, 50%);
-	}
-
-	.movie-card {
-		border-radius: 10px;
-		text-align: center;
-		margin-top: 20px;
-		margin: 10px;
-		padding: 30px;
-		width: 40%;
-		box-shadow: 0 4px 8px #BBBBBB;
-		background-color: #FFFFFF;
-	}
-
-	#films-info .movie-card {
-		margin-left:0;
-		padding:10px;
-		box-shadow: 0 4px 8px #BBBBBB;
-		background-color: #FFFFFF;
-	}
-
-	#alert-favoritos-pokedex{
-		margin-left:0%;
-		display:block;
-	}
-
-	#favorites-list-resp{
-		display:block;
-	}
-
-	 #favorites-list{
-		 padding:10%;
-		 display:block;
-	 }
+  nav.active ul {
+    display: block;
+  }
 
 
 
+  /* logo */
+
+  .imagen img {
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  .col_inf img {
+    width: 100%;
+    height: 600px;
+    margin-top: 0%;
+  }
+
+  /* Botones */
+
+  .id_nombre {
+    width: 80%;
+  }
+
+  #inicio img {
+    width: 90%;
+    height: 300px;
+  }
+
+  #filtro {
+    width: 80%;
+  }
+
+  .movie-card {
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    margin: 10px;
+    padding: 30px;
+
+    box-shadow: 0 4px 8px #bbbbbb;
+    background-color: #ffffff;
+  }
+
+  #films-info .movie-card {
+    margin-left: 0;
+    padding: 10px;
+    box-shadow: 0 4px 8px #bbbbbb;
+    background-color: #ffffff;
+  }
+
+  #favorites-list {
+    display: block;
+  }
+
+  .movie-details {
+    grid-template-columns: repeat(2, minmax(170px, 1fr));
+    width: 100%;
+  }
+
+  .col_inf img {
+    margin-top: 0%;
+  }
 }
 
 @media screen and (max-width: 640px) {
 
-	.movie-card {
-		width: 90%;
-		box-shadow: 0 4px 8px #BBBBBB;
-		background-color: #FFFFFF;
-	}
+  #alert {
+     width:100%;
+     left:0;
+  }
 
+  #favorites-list,
+  #movies-info,
+  #year-movies-info,
+  #historial-list {
+  display:grid;
+  grid-template-columns: repeat(1, minmax(200px, 2fr));
 
-	#tipo {
-		width: 100%;
-	}
+  
+  .favorite-container img {
+    width: 30%;
+    height: 200px;
+    /* height: 450px; */
+  }
 
-	.cards-container {
-		grid-template-columns: repeat(1, 100%);
-	}
+  .movie-card {
+    width: 100%;
+    box-shadow: 0 4px 8px #bbbbbb;
+    background-color: #ffffff;
+  }
 
-	#films-info .movie-card {
-		margin-left:0;
-		width:80%;
-	}
-    .vermas{
-		margin-left:41.7%;
-	}
+  .imagen img {
+    margin-left: 25%;
+  }
 
-	#alert-favoritos-pokedex{
-		margin-left:10%;
+  .inf {
+    display: block;
+  }
 
-	}
+  .col_inf {
+    width: 100%;
+  }
 
+  .desc {
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  .movie-details {
+    grid-template-columns: repeat(1, minmax(170px, 1fr));
+    width: 100%;
+  }
+
+  .movie-card img {
+    width: 100%;
+  }
+
+  #info img {
+    width: 100%;
+    height: 450px;
+  }
+
+  #tipo {
+    width: 100%;
+  }
+
+  #films-info .movie-card {
+    margin-left: 0;
+    width: 80%;
+  }
+
+  .favorite-container img {
+    width: 100%;
+    height: 450px;
+  }
+
+  .movie-card img {
+    height: 500px;
+  }
+
+  .favorite-container .descripcion_buttons {
+    justify-content: center;
+  }
+
+  .favorite-container .descripcion_button {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+  }
+
+  .col_inf img {
+    margin-top: 0%;
+  }
 }
 
 @media screen and (max-width: 300px) {
-
-	.descripcion{
-		width: 25px;
-		height: 25px;
-	}
-
-	.compartir{
-		width: 25px;
-		height: 25px;
-	}
-
-	.favoritos{
-		width: 25px;
-		height: 25px;
-	}
-
+  .descripcion,
+  .compartir,
+  .favoritos {
+    width: 25px;
+    height: 25px;
+  }
 }

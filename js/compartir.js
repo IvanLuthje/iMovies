@@ -1,80 +1,67 @@
-function cancelar() {
-    var respuesta = confirm('Desea volver a la pagina principal?')
-    if (respuesta == true) {
-        location.href = "busqueda.html"
-    }
-    else {
-        return false;
-    }
+
+const data = JSON.parse(sessionStorage.getItem('data'));
+var title = `${data.Title} (${data.Type})`;
+var comment = `${data.Year} 
+Director: ${data.Director} 
+Actores: ${data.Actors} 
+${data.Plot}`;
+document.getElementById('subject').value = title;
+document.getElementById('comentario').value = comment;
+
+function alerts() {
+  var mostrar = document.getElementById("alert");
+  mostrar.className = "show";
+  setTimeout(function(){ mostrar.className = mostrar.className.replace("show", ""); }, 3000);
 }
 
-function reset() {
-    location.reload(true)
+
+function cancelar() {
+    window.location.href = "index.html"
 }
+
+
 
 function enviar() {
-    const form = document.getElementById('formulario_compartir');
-    // const emaile = form.email_emisor.value;
-    const emailr = form.email_receptor.value;
+    var emailr = email_receptor.value;
+    var alert_correo = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico`;
+    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando al gestor de correo`;
+    var alert_valido = `<i class='fas fa-exclamation-triangle'></i> Debe ingresar el correo electrónico válido`;
 
-    const comentario = form.info.value;
-
-    // if (emaile == "") {
-    //     $(".alert").html("Debe ingresar el correo electrónico");
-    //     return false;
-    // }
-
-    // if (emaile == "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/") {
-    //     $(".alert").html("Debe ingresar el correo electrónico válido");
-    //     return false;
-    // }
+    var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 
     if (emailr == "") {
-        $(".alert").html("Debe ingresar el correo electrónico");
+        $("#alert").html(alert_correo);
+        alerts();
         return false;
     }
 
-    if (emailr == "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$.") {
-        $(".alert").html("Debe ingresar el correo electrónico válido");
-        return true;
+    if (!emailRegex.test(emailr)){
+        $("#alert").html(alert_valido);
+        alerts();
+        return false;
     }
 
-    else {
-        $(".alert").html("Redireccionando al gestor de correo")
+  
+    $("#alert").html(alert_redirect)
+        alerts();
         window.location = 'mailto: ' + $("#email_receptor").val() + '?subject=' + $("#subject").val() + '&body=' + $("#comentario").val();
         return true;
-    }
-
+   
 
 }
 
-const nodemailer = require('nodemailer');
 
-// Configura el transporte
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com", // Cambia por el servidor SMTP que uses
-    port: 587, // Puerto SMTP (587 para STARTTLS, 465 para SSL/TLS)
-    secure: false, // True si usas SSL/TLS
-    auth: {
-        user: "luthjem1@gmail.com", // Tu correo electrónico
-        pass: "", // Tu contraseña
-    },
-});
+function enviarPorWhatsapp(){ 
+    var alert_redirect = `<i class="fa fa-external-link" aria-hidden="true"></i> Redireccionando a WhatsApp`;
+    alerts();
+    $("#alert").html(alert_redirect)
+        window.open("https://wa.me/?text=" + $("#subject").val() + $("#comentario").val());
+        return true;
+    
 
-// Configura el correo a enviar
-const mailOptions = {
-    from: '"Nombre Remitente" <tu_correo@example.com>', // Remitente
-    to: "destinatario1@example.com, destinatario2@example.com", // Destinatarios
-    subject: "Asunto del correo", // Asunto
-    text: "Hola, este es el contenido del correo en texto plano.", // Contenido en texto plano
-    html: "<b>Hola, este es el contenido del correo en HTML.</b>", // Contenido en HTML
-};
+}
 
-// Enviar el correo
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.error("Error al enviar el correo:", error);
-    }
-    console.log("Correo enviado:", info.response);
-});
+
+
+

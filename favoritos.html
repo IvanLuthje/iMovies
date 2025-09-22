@@ -7,13 +7,12 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src='js/main.js'></script>
-
 </head>
 <body>
     <header>
@@ -21,7 +20,7 @@
             <div class="imagen"> <a href="index.html"><img src='img/logo.png'></a></div>
         </div>
     </header>
-    <nav>
+     <nav>
         <ul class="menu">
             <!-- <li><a href="index.html">Inicio</a></li> -->
             <li><a href="index.html">Inicio</a></li>
@@ -29,13 +28,11 @@
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="compartir.html">Compartir</a></li>
             <li><a href="favoritos.html">Favoritos</a> <span id="favorites-counter">0</span></li>  
-            
+           
             <ul class="menu">
            
             </ul>
         </ul>
-
-        
 
         <div class="responsive" onclick="menuBar()">
             &#9776;
@@ -43,53 +40,12 @@
 
     </nav>
 
-    <div class="banner">
-        <h1>iMovies</h1>
-        <p>Explorá miles de películas y series en un solo lugar</p>
-    </div>  
 
-    
     <main>
-
-
-
-    <div id="search-container">
-        <input class="id_nombre" id="nombre" type="text" placeholder="Ingresar el nombre">
-        <button class="boton_busqueda" onclick="alerts()" id="busqueda" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
-    </div>
-
-    <select name="" id="filtro">
-        <!--option value="sel" id="opciones">---Seleccionar opción---</option-->
-        <option value="movie" id="opciones">Peliculas</option>
-        <option value="series" id="opciones">Series</option>
-
-
-    </select>
-
-    <div id="mtitle"></div>
-    <div id="movies-info"></div>
-    <div id="alert"></div>
-
-    
-<!--    
-    <div id="modal">
-        <div id="modal-info">
-            <span class="cerrar" onclick="cerrar()">&times;</span>
-            <div class="info"></div>
-            <div id="alert-favoritos"></div>    
-
-        </div>
-    </div> -->
-
-
-    <section id="peliculas">
-       
-        <div id="year-movies-info"></div>
-        <!-- <button class="prev" id="prev">&#10094;</button>
-        <button class="next" id="next">&#10095;</button> -->
-    </section>
- 
+        <h2>FAVORITOS</h2>
+        <div id="favorites-list"></div>
     </main>
+
 
     <footer>
         <p>&copy; 2025 iMovies</p>
@@ -107,7 +63,6 @@
             </a>
         </div>
     </footer>
-
 
 </body>
 </html>

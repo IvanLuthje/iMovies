@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Compartir</title>
+    <title>iMovies</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
@@ -11,11 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src='js/main.js'></script>
-    <script src='js/compartir.js'></script>
-   
+
 </head>
+
 
 <body>
     <header>
@@ -30,8 +29,8 @@
             <li><a href="historial.html">Historial</a></li>
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="compartir.html">Compartir</a></li>
-            <li><a href="favoritos.html">Favoritos</a> <span id="favorites-counter">0</span> </li>  
-       
+            <li><a href="favoritos.html">Favoritos</a> <span id="favorites-counter">0</span>  </li>  
+           
             <ul class="menu">
             </ul>
         </ul>
@@ -43,27 +42,16 @@
 
     </nav>
 
-    
-    <main>
-        <h2>COMPARTIR</h2>
-        <div id="email-info">
-       
-            <input id="email_receptor" placeholder="E-mail" type="text">
-            <textarea id="subject" placeholder="Asunto" type="text"></textarea>           
-            <textarea id="comentario" name="comentario" placeholder="Comentario"></textarea>
-            <div class="descripcion_buttons_compartir">
-                <button class="enviar" onClick="enviar()"><i class='fa fa-paper-plane' aria-hidden='true'></i></button>
-                <button class="enviar" onClick="enviarPorWhatsapp()"><i class='fa-brands fa-whatsapp' aria-hidden='true'></i></button>
-                <button class="cancel" onclick="cancelar()"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-                <button class="reset" onclick="reset()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-            <div id="alert"></div>
-            </div>
-            
 
-        </div>
+    <main>
+        <div id="movies-info"></div>
+        <div id="info"></div>
+        <div id="alert-favoritos"></div>
     </main>
 
- <footer>
+
+
+<footer>
     <p>&copy; 2025 iMovies</p>
     <hr class="solid"></hr>
 
@@ -80,6 +68,10 @@
     </div>
 </footer>
 
+<script src='js/results.js'></script>
+
+
 </body>
+
 
 </html>

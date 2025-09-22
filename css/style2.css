@@ -1,0 +1,674 @@
+/* ====== VARIABLES Y CONFIGURACIÓN BASE ====== */
+:root {
+    /* Paleta de colores */
+    --color-primary: #dd3e41;
+    --color-secondary: #1f7042;
+    --color-accent: #24ab2c;
+    --color-warning: #ffa500;
+    --color-danger: #ff0000;
+    --color-dark: #080909;
+    --color-light: #f4f4f9;
+    --color-white: #ffffff;
+    --color-gray: #bbbbbb;
+    --color-teal: #4aaaaa;
+    --color-link-hover: #000000;
+    --color-favorite: #faaaaa;
+    --color-delete: #aaa319;
+    
+    /* Sombras */
+    --shadow-card: 0 4px 8px var(--color-gray);
+    --shadow-modal: 0 5px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Bordes */
+    --border-radius-sm: 10px;
+    --border-radius-md: 30px;
+    --border-radius-lg: 50px;
+    --border-radius-circle: 50%;
+    
+    /* Espaciado */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+    
+    /* Transiciones */
+    --transition-hover: all 0.3s ease;
+  }
+  
+  /* ====== RESET Y ESTILOS BASE ====== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "lato", sans-serif;
+    background-color: var(--color-light);
+    color: #000000;
+    line-height: 1.5;
+  }
+  
+  /* ====== TIPOGRAFÍA ====== */
+  @font-face {
+    font-family: "lato";
+    src: url(../fonts/Lato-Light.ttf) format("truetype");
+    font-display: swap;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  h2 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+    font-family: "Sansita", sans-serif;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin: var(--spacing-sm) 0;
+  }
+  
+  p {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  hr {
+    width: 20%;
+    margin: 0 auto var(--spacing-md);
+  }
+  
+  /* ====== LAYOUT ====== */
+  .container {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  main {
+    padding: var(--spacing-md);
+    min-height: 768px;
+  }
+  
+  .main_comp {
+    background-color: var(--color-secondary);
+    min-height: 1080px;
+    padding: var(--spacing-md);
+  }
+  
+  aside {
+    width: 15%;
+    float: right;
+    color: #00435f;
+  }
+  
+  /* ====== HEADER Y NAVEGACIÓN ====== */
+  header {
+    background-color: var(--color-dark);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .imagen img {
+    width: 5%;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--color-primary);
+    width: 100%;
+    text-transform: uppercase;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+  }
+  
+  nav ul li {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: bold;
+    transition: var(--transition-hover);
+  }
+  
+  nav ul li a:hover {
+    color: var(--color-link-hover);
+    opacity: 0.7;
+  }
+  
+  .responsive {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* ====== IMÁGENES Y CONTENIDO ====== */
+  #inicio img {
+    width: 90%;
+    height: 500px;
+    object-fit: cover;
+  }
+  
+  .imagen2 img {
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    width: 40%;
+    box-shadow: var(--shadow-card);
+    background-color: var(--color-white);
+  }
+  
+  /* ====== CARDS Y LISTAS ====== */
+  #movies-info,
+  #cards-info,
+  #historial-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+  }
+  
+  .movie-card {
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    margin: var(--spacing-xs);
+    padding: var(--spacing-lg);
+    width: 30%;
+    box-shadow: var(--shadow-card);
+    background-color: var(--color-white);
+    transition: var(--transition-hover);
+  }
+  
+  .movie-card:hover {
+    opacity: 0.7;
+    transform: translateY(-3px);
+  }
+  
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  #films-info .movie-card {
+    margin-left: 25%;
+  }
+  
+  .card {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: var(--transition-hover);
+  }
+  
+  .card:hover {
+    opacity: 0.7;
+    transform: translateY(-3px);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .card h3 {
+    font-size: 1.2em;
+    margin: var(--spacing-sm);
+  }
+  
+  .card p {
+    font-size: 1em;
+    margin: var(--spacing-sm);
+  }
+  
+  /* ====== MODAL ====== */
+  #modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    font-family: "Lato", system-ui;
+    background-color: rgba(0, 0, 0, 0.333);
+    backdrop-filter: blur(2px);
+  }
+  
+  #modal-info {
+    background-color: var(--color-white);
+    margin: 50px auto;
+    padding: var(--spacing-md);
+    width: 80%;
+    max-width: 800px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-modal);
+    position: relative;
+  }
+  
+  .info img {
+    width: 30%;
+  }
+  
+  .cerrar {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-hover);
+  }
+  
+  .cerrar:hover {
+    color: var(--color-dark);
+  }
+  
+  /* ====== FORMULARIOS ====== */
+  .id_nombre {
+    height: 50px;
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-family: "lato";
+    width: 75%;
+    padding: 0 var(--spacing-md);
+  }
+  
+  #filtro,
+  #tipo {
+    height: 50px;
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-family: "lato";
+    margin-bottom: 0.1%;
+    width: 75%;
+    padding: 0 var(--spacing-md);
+  }
+  
+  #tipo {
+    width: 92%;
+  }
+  
+  #email_receptor,
+  #email_emisor,
+  #subject {
+    margin-top: 0;
+    height: 26px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-gray);
+    width: 100%;
+    padding: 0 var(--spacing-sm);
+    font-family: "lato";
+  }
+  
+  #comentario {
+    margin-top: 0;
+    height: 100px;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-gray);
+    width: 100%;
+    padding: var(--spacing-sm);
+    font-family: "lato";
+    resize: vertical;
+  }
+  
+  /* ====== BOTONES Y CONTROLES ====== */
+  /* Estilos comunes para botones */
+  button {
+    transition: var(--transition-hover);
+    cursor: pointer;
+    border: none;
+  }
+  
+  button:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+  }
+  
+  /* Botones circulares */
+  .btn-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+  }
+  
+  .descripcion {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-teal);
+    border: none;
+  }
+  
+  .compartir {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-secondary);
+    border: none;
+    color: var(--color-white);
+  }
+  
+  .enviar {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-accent);
+    border: none;
+    color: var(--color-secondary);
+  }
+  
+  .vermas {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-accent);
+    border: none;
+    color: var(--color-white);
+    margin-left: 44%;
+  }
+  
+  .cancel {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-primary);
+    border: none;
+    color: var(--color-secondary);
+  }
+  
+  .reset {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-warning);
+    border: none;
+    color: var(--color-secondary);
+  }
+  
+  .favoritos {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-favorite);
+    border: none;
+  }
+  
+  .boton_busqueda {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-white);
+    border: none;
+  }
+  
+  /* Botones rectangulares */
+  .descripcion_card {
+    width: 100%;
+    height: 50px;
+    border-radius: var(--border-radius-lg);
+    border: none;
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    font-weight: bold;
+  }
+  
+  .compartir_historial {
+    width: 100%;
+    height: 50px;
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-lg);
+    border: none;
+    color: var(--color-white);
+    font-weight: bold;
+  }
+  
+  #eliminar {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-delete);
+    border: none;
+    color: var(--color-white);
+  }
+  
+  .movie-card #eliminar {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-danger);
+    border: none;
+    color: var(--color-white);
+  }
+  
+  #eliminar-todos,
+  #eliminar-todos-resp {
+    width: 100px;
+    height: 30px;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-warning);
+    border: none;
+    color: var(--color-white);
+  }
+  
+  /* ====== ALERTAS Y MENSAJES ====== */
+  #alert-favoritos-pokedex {
+    margin-left: 30%;
+    display: block;
+  }
+  
+  #favorites-list-resp {
+    display: none;
+  }
+  
+  /* ====== FOOTER ====== */
+  footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--spacing-sm) 0;
+    font-family: lato;
+  }
+  
+  .icono_redes {
+    font-size: 20px;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: var(--transition-hover);
+    margin: 0 var(--spacing-xs);
+  }
+  
+  .icono_redes:hover {
+    color: var(--color-primary);
+  }
+  
+  /* ====== MAPAS ====== */
+  #map {
+    height: 768px;
+    width: 100%;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  /* ====== UTILIDADES ====== */
+  .hidden {
+    display: none !important;
+  }
+  
+  /* ====== MEDIA QUERIES ====== */
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    aside {
+      width: 15%;
+      font-size: 12px;
+    }
+  
+    h2 {
+      font-size: 25px;
+    }
+  
+    /* Botones más pequeños para tablet */
+    .descripcion,
+    .compartir,
+    .vermas,
+    .cancel,
+    .reset,
+    .favoritos {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .vermas {
+      margin-left: 44.4%;
+    }
+  
+    #eliminar {
+      width: 15px;
+      height: 15px;
+    }
+  
+    .movie-card #eliminar {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .movie-card {
+      padding: var(--spacing-md);
+    }
+  }
+  
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    aside {
+      display: none;
+    }
+  
+    nav ul {
+      display: none;
+      width: 100%;
+      text-align: center;
+      padding-top: var(--spacing-md);
+      flex-direction: column;
+    }
+  
+    nav ul li {
+      margin: var(--spacing-sm) 0;
+    }
+  
+    .responsive {
+      display: block;
+    }
+  
+    nav.active ul {
+      display: block;
+    }
+  
+    .pokemon-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    #favorites-list-resp {
+      padding: var(--spacing-md);
+      display: block;
+    }
+  
+    #favorites-list {
+      padding: 10%;
+      display: block;
+    }
+  
+    .vermas {
+      margin-left: 39%;
+    }
+  
+    /* logo */
+    .imagen img {
+      width: 50%;
+      margin-left: 25%;
+    }
+  
+    /* Formularios */
+    .id_nombre {
+      width: 80%;
+    }
+  
+    #inicio img {
+      width: 90%;
+      height: 300px;
+    }
+  
+    #filtro {
+      width: 80%;
+    }
+  
+    .movie-card {
+      width: 40%;
+      padding: var(--spacing-md);
+    }
+  
+    #films-info .movie-card {
+      margin-left: 0;
+      padding: var(--spacing-sm);
+    }
+  
+    #alert-favoritos-pokedex {
+      margin-left: 0%;
+    }
+  
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Mobile pequeños */
+  @media screen and (max-width: 640px) {
+    .movie-card {
+      width: 90%;
+    }
+  
+    #tipo {
+      width: 100%;
+    }
+  
+    .cards-container {
+      grid-template-columns: 1fr;
+    }
+  
+    #films-info .movie-card {
+      margin-left: 0;
+      width: 80%;
+    }
+  
+    .vermas {
+      margin-left: 41.7%;
+    }
+  
+    #alert-favoritos-pokedex {
+      margin-left: 10%;
+    }
+  }
+  
+  /* Mobile muy pequeños */
+  @media screen and (max-width: 300px) {
+    .descripcion,
+    .compartir,
+    .favoritos {
+      width: 25px;
+      height: 25px;
+    }
+  }
