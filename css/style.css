@@ -62,10 +62,9 @@ body {
   visibility: hidden;
   min-width: 250px;
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
-  position: relative;
-  border-radius: 2px;
+  border-radius: 20px;
   padding: 16px;
   position: fixed;
   bottom: 30px;
@@ -75,9 +74,6 @@ body {
 #alert.show {
   visibility: visible;
 }
-
-
-
 
 .col_inf img {
   margin-top: 5%;
@@ -103,7 +99,6 @@ header {
   background-color: #080909;
   padding: 10px 20px;
 }
-
 
 nav {
   display: flex;
@@ -138,15 +133,14 @@ nav ul li a:hover {
 }
 
 #favorites-counter {
-    background: #f5c518;
-    color: #000000;
-    letter-spacing: 1.5px;
-    margin-left: 5px;
-    padding: 0px 6px;
-    border-radius: 10px;
-    text-align: center;
+  background: #f5c518;
+  color: #000000;
+  letter-spacing: 1.5px;
+  margin-left: 5px;
+  padding: 0px 6px;
+  border-radius: 10px;
+  text-align: center;
 }
-
 
 main {
   padding: 20px;
@@ -180,7 +174,7 @@ footer {
   font-family: lato;
 }
 
-/* Estilo para el menu responsivo en media queries*/
+/* Estilo para el menu responsivo (hamburger) en media queries*/
 
 .responsive {
   display: none;
@@ -209,16 +203,11 @@ h1 {
 #movies-info,
 #year-movies-info,
 #historial-list {
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(5, minmax(200px, 2fr));
-
-  /* align-content: stretch; */
-  /* justify-content: space-around; */
 }
 
 #email-info {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
   min-height: 768px;
 }
 
@@ -231,7 +220,6 @@ h1 {
   color: #ffffff;
   float: right;
 }
-
 
 #info {
   width: 100%;
@@ -250,7 +238,6 @@ h1 {
   box-shadow: 0 4px 8px #bbbbbb;
   background-color: #ffffff;
 }
-
 
 .info img {
   width: 30%;
@@ -271,7 +258,7 @@ h1 {
   border: none;
   font-family: "lato";
   width: 75%;
-  text-indent:10px;
+  text-indent: 10px;
 }
 
 /* Botones */
@@ -445,7 +432,7 @@ h1 {
   font-family: "lato";
   margin-bottom: 0.1%;
   width: 75%;
-  text-indent:10px;
+  text-indent: 10px;
 }
 
 .icono_redes {
@@ -474,7 +461,7 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
-  text-indent:5px;
+  text-indent: 5px;
 }
 
 #subject {
@@ -529,7 +516,6 @@ h1 {
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
-
 
 .desc_title {
   display: flex;
@@ -710,21 +696,17 @@ h5 i {
 
 /* Media queries */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  aside {
-    width: 15%;
-    font-size: 12px;
-  }
 
   /* Botones */
   #favorites-list,
   #movies-info,
   #year-movies-info,
   #historial-list {
-  display:grid;
-  grid-template-columns: repeat(3, minmax(200px, 2fr));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 2fr));
 
-  /* align-content: stretch; */
-  /* justify-content: space-around; */
+    /* align-content: stretch; */
+    /* justify-content: space-around; */
   }
 
   .descripcion {
@@ -817,15 +799,6 @@ h5 i {
 
   .movie-card {
     padding: 20px;
-
-  }
-
-  .movie-card img {
-    /* height: 250px; */
-  }
-
-  .detail-item {
-    /* height: 150px; */
   }
 
   .movie-details {
@@ -834,16 +807,25 @@ h5 i {
 }
 
 @media screen and (max-width: 768px) {
-    #favorites-list,
+  #favorites-list,
   #movies-info,
   #year-movies-info,
   #historial-list {
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(2, minmax(200px, 2fr));
-  
+
     /* align-content: stretch; */
     /* justify-content: space-around; */
   }
+
+  #email_receptor {
+    margin-bottom: 2.5%;
+  }
+
+  #subject {
+    margin-bottom: 2.5%;
+  }
+
   .favorite-container img {
     width: 25%;
     height: 200px;
@@ -884,8 +866,6 @@ h5 i {
   nav.active ul {
     display: block;
   }
-
-
 
   /* logo */
 
@@ -948,93 +928,92 @@ h5 i {
 }
 
 @media screen and (max-width: 640px) {
-
   #alert {
-     width:100%;
-     left:0;
+    width: 100%;
+    left: 0;
   }
 
   #favorites-list,
   #movies-info,
   #year-movies-info,
   #historial-list {
-  display:grid;
-  grid-template-columns: repeat(1, minmax(200px, 2fr));
+    display: grid;
+    grid-template-columns: repeat(1, minmax(200px, 2fr));
 
-  
-  .favorite-container img {
-    width: 30%;
-    height: 200px;
-    /* height: 450px; */
-  }
+    .favorite-container img {
+      width: 30%;
+      height: 200px;
+      /* height: 450px; */
+    }
 
-  .movie-card {
-    width: 100%;
-    box-shadow: 0 4px 8px #bbbbbb;
-    background-color: #ffffff;
-  }
+    .movie-card {
+      width: 100%;
+      box-shadow: 0 4px 8px #bbbbbb;
+      background-color: #ffffff;
+    }
 
-  .imagen img {
-    margin-left: 25%;
-  }
+    .imagen img {
+      margin-left: 25%;
+    }
 
-  .inf {
-    display: block;
-  }
+    .inf {
+      display: block;
+    }
 
-  .col_inf {
-    width: 100%;
-  }
+    .col_inf {
+      width: 100%;
+    }
 
-  .desc {
-    width: 100%;
-    margin-left: 0%;
-  }
+    .desc {
+      width: 100%;
+      margin-left: 0%;
+    }
 
-  .movie-details {
-    grid-template-columns: repeat(1, minmax(170px, 1fr));
-    width: 100%;
-  }
+    .movie-details {
+      grid-template-columns: repeat(1, minmax(170px, 1fr));
+      width: 100%;
+    }
 
-  .movie-card img {
-    width: 100%;
-  }
+    .movie-card img {
+      width: 100%;
+    }
 
-  #info img {
-    width: 100%;
-    height: 450px;
-  }
+    #info img {
+      width: 100%;
+      height: 450px;
+    }
 
-  #tipo {
-    width: 100%;
-  }
+    #tipo {
+      width: 100%;
+    }
 
-  #films-info .movie-card {
-    margin-left: 0;
-    width: 80%;
-  }
+    #films-info .movie-card {
+      margin-left: 0;
+      width: 80%;
+    }
 
-  .favorite-container img {
-    width: 100%;
-    height: 450px;
-  }
+    .favorite-container img {
+      width: 100%;
+      height: 450px;
+    }
 
-  .movie-card img {
-    height: 500px;
-  }
+    .movie-card img {
+      height: 500px;
+    }
 
-  .favorite-container .descripcion_buttons {
-    justify-content: center;
-  }
+    .favorite-container .descripcion_buttons {
+      justify-content: center;
+    }
 
-  .favorite-container .descripcion_button {
-    width: 100%;
-    height: 50px;
-    border-radius: 50px;
-  }
+    .favorite-container .descripcion_button {
+      width: 100%;
+      height: 50px;
+      border-radius: 50px;
+    }
 
-  .col_inf img {
-    margin-top: 0%;
+    .col_inf img {
+      margin-top: 0%;
+    }
   }
 }
 
@@ -1046,4 +1025,4 @@ h5 i {
     height: 25px;
   }
 }
-}
+
