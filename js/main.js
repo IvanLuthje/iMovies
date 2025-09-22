@@ -273,94 +273,6 @@ $(document).ready(function () {
     var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     $("#favorites-list").empty();
 
-<<<<<<< HEAD
-        }
-
-
-         $('#movies-info').append(movieCard);
-    }
-
-
-    
-
-    document.addToFavorites = function (imdbID, Title, Poster, Type) {
-        $('#alert-favoritos').empty();
-        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado a la lista`
-        var alert_added_hist = `<i class='fa fa-heart' aria-hidden='true'></i> ${Title} ya está agregado en el historial`
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
-
-        if (!favorites.some(fav => fav.Title === Title)) {
-            favorites.push({imdbID, Title, Poster, Type});
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            loadFavorites();
-        }
-
-        else {
-            $('#alert-favoritos').html(alert_added)
-        }
-
-        if (!favorites_historial.some(fav => fav.Title === Title)) {
-            favorites_historial.push({imdbID, Title, Poster, Type});
-            localStorage.setItem('favorites_historial', JSON.stringify(favorites_historial));
-            loadFavorites();
-        }
-
-        else {
-            $('#alert-favoritos').html(alert_added)
-        }
-
-
-    };
-
-
-
-    function loadFavorites() {
-        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        $('#favorites-list').empty();
-        $('#favorites-list-r').empty();
-
-
-        if (favorites.length) {
-
-            favorites.forEach(function (fav) {
-                var favoriteItem = `
-                  <li>
-                      <span>${fav.Title}</span>
-                      <button id="eliminar" onclick="eliminar('${fav.imdbID}')">&times;</button>
-                  </li>
-              `;
-                $('#favorites-list').append(favoriteItem);
-                $('#favorites-list-r').append(favoriteItem);
-            });
-
-        }
-
-        else {
-            $('#favorites-list').html("No se encuentran favoritos")
-            $('#favorites-list-r').html("No se encuentran favoritos")
-        }
-
-    }
-
-
-
-
-    function loadHistorial() {
-        const favorites_historial = JSON.parse(localStorage.getItem('favorites_historial')) || [];
-        $('#historial-list').empty();
-
-        if (favorites_historial.length) {
-            favorites_historial.forEach(function (fav) {
-                const favoriteItem = `  
-                        <div class="movie-card">
-                            <img src=${fav.Poster}>
-                            <h2>${fav.Title}</h2>
-                            <h3>${fav.Type.charAt(0).toUpperCase() + fav.Type.slice(1)}</h3>
-                            <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                            <button class="descripcion" onclick="descripcion_historial('${fav.imdbID}','${fav.Poster}','${fav.Type}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                            <button id="eliminar" onclick="eliminar('${fav.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
-=======
     if (favorites.length) {
       favorites.forEach(function (data) {
         const imagen =
@@ -369,7 +281,6 @@ $(document).ready(function () {
                      <div class="movie-card">
                         <div class="boton_eliminar">
                         <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
->>>>>>> v2.2
                         </div>
                         <img src=${imagen}>
                         <div class="desc_title">
