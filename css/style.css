@@ -58,6 +58,26 @@ body {
   background-color: #ffffff;
 }
 
+#alert {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#alert.show {
+  visibility: visible;
+}
+
+
 
 
 .col_inf img {
@@ -466,7 +486,7 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
-  text-indent:5px;
+  text-indent: 6px;
 }
 
 #comentario {
@@ -477,7 +497,7 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   font-family: "lato";
-  text-indent:5px;
+  text-indent: 6px;
 }
 
 #films-info .movie-card {
@@ -497,26 +517,21 @@ h1 {
   text-align: center;
   margin-top: 20px;
   margin: 5px;
-  padding: 40px;
-
+  padding: 20px;
   box-shadow: 0 4px 8px #bbbbbb;
   background-color: #ffffff;
-}
-
-.movie-card img {
-  width: 100%;
-  height: 450px;
-  border-radius: 15px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-}
-
-/* Contenedor principal de la tarjeta */
-.movie-card {
   display: flex;
   flex-direction: column;
 }
 
-/* Estilos para la seccion del tiÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â­tulo y descripcion */
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+
 .desc_title {
   display: flex;
   flex-direction: column;
@@ -998,6 +1013,10 @@ h5 i {
   .favorite-container img {
     width: 100%;
     height: 450px;
+  }
+
+  .movie-card img {
+    height: 500px;
   }
 
   .favorite-container .descripcion_buttons {
