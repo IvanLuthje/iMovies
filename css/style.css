@@ -68,9 +68,8 @@ body {
   border-radius: 2px;
   padding: 16px;
   position: fixed;
-  z-index: 1;
   bottom: 30px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 #alert.show {
@@ -950,7 +949,12 @@ h5 i {
 
 @media screen and (max-width: 640px) {
 
-    #favorites-list,
+  #alert {
+     width:100%;
+     left:0;
+  }
+
+  #favorites-list,
   #movies-info,
   #year-movies-info,
   #historial-list {
