@@ -48,7 +48,12 @@ function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
   FavoritesCounter();
 }
 
- function buttonFavorites() {
+
+$(document).ready(function () {
+  loadFavorites();
+  loadHistorial();
+
+  function buttonFavorites() {
         var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
         var alert_add = `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
         let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -63,14 +68,6 @@ function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
 
         FavoritesCounter();
     }
-
-
-
-
-
-$(document).ready(function () {
-  loadFavorites();
-  loadHistorial();
 
   async function year_movies() {
     $("#mtitle").html("<h2>Peliculas del año</h2>");
@@ -206,7 +203,6 @@ $(document).ready(function () {
     var movieCard = `
            <div class="movie-card">
                     <img src="${imagen}">
-                    <button class="favoritos" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}',this)"></button>
 
                     <div class="desc_title">
                         <h4>${data.Title}</h4>
@@ -387,3 +383,5 @@ $(document).ready(function () {
     }
   };
 });
+
+
