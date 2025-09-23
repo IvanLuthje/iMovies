@@ -29,7 +29,7 @@ function FavoritesCounter() {
 
 
 function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
-  $("#alert-favoritos").empty();
+
   var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
   var alert_add = `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -48,6 +48,22 @@ function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
   FavoritesCounter();
 }
 
+ function buttonFavorites() {
+        var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
+        var alert_add = `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        $(".favoritos").each(async function () {
+            const imdbID = $(this).data("id");
+            if (favorites.some((data) => data.imdbID === imdbID)) {
+            $(this).html(alert_check);
+            } else {
+            $(this).html(alert_add);
+            }
+        });
+
+        FavoritesCounter();
+    }
+
 
 
 
@@ -55,7 +71,6 @@ function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
 $(document).ready(function () {
   loadFavorites();
   loadHistorial();
-  buttonFavorites();
 
   async function year_movies() {
     $("#mtitle").html("<h2>Peliculas del año</h2>");
@@ -169,21 +184,7 @@ $(document).ready(function () {
     alerts();
   });
 
-    function buttonFavorites() {
-        var alert_check = `<i class='fa fa-heart' aria-hidden='true'></i>`;
-        var alert_add = `<i class="fa-regular fa-heart" aria-hidden="true"></i>`;
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        $(".favoritos").each(function () {
-            const imdbID = $(this).data("id");
-            if (favorites.some((data) => data.imdbID === imdbID)) {
-            $(this).html(alert_check);
-            } else {
-            $(this).html(alert_add);
-            }
-        });
-
-        FavoritesCounter();
-    }
+   
 
   async function mostrarResultados(data) {
     try {
@@ -205,6 +206,7 @@ $(document).ready(function () {
     var movieCard = `
            <div class="movie-card">
                     <img src="${imagen}">
+                    <button class="favoritos" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}',this)"></button>
 
                     <div class="desc_title">
                         <h4>${data.Title}</h4>
@@ -219,6 +221,7 @@ $(document).ready(function () {
         `;
 
     $("#movies-info").append(movieCard);
+    buttonFavorites();
 
     $(".descripcion_button").click(async function () {
       const id = $(this).data("id");

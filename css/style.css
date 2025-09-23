@@ -425,6 +425,16 @@ h1 {
   background-color: #ffffff;
 }
 
+.movie-card .favoritos {
+  color: #ffffff;
+  position: absolute;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+}
+
 #filtro {
   height: 50px;
   border-radius: 30px 30px 30px 30px;
@@ -512,7 +522,7 @@ h1 {
 
 .movie-card img {
   width: 100%;
-  height: 300px;
+  height: 350px;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
