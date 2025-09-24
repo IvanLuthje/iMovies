@@ -199,10 +199,10 @@ $(document).ready(function () {
       console.error("Error al obtener detalles adicionales:", error);
     }
 
-    const imagen = data.Poster !== "N/A" ? data.Poster : "img/Image-not-found.png";
+    const imagen = (data.Poster && data.Poster !== "N/A") ? data.Poster : "img/Image-not-found.png";
     var movieCard = `
            <div class="movie-card">
-                    <img src="${imagen}">
+                    <img src="${imagen}" onerror="this.onerror=null; this.src='img/Image-not-found.png';">
                     <button class="favoritos" id="${data.imdbID}" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title.replace(/['"]/g, "\\'")}','${data.Poster}','${data.Type}','${data.Year}',this)"></button>
                     <div class="desc_title">
                         <h4>${data.Title}</h4>
