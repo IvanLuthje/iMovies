@@ -74,7 +74,7 @@ var inf = `
 <div class="inf">
 
   <div class="col_inf">
-      <img src="${imagen}" />
+     <img src="${imagen}" onerror="this.onerror=null; this.src='img/Image-not-found.png';">
       <div class="descripcion_buttons">
         <button class="compartir" onclick="compartir()">
           <i class="fa fa-share-alt" aria-hidden="true"></i>

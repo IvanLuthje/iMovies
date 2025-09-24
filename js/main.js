@@ -281,7 +281,7 @@ $(document).ready(function () {
                         <div class="boton_eliminar">
                         <button id="eliminar" onclick="eliminar('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
-                        <img src=${imagen}>
+                        <img src="${imagen}" onerror="this.onerror=null; this.src='img/Image-not-found.png';">
                         <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
@@ -314,7 +314,7 @@ $(document).ready(function () {
                         <div class="boton_eliminar">
                         <button id="eliminar_historial" onclick="eliminar_historial('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
-                        <img src=${imagen}>
+                        <img src="${imagen}" onerror="this.onerror=null; this.src='img/Image-not-found.png';">
                         <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
