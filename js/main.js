@@ -296,7 +296,7 @@ $(document).ready(function () {
     } else {
       $("#favorites-list").html("No se encuentran favoritos");
     }
-
+    
     FavoritesCounter();
   }
 
@@ -315,6 +315,7 @@ $(document).ready(function () {
                         <button id="eliminar_historial" onclick="eliminar_historial('${data.imdbID}')"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                         <img src="${imagen}" onerror="this.onerror=null; this.src='img/Image-not-found.png';">
+                        <button class="favoritos" id="${data.imdbID}" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title.replace(/['"]/g, "\\'")}','${data.Poster}','${data.Type}','${data.Year}',this)"></button>
                         <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
@@ -326,6 +327,7 @@ $(document).ready(function () {
                 `;
 
         $("#historial-list").append(favoriteItem);
+         buttonFavorites();
       });
 
       $(".descripcion_button").click(async function () {
