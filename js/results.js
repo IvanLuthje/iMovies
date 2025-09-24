@@ -79,7 +79,7 @@ var inf = `
         <button class="compartir" onclick="compartir()">
           <i class="fa fa-share-alt" aria-hidden="true"></i>
         </button>
-        <button class="favoritos" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/'/g, "\\'")}')">
+        <button class="favoritos" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title.replace(/['"]/g, "\\'")}','${data.Poster}','${data.Type}','${data.Year}','${data.Plot.replace(/['"]/g, "\\'")}')">
         </button>
       </div>
   </div>

@@ -885,7 +885,7 @@ h5 i {
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 480px) {
   #alert {
     width: 100%;
     left: 0;

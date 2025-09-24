@@ -37,12 +37,12 @@ function addToFavorites(imdbID, Title, Poster, Type, Year, Plot) {
   if (!favorites.some((data) => data.Title === Title)) {
     favorites.push({imdbID, Title, Poster, Type, Year, Plot});
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    $(".favoritos").html(alert_check);
+    $("#" + imdbID).html(alert_check);
   } else {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     favorites = favorites.filter((data) => data.imdbID !== imdbID);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    $(".favoritos").html(alert_add);
+    $("#" + imdbID).html(alert_add);
   }
 
   FavoritesCounter();
@@ -203,7 +203,7 @@ $(document).ready(function () {
     var movieCard = `
            <div class="movie-card">
                     <img src="${imagen}">
-
+                    <button class="favoritos" id="${data.imdbID}" data-id="${data.imdbID}" onclick="addToFavorites('${data.imdbID}','${data.Title.replace(/['"]/g, "\\'")}','${data.Poster}','${data.Type}','${data.Year}',this)"></button>
                     <div class="desc_title">
                         <h4>${data.Title}</h4>
                         <h5>${data.Type.charAt(0).toUpperCase() + data.Type.slice(1)} (${data.Year})</h5>
